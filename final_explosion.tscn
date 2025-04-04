@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ke45qby4ib8c"]
+
+[ext_resource type="AudioStream" uid="uid://btwp1ett8y8e3" path="res://medium-boom-318828.mp3" id="1_vmaf7"]
+
+[node name="FinalExplosion" type="Node"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_vmaf7")
+volume_db = 5.0
+autoplay = true
+bus = &"SFX"

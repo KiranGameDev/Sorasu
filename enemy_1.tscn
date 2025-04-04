@@ -1,0 +1,161 @@
+[gd_scene load_steps=13 format=3 uid="uid://b73ea32apa5su"]
+
+[ext_resource type="Script" uid="uid://buthmxdrwakd0" path="res://enemy_1.gd" id="1_yqthb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tyod4"]
+resource_local_to_scene = true
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_p671b"]
+resource_name = "Move1"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(30, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qdp0e"]
+resource_name = "Move2"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-30, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mbxyh"]
+resource_name = "Move3"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(30, 0, -30)]
+}
+
+[sub_resource type="Animation" id="Animation_pjquw"]
+resource_name = "Move4"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-30, 0, -30)]
+}
+
+[sub_resource type="Animation" id="Animation_eujdo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1600e"]
+_data = {
+&"Move1": SubResource("Animation_p671b"),
+&"Move2": SubResource("Animation_qdp0e"),
+&"Move3": SubResource("Animation_mbxyh"),
+&"Move4": SubResource("Animation_pjquw"),
+&"RESET": SubResource("Animation_eujdo")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1w1au"]
+albedo_color = Color(0.303233, 0.303233, 0.303233, 1)
+metallic = 0.5
+roughness = 0.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0gemc"]
+material = SubResource("StandardMaterial3D_1w1au")
+radius = 0.8
+height = 3.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cd2cr"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_f1psh"]
+material = SubResource("StandardMaterial3D_cd2cr")
+
+[node name="Enemy1" type="CharacterBody3D" groups=["enemy"]]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+script = ExtResource("1_yqthb")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+visible = false
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_tyod4")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="Timer4" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1600e")
+}
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Body" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_0gemc")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.807237)
+mesh = SubResource("CylinderMesh_f1psh")
+skeleton = NodePath("../..")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.909091, 0, 0, 0, -3.97376e-08, 0.909091, 0, -0.909091, -3.97376e-08, 0, 2.65614, 0)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer4" to="." method="_on_timer_4_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

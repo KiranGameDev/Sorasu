@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://4q6rc84i78bx"
+path="res://.godot/imported/Sorasu Menu 1.mp3-e2456cc05e6acd95c86a4d6a2df540d9.mp3str"
+
+[deps]
+
+source_file="res://Sorasu Menu 1.mp3"
+dest_files=["res://.godot/imported/Sorasu Menu 1.mp3-e2456cc05e6acd95c86a4d6a2df540d9.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3fvthrwwavk8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jucy3"]
+albedo_color = Color(0.243137, 0.584314, 0.960784, 1)
+emission_enabled = true
+emission = Color(0.243137, 0.584314, 0.960784, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_p3o1b"]
+material = SubResource("StandardMaterial3D_jucy3")
+top_radius = 1.0
+bottom_radius = 1.0
+
+[node name="ParryLine" type="MeshInstance3D"]
+mesh = SubResource("CylinderMesh_p3o1b")

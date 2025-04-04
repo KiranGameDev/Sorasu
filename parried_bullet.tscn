@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dx0ghhf65p87o"]
+
+[ext_resource type="Script" uid="uid://b3tn73exrchj" path="res://parried_bullet.gd" id="1_fnmg8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t70yv"]
+albedo_color = Color(0.243137, 0.584314, 0.960784, 1)
+emission_enabled = true
+emission = Color(0.24342, 0.584238, 0.960465, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_xldf8"]
+material = SubResource("StandardMaterial3D_t70yv")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iqtev"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mbx7i"]
+radius = 0.6
+
+[node name="ParriedBullet" type="CharacterBody3D"]
+script = ExtResource("1_fnmg8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_xldf8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_iqtev")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_mbx7i")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.01
+autostart = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

@@ -1,0 +1,390 @@
+[gd_scene load_steps=23 format=3 uid="uid://dm5an44fjmtnq"]
+
+[ext_resource type="PackedScene" uid="uid://doiomiwtw4geo" path="res://space_ship.tscn" id="1_7myg2"]
+[ext_resource type="Script" uid="uid://bxccmmbaqm53q" path="res://player.gd" id="1_o7f5t"]
+[ext_resource type="AudioStream" uid="uid://cuq30linnp1yq" path="res://arrow-impact-87260.mp3" id="3_hqtel"]
+[ext_resource type="AudioStream" uid="uid://t5gli4hy0gvi" path="res://parried_bullet_hit.mp3" id="4_7amfg"]
+[ext_resource type="AudioStream" uid="uid://c1aqy8db8skx8" path="res://futuristic-gun-shot-sci-fi-217154.mp3" id="4_sweqy"]
+
+[sub_resource type="Animation" id="Animation_uechi"]
+resource_name = "BarrelRoll"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spaceshipmodel:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(6.28319, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4lqu5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spaceshipmodel:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ayrqx"]
+resource_name = "TurnLeft"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.261799, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_v1q5c"]
+resource_name = "TurnRight"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.261799, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ofd7x"]
+_data = {
+&"BarrelRoll": SubResource("Animation_uechi"),
+&"RESET": SubResource("Animation_4lqu5"),
+&"TurnLeft": SubResource("Animation_ayrqx"),
+&"TurnRight": SubResource("Animation_v1q5c")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1cn1s"]
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wd60y"]
+albedo_color = Color(0.00140652, 0.140429, 0.599141, 1)
+emission_enabled = true
+emission = Color(0, 0, 0.698039, 1)
+emission_energy_multiplier = 8.91
+
+[sub_resource type="SphereMesh" id="SphereMesh_l6l12"]
+material = SubResource("StandardMaterial3D_wd60y")
+radius = 0.2
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vg2s4"]
+transparency = 1
+albedo_color = Color(0.563378, 0.914547, 1, 0.156863)
+
+[sub_resource type="SphereMesh" id="SphereMesh_eckwi"]
+material = SubResource("StandardMaterial3D_vg2s4")
+radius = 2.5
+height = 5.0
+
+[sub_resource type="Animation" id="Animation_nfbfv"]
+resource_name = "BadParry"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParrySphere:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.45, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.1, 1.1, 1.1), Vector3(0.4, 0.4, 0.4), Vector3(0.35, 0.35, 0.35), Vector3(0.1, 0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:parry_finished")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"parry_finish"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ny0ra"]
+resource_name = "ParryBegin"
+length = 0.05
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParrySphere:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.1, 0.1, 0.1), Vector3(1.1, 1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:doing_parry")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:parry_finished")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_50462"]
+resource_name = "ParrySuccessful"
+length = 0.05
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParrySphere:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.1, 1.1, 1.1), Vector3(0.1, 0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:parry_finished")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"parry_finish"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_jo52b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParrySphere:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.1, 0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:parry_finished")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:doing_parry")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tb0dp"]
+_data = {
+&"BadParry": SubResource("Animation_nfbfv"),
+&"ParryBegin": SubResource("Animation_ny0ra"),
+&"ParrySuccessful": SubResource("Animation_50462"),
+&"RESET": SubResource("Animation_jo52b")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h14hc"]
+radius = 3.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dr8k6"]
+size = Vector3(0.7, 0.679, 0.7)
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+script = ExtResource("1_o7f5t")
+
+[node name="Spaceshipmodel" parent="." instance=ExtResource("1_7myg2")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 1.47322, -1.24235, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ofd7x")
+}
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.602367, 0.0103183, 0)
+visible = false
+amount = 50
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_1cn1s")
+draw_pass_1 = SubResource("SphereMesh_l6l12")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.613922, 0.0103183, -1.9482)
+visible = false
+amount = 50
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_1cn1s")
+draw_pass_1 = SubResource("SphereMesh_l6l12")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.614, 0.01, 1.948)
+visible = false
+amount = 50
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_1cn1s")
+draw_pass_1 = SubResource("SphereMesh_l6l12")
+
+[node name="ParrySphere" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.29, 0, 0)
+mesh = SubResource("SphereMesh_eckwi")
+
+[node name="ParryAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tb0dp")
+}
+
+[node name="ParryArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.330157, 0, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ParryArea"]
+shape = SubResource("SphereShape3D_h14hc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0185567, 0)
+shape = SubResource("BoxShape3D_dr8k6")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="ParrySoundEffect" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("3_hqtel")
+volume_db = 5.0
+bus = &"Echo"
+
+[node name="ParrySoundEffect2" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_sweqy")
+volume_db = 1.0
+bus = &"SFX"
+
+[node name="EnemyHit" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_7amfg")
+bus = &"SFX"
+
+[node name="ComboTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.88059, 0)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="ParryArea" to="." method="_on_parry_area_body_entered"]
+[connection signal="body_exited" from="ParryArea" to="." method="_on_parry_area_body_exited"]
+[connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

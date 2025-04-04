@@ -1,0 +1,318 @@
+[gd_scene load_steps=15 format=3 uid="uid://cu7ev2u7p3628"]
+
+[ext_resource type="Script" uid="uid://ck2ovgbrf32km" path="res://intro.gd" id="1_fs2nk"]
+[ext_resource type="AudioStream" uid="uid://cb27cuin7nsxr" path="res://rocketmp3-94928.mp3" id="3_y72e6"]
+[ext_resource type="Texture2D" uid="uid://dvosfd4p23rbt" path="res://future.jpg" id="4_0a7ni"]
+[ext_resource type="AudioStream" uid="uid://1srbmin60qlk" path="res://aircraft-take-off-and-landing-together-50483.mp3" id="4_u2rf6"]
+[ext_resource type="PackedScene" uid="uid://7btxoc6t47fw" path="res://city-2.tscn" id="4_y72e6"]
+[ext_resource type="PackedScene" uid="uid://doiomiwtw4geo" path="res://space_ship.tscn" id="6_rnfit"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d3an4"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.0322377, 0.034035, 0.0369885, 1)
+ground_bottom_color = Color(0.0313726, 0.0352941, 0.0352941, 1)
+ground_horizon_color = Color(0.0313726, 0.0352941, 0.0352941, 1)
+
+[sub_resource type="Sky" id="Sky_htftf"]
+sky_material = SubResource("ProceduralSkyMaterial_d3an4")
+
+[sub_resource type="Environment" id="Environment_lu0wr"]
+background_mode = 2
+sky = SubResource("Sky_htftf")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.005
+
+[sub_resource type="Animation" id="Animation_b4612"]
+resource_name = "Animation"
+length = 12.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 7.6, 7.7, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.349066, -3.14159, 0), Vector3(-0.174533, -3.14159, 0), Vector3(-0.174533, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 10.5, 11),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(12),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"teleport"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spaceshipmodel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 7.5, 11),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 10, -0.901), Vector3(0, 10, -0.901), Vector3(0, 10, -1000)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CSGCombiner3D/CSGCylinder3D2:material:uv1_offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 7.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -100)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera3D:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 5, 7, 7.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.03, 15, -6.168), Vector3(0.03, 15, -15.168), Vector3(0.03, 15, -15.168), Vector3(0.03, 15, -6.168)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Spaceshipmodel/RocketLaunch:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 7.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Spaceshipmodel/Engine:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 7.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ewg6g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spaceshipmodel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -6.02944, -0.901049)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CSGCombiner3D/CSGCylinder3D2:material:uv1_offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.03, 15, -12.168)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Spaceshipmodel/RocketLaunch:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Spaceshipmodel/Engine:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xh2lf"]
+_data = {
+&"Animation": SubResource("Animation_b4612"),
+&"RESET": SubResource("Animation_ewg6g")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u2rf6"]
+shading_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y72e6"]
+shading_mode = 0
+albedo_texture = ExtResource("4_0a7ni")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+
+[node name="Intro" type="Node3D"]
+script = ExtResource("1_fs2nk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 1000.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lu0wr")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0.03, 15, -12.168)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xh2lf")
+}
+autoplay = "Animation"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1153.0
+offset_bottom = 651.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Spaceshipmodel" parent="." instance=ExtResource("6_rnfit")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -6.02944, -0.901049)
+
+[node name="RocketLaunch" type="AudioStreamPlayer3D" parent="Spaceshipmodel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.70037, 1.82987, -7.43256e-08)
+stream = ExtResource("3_y72e6")
+volume_db = 8.0
+unit_size = 30.0
+bus = &"SFX"
+
+[node name="Engine" type="AudioStreamPlayer3D" parent="Spaceshipmodel"]
+stream = ExtResource("4_u2rf6")
+volume_db = 4.0
+unit_size = 30.0
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="Inside" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 11.733, 802.268)
+radius = 9.999
+height = 1644.27
+sides = 32
+material = SubResource("StandardMaterial3D_u2rf6")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 11.733, 802.268)
+flip_faces = true
+radius = 10.0
+height = 1644.27
+sides = 32
+material = SubResource("StandardMaterial3D_y72e6")
+
+[node name="City" parent="." instance=ExtResource("4_y72e6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.02545, -152.753, -313.218)
+
+[node name="City2" parent="." instance=ExtResource("4_y72e6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -593.56, -154.98, -324.702)
+
+[node name="City3" parent="." instance=ExtResource("4_y72e6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 593.56, -154.98, -324.702)
+
+[node name="City4" parent="." instance=ExtResource("4_y72e6")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.02545, -152.753, -1042.43)
+
+[node name="City5" parent="." instance=ExtResource("4_y72e6")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -593.56, -154.98, -1053.91)
+
+[node name="City6" parent="." instance=ExtResource("4_y72e6")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 593.56, -154.98, -1053.91)

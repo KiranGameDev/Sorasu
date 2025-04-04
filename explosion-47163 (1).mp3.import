@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://duges1gu2j4u"
+path="res://.godot/imported/explosion-47163 (1).mp3-2bf8f38fce954bf7f493cb373fa68ac2.mp3str"
+
+[deps]
+
+source_file="res://explosion-47163 (1).mp3"
+dest_files=["res://.godot/imported/explosion-47163 (1).mp3-2bf8f38fce954bf7f493cb373fa68ac2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

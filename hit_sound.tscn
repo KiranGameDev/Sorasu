@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp7lqm0w2owgf"]
+
+[ext_resource type="Script" uid="uid://b7lpl76ilvpyk" path="res://hit_sound.gd" id="1_kywus"]
+[ext_resource type="AudioStream" uid="uid://bf0gf044csf47" path="res://explosion-under-snow-sfx-230505.mp3" id="2_186ep"]
+
+[node name="HitSound" type="Node3D"]
+script = ExtResource("1_kywus")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_186ep")
+volume_db = -10.0
+bus = &"SFX"
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
