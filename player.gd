@@ -25,6 +25,9 @@ func _ready() -> void:
 	hit = false
 
 func _process(delta: float) -> void:
+	StatHandler.parry_timer_time = 0 + combo_timer.time_left
+	if StatHandler.parry_combo > 9:
+		StatHandler.parry_combo = 9
 	if StatHandler.parry_combo > 0 and not StatHandler.parry_combo_timer_started:
 		combo_timer.start()
 		StatHandler.parry_combo_timer_started = true
@@ -32,9 +35,11 @@ func _process(delta: float) -> void:
 		spaceshipmodel.rotation.x = 0
 	if hit:
 		StatHandler.lives -= 1
+		StatHandler.parry_combo = 0
 		StatHandler.spawn_player_death_particles(global_position, 0.5, true, 1)
 		queue_free()
 	if StatHandler.kill_player == true:
+		StatHandler.parry_combo = 0
 		queue_free()
 
 func _physics_process(delta: float) -> void:

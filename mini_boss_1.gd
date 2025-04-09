@@ -37,6 +37,7 @@ func _process(delta: float) -> void:
 		phase = 1
 		if prev_phase != phase:
 			timer.start()
+			StatHandler.spawn_change_phase_particles(global_position)
 			prev_phase = phase
 	if HP <= 1050 and HP > 900:
 		phase = 2
@@ -44,6 +45,7 @@ func _process(delta: float) -> void:
 			timer.wait_time = 2
 			ready_up()
 			timer.start()
+			StatHandler.spawn_change_phase_particles(global_position)
 			prev_phase = phase
 	if HP <= 900 and HP > 600:
 		phase = 3
@@ -53,6 +55,7 @@ func _process(delta: float) -> void:
 			timer.start()
 			timer_3.start()
 			timer_2.stop()
+			StatHandler.spawn_change_phase_particles(global_position)
 			prev_phase = phase
 	if HP <= 600 and HP > 300:
 		phase = 4
@@ -62,6 +65,7 @@ func _process(delta: float) -> void:
 			timer.start()
 			timer_3.stop()
 			timer_2.start()
+			StatHandler.spawn_change_phase_particles(global_position)
 			prev_phase = phase
 	if HP <= 300:
 		phase = 5
@@ -71,6 +75,7 @@ func _process(delta: float) -> void:
 			timer.start()
 			timer_3.start()
 			timer_2.stop()
+			StatHandler.spawn_change_phase_particles(global_position)
 			prev_phase = phase
 	if times_left_shot <= 0:
 		ready_up()

@@ -1,6 +1,7 @@
 extends Node
 
-@export var lives = 2
+@export var max_lives = 2
+@export var max_continues = 3
 
 var parry_line_instance = preload("res://parry_line.tscn")
 var parried_bullet = preload("res://parried_bullet.tscn")
@@ -10,9 +11,12 @@ var boss_death_particles = preload("res://boss_death_particles.tscn")
 var player_death_particles = preload("res://player_death_particles.tscn")
 var enemy_hit_sound = preload("res://hit_sound.tscn")
 var explode_overlay = preload("res://explode_overlay.tscn")
+var phase_change_explosion = preload("res://phase_change_particles.tscn")
 var score = 0
 var hi_score = 0
-var quality = 3
+var parry_timer_time: float
+var lives: int
+var quality = 2
 var color_blind_mode = false
 var parry_combo = 0
 var parry_combo_timer_started = false
@@ -20,10 +24,10 @@ var boss_spawned = false
 var parried = false
 var boss_position: Vector3
 var boss_ready = false
+var prev_parry_combo = 0
 var boss_dead = false
 var boss_1_name = "Rokanshu"
-var max_continues = 3
-var continues = max_continues
+var continues: int
 var current_boss_name = boss_1_name
 var kill_player = false
 var time_up = false
@@ -54,6 +58,12 @@ func spawn_player_death_particles(pos: Vector3, speed_scale: float, emitting: bo
 	instance.emitting = emitting
 	instance.scale = Vector3(size_scale, size_scale, size_scale)
 	add_sibling.call_deferred(instance)
+
+func spawn_change_phase_particles(pos: Vector3):
+	var instance = phase_change_explosion.instantiate()
+	instance.emitting = true
+	instance.global_position = pos
+	add_child.call_deferred(instance)
 
 func spawn_parried_bullet_hit_particle(pos: Vector3):
 	var instance = parried_bullet_hit_particles.instantiate()

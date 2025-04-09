@@ -23,6 +23,10 @@ extends Node3D
 @onready var ui: Control = $UI
 @onready var camera_3d: Camera3D = $Camera3D
 @onready var sub_viewport: SubViewport = $SubViewport
+@onready var floor_2: CSGMesh3D = $Floor2
+@onready var animation_player_3: AnimationPlayer = $AnimationPlayer3
+@onready var parry_combo_label: Label = $UI/CenterContainer3/ParryComboLabel
+@onready var parry_bar: ProgressBar = $UI/ParryBar
 
 var started = false
 var player = preload("res://player.tscn")
@@ -30,12 +34,16 @@ var original_lives = 3
 var dead = false
 var timer_started = false
 var boss_timer_started = false
-var combined_score = StatHandler.score + int(boss_timer.time_left * 100) + (StatHandler.lives * 5000)
+var combined_score = StatHandler.score + int(StatHandler.lives * 5000)
 
 func _ready() -> void:
+	if StatHandler.color_blind_mode:
+		floor_2.visible = true
+	else:
+		floor_2.visible = false
 	StatHandler.boss_dead = false
 	StatHandler.boss_ready = false
-	StatHandler.lives = 2
+	StatHandler.lives = StatHandler.max_lives
 	StatHandler.continues = StatHandler.max_continues
 	StatHandler.time_up = false
 	StatHandler.kill_player = false
@@ -44,16 +52,26 @@ func _ready() -> void:
 	boss_time_label.visible = false
 
 func _process(delta: float) -> void:
-	if combined_score > StatHandler.hi_score:
-		update_hi_score(combined_score)
+	parry_bar.value = StatHandler.parry_timer_time
+	parry_combo_label.text = "x" + str(StatHandler.parry_combo)
+	if StatHandler.prev_parry_combo != StatHandler.parry_combo:
+		animation_player_3.play("ParryLabelPop")
+		StatHandler.prev_parry_combo = StatHandler.parry_combo
+	if StatHandler.parry_combo <= 0:
+		parry_combo_label.visible = false
+		parry_bar.visible = false
+	else:
+		parry_combo_label.visible = true
+		parry_bar.visible = true
+	var time_score = (int(boss_timer.time_left) * 100)
 	RenderingServer.viewport_set_msaa_3d(camera_3d.get_camera_rid(), StatHandler.quality)
 	center_container_2.visible = true
 	if boss_timer.time_left > 0:
 		StatHandler.time_up = false
-	final_score_label.text = "SCORE: " + str(combined_score)
+	final_score_label.text = "SCORE: " + str(StatHandler.score + (StatHandler.lives * 5000) + time_score)
 	normal_score_label.text = "Boss score: " + str(StatHandler.score)
-	time_score_label.text = "Time score: " + str(int(boss_timer.time_left * 100))
-	lives_score_label.text = "Lives score: " + str(StatHandler.lives * 5000)
+	time_score_label.text = "Time score: " + str(time_score)
+	lives_score_label.text = "Lives score: " + str(int(StatHandler.lives * 5000))
 	if StatHandler.kill_boss_timer:
 		boss_timer.paused = true
 	boss_time_label.text = "Time Left: " + str(int(boss_timer.time_left))
@@ -85,6 +103,7 @@ func _process(delta: float) -> void:
 			started = true
 	else:
 		started = false
+		continue_timer.stop()
 	if StatHandler.boss_dead or player == null:
 		boss_timer.paused = true
 	else:
@@ -92,17 +111,20 @@ func _process(delta: float) -> void:
 	label_2.text = "Continue?   " + str(int(continue_timer.time_left))
 	if dead:
 		if can_continue:
-			if Input.is_action_just_pressed("menu"):
-				if StatHandler.continues > 0:
-					var raw_instance = preload("res://player.tscn")
-					continue_timer.stop()
-					StatHandler.lives = 2
-					StatHandler.continues -= 1
-					death_gui.visible = false
-					lives_label.visible = true
-					dead = false
-					death_timer.start()
-					continue_timer.stop()
+			if not continue_timer.is_stopped():
+				if Input.is_action_just_pressed("menu"):
+					if StatHandler.continues > 0:
+						var raw_instance = preload("res://player.tscn")
+						continue_timer.stop()
+						StatHandler.lives = StatHandler.max_lives
+						StatHandler.continues -= 1
+						death_gui.visible = false
+						lives_label.visible = true
+						dead = false
+						death_timer.start()
+						continue_timer.stop()
+	if StatHandler.continues < 0:
+		StatHandler.continues = 0
 
 func _on_death_timer_timeout() -> void:
 	if StatHandler.lives > -1:
@@ -131,8 +153,14 @@ func _on_continue_timer_timeout() -> void:
 
 func teleport():
 	StatHandler.kill_player = true
-	SaveSystem.save_data(combined_score)
 	get_tree().change_scene_to_file("res://main_menu.tscn")
+
+func save():
+	var time_score = (int(boss_timer.time_left) * 100)
+	if StatHandler.boss_dead:
+		SaveSystem.save_data(StatHandler.score + (StatHandler.lives * 5000) + time_score)
+	else:
+		SaveSystem.save_data(StatHandler.score)
 
 func _on_timer_timeout() -> void:
 	animation_player_4.play("Fade")

@@ -111,14 +111,16 @@ material = SubResource("StandardMaterial3D_wd60y")
 radius = 0.2
 height = 0.4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vg2s4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sweqy"]
 transparency = 1
-albedo_color = Color(0.563378, 0.914547, 1, 0.156863)
+shading_mode = 0
+albedo_color = Color(0.541176, 1, 1, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_eckwi"]
-material = SubResource("StandardMaterial3D_vg2s4")
-radius = 2.5
-height = 5.0
+[sub_resource type="CylinderMesh" id="CylinderMesh_2hs0m"]
+material = SubResource("StandardMaterial3D_sweqy")
+top_radius = 2.8
+bottom_radius = 2.8
+height = 0.1
 
 [sub_resource type="Animation" id="Animation_nfbfv"]
 resource_name = "BadParry"
@@ -131,10 +133,10 @@ tracks/0/path = NodePath("ParrySphere:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.45, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(1.1, 1.1, 1.1), Vector3(0.4, 0.4, 0.4), Vector3(0.35, 0.35, 0.35), Vector3(0.1, 0.1, 0.1)]
+"values": [Vector3(1.1, 1.1, 1.1), Vector3(0.7, 0.7, 0.7), Vector3(0.3, 0.3, 0.3)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -162,6 +164,18 @@ tracks/2/keys = {
 "method": &"parry_finish"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ParrySphere:mesh:material:albedo_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.541176, 1, 1, 1), Color(0.898039, 0.121569, 0.188235, 1), Color(0.898039, 0.121569, 0.188235, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_ny0ra"]
 resource_name = "ParryBegin"
@@ -174,10 +188,10 @@ tracks/0/path = NodePath("ParrySphere:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.1, 0.1, 0.1), Vector3(1.1, 1.1, 1.1)]
+"values": [Vector3(1.1, 1.1, 1.1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -202,6 +216,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ParrySphere:mesh:material:albedo_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.541176, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_50462"]
@@ -246,6 +272,18 @@ tracks/2/keys = {
 "method": &"parry_finish"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ParrySphere:mesh:material:albedo_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.541176, 1, 1, 1), Color(0.541176, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_jo52b"]
 length = 0.001
@@ -284,6 +322,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ParrySphere:mesh:material:albedo_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.541176, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tb0dp"]
@@ -336,8 +386,8 @@ process_material = SubResource("ParticleProcessMaterial_1cn1s")
 draw_pass_1 = SubResource("SphereMesh_l6l12")
 
 [node name="ParrySphere" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.29, 0, 0)
-mesh = SubResource("SphereMesh_eckwi")
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.29, -0.73, 0)
+mesh = SubResource("CylinderMesh_2hs0m")
 
 [node name="ParryAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dtkobp0srsbq5"]
+[gd_scene load_steps=21 format=3 uid="uid://dtkobp0srsbq5"]
 
 [ext_resource type="Script" uid="uid://cvpeh87q4t22e" path="res://main_menu.gd" id="1_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://bc252hx2bqea3" path="res://SORASU__1_-removebg-preview.png" id="2_fu7sn"]
@@ -21,6 +21,9 @@ glow_enabled = true
 fog_enabled = true
 fog_light_color = Color(0, 0, 0, 1)
 fog_density = 0.1
+
+[sub_resource type="Theme" id="Theme_nlkkf"]
+default_font_size = 24
 
 [sub_resource type="Theme" id="Theme_jix8l"]
 default_font_size = 32
@@ -249,6 +252,42 @@ layout_mode = 2
 layout_mode = 2
 texture = ExtResource("2_fu7sn")
 
+[node name="LivesButton" type="OptionButton" parent="CenterContainer/VBoxContainer2"]
+layout_mode = 2
+theme = SubResource("Theme_nlkkf")
+selected = 2
+allow_reselect = true
+item_count = 5
+popup/item_0/text = "Lives: 0"
+popup/item_0/id = 0
+popup/item_1/text = "Lives: 1"
+popup/item_1/id = 1
+popup/item_2/text = "Lives: 2"
+popup/item_2/id = 2
+popup/item_3/text = "Lives: 3"
+popup/item_3/id = 3
+popup/item_4/text = "Lives: 4"
+popup/item_4/id = 4
+
+[node name="ContinuesButton" type="OptionButton" parent="CenterContainer/VBoxContainer2"]
+layout_mode = 2
+theme = SubResource("Theme_nlkkf")
+selected = 3
+allow_reselect = true
+item_count = 6
+popup/item_0/text = "Continues: 0"
+popup/item_0/id = 0
+popup/item_1/text = "Continues 1"
+popup/item_1/id = 1
+popup/item_2/text = "Continues: 2"
+popup/item_2/id = 2
+popup/item_3/text = "Continues: 3"
+popup/item_3/id = 3
+popup/item_4/text = "Continues: 4"
+popup/item_4/id = 4
+popup/item_5/text = "Continues: 5"
+popup/item_5/id = 5
+
 [node name="QualityButton" type="OptionButton" parent="CenterContainer/VBoxContainer2"]
 layout_mode = 2
 theme = SubResource("Theme_jix8l")
@@ -315,7 +354,7 @@ offset_bottom = 47.0
 
 [node name="Label" type="Label" parent="ScoreContainer"]
 layout_mode = 2
-text = "High Score: 0"
+text = "High Score: "
 label_settings = SubResource("LabelSettings_nlkkf")
 horizontal_alignment = 1
 vertical_alignment = 1

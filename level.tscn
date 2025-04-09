@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dyog2q8sxo1up"]
+[gd_scene load_steps=51 format=3 uid="uid://dyog2q8sxo1up"]
 
 [ext_resource type="PackedScene" uid="uid://dm5an44fjmtnq" path="res://player.tscn" id="1_ney1m"]
 [ext_resource type="Script" uid="uid://sf1xet1p5h5m" path="res://level.gd" id="1_p71vg"]
@@ -27,7 +27,7 @@ sky = SubResource("Sky_1wtby")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vl4f4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aicyk"]
 transparency = 1
 shading_mode = 0
 albedo_color = Color(1, 1, 1, 0.0196078)
@@ -36,7 +36,7 @@ uv1_scale = Vector3(0.03, 0.03, 0.03)
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_8cye3"]
-material = SubResource("StandardMaterial3D_vl4f4")
+material = SubResource("StandardMaterial3D_aicyk")
 size = Vector3(400, 0.001, 130)
 
 [sub_resource type="Animation" id="Animation_qegsl"]
@@ -93,6 +93,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Song:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_wrcka"]
@@ -255,6 +267,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Song:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lhslq"]
 _data = {
@@ -295,6 +319,10 @@ font_size = 20
 [sub_resource type="LabelSettings" id="LabelSettings_aicyk"]
 font = ExtResource("6_rlflp")
 font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_v5j5c"]
+font = ExtResource("6_rlflp")
+font_size = 70
 
 [sub_resource type="Animation" id="Animation_lnf4p"]
 resource_name = "DeathFadeIn"
@@ -436,9 +464,12 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"save"
+}, {
 "args": [],
 "method": &"teleport"
 }]
@@ -596,6 +627,44 @@ _data = {
 [sub_resource type="ViewportTexture" id="ViewportTexture_aicyk"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="Animation" id="Animation_h6smj"]
+resource_name = "ParryLabelPop"
+length = 0.05
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/CenterContainer3/ParryComboLabel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_v5j5c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/CenterContainer3/ParryComboLabel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5pxul"]
+_data = {
+&"ParryLabelPop": SubResource("Animation_h6smj"),
+&"RESET": SubResource("Animation_v5j5c")
+}
+
 [sub_resource type="Animation" id="Animation_5pxul"]
 resource_name = "Fade"
 length = 6.0
@@ -607,9 +676,12 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(6),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"save"
+}, {
 "args": [],
 "method": &"teleport"
 }]
@@ -767,6 +839,14 @@ _data = {
 &"Fade": SubResource("Animation_5pxul"),
 &"RESET": SubResource("Animation_fedht")
 }
+
+[sub_resource type="BoxMesh" id="BoxMesh_8b0r0"]
+size = Vector3(1000, 0.001, 150)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6smj"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0.713726)
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_p71vg")
@@ -987,6 +1067,31 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+[node name="ParryBar" type="ProgressBar" parent="UI"]
+z_index = -3
+layout_mode = 0
+offset_left = 16.0
+offset_top = 539.0
+offset_right = 132.0
+offset_bottom = 547.0
+max_value = 3.0
+step = 0.001
+show_percentage = false
+
+[node name="CenterContainer3" type="CenterContainer" parent="UI"]
+layout_mode = 0
+offset_top = 530.0
+offset_right = 142.0
+offset_bottom = 649.0
+
+[node name="ParryComboLabel" type="Label" parent="UI/CenterContainer3"]
+z_index = -3
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_v5j5c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_wdwkl")
@@ -1001,6 +1106,7 @@ libraries = {
 autoplay = "FlyIn"
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 z_index = -1
 offset_right = 1160.0
 offset_bottom = 651.0
@@ -1040,10 +1146,20 @@ light_energy = 50.0
 spot_range = 90.7345
 spot_angle = 49.2188
 
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5pxul")
+}
+
 [node name="AnimationPlayer4" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_fedht")
 }
+
+[node name="Floor2" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.72363, 0)
+mesh = SubResource("BoxMesh_8b0r0")
+material = SubResource("StandardMaterial3D_h6smj")
 
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="PrototypeBoss/Timer5" to="." method="_on_timer_3_timeout"]

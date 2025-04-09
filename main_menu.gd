@@ -7,8 +7,12 @@ extends Node3D
 @onready var camera_3d: Camera3D = $Camera3D
 @onready var color_blind_button: CheckButton = $CenterContainer/VBoxContainer2/ColorBlindButton
 @onready var hi_score_label: Label = $ScoreContainer/Label
+@onready var lives_button: OptionButton = $CenterContainer/VBoxContainer2/LivesButton
+@onready var continues_button: OptionButton = $CenterContainer/VBoxContainer2/ContinuesButton
 
 func _ready() -> void:
+	lives_button.selected = 0 + StatHandler.max_lives
+	continues_button.selected = 0 + StatHandler.max_continues
 	SaveSystem.load_data()
 	quality_button.selected = StatHandler.quality
 	color_blind_button.button_pressed = StatHandler.color_blind_mode
@@ -20,8 +24,10 @@ func _ready() -> void:
 	StatHandler.parry_combo = 0
 
 func _process(delta: float) -> void:
+	StatHandler.max_lives = 0 + lives_button.selected
+	StatHandler.max_continues = 0 + continues_button.selected
 	RenderingServer.viewport_set_msaa_3d(camera_3d.get_camera_rid(), StatHandler.quality)
-	hi_score_label.text = "High Score: " + str(StatHandler.hi_score)
+	hi_score_label.text = "High Score: " + str(int(StatHandler.hi_score))
 
 func _on_button_pressed() -> void:
 	animation_player_2.play("FadeIn")
