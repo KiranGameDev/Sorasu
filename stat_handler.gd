@@ -61,8 +61,8 @@ func spawn_player_death_particles(pos: Vector3, speed_scale: float, emitting: bo
 
 func spawn_change_phase_particles(pos: Vector3):
 	var instance = phase_change_explosion.instantiate()
-	instance.emitting = true
 	instance.global_position = pos
+	instance.emitting = true
 	add_child.call_deferred(instance)
 
 func spawn_parried_bullet_hit_particle(pos: Vector3):

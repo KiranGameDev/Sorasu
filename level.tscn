@@ -1106,7 +1106,6 @@ libraries = {
 autoplay = "FlyIn"
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 z_index = -1
 offset_right = 1160.0
 offset_bottom = 651.0
