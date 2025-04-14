@@ -1,11 +1,11 @@
 [gd_scene load_steps=15 format=3 uid="uid://cu7ev2u7p3628"]
 
 [ext_resource type="Script" uid="uid://ck2ovgbrf32km" path="res://intro.gd" id="1_fs2nk"]
+[ext_resource type="PackedScene" uid="uid://fl1qlujm7hpo" path="res://player_model.tscn" id="2_y6ycx"]
 [ext_resource type="AudioStream" uid="uid://cb27cuin7nsxr" path="res://rocketmp3-94928.mp3" id="3_y72e6"]
 [ext_resource type="Texture2D" uid="uid://dvosfd4p23rbt" path="res://future.jpg" id="4_0a7ni"]
 [ext_resource type="AudioStream" uid="uid://1srbmin60qlk" path="res://aircraft-take-off-and-landing-together-50483.mp3" id="4_u2rf6"]
 [ext_resource type="PackedScene" uid="uid://7btxoc6t47fw" path="res://city-2.tscn" id="4_y72e6"]
-[ext_resource type="PackedScene" uid="uid://doiomiwtw4geo" path="res://space_ship.tscn" id="6_rnfit"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d3an4"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -70,62 +70,62 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Spaceshipmodel:position")
+tracks/3/path = NodePath("CSGCombiner3D/CSGCylinder3D2:material:uv1_offset")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 7.5, 11),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 10, -0.901), Vector3(0, 10, -0.901), Vector3(0, 10, -1000)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("CSGCombiner3D/CSGCylinder3D2:material:uv1_offset")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0, 7.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, -100)]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Camera3D:position")
-tracks/5/interp = 2
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera3D:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 5, 7, 7.75),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.03, 15, -6.168), Vector3(0.03, 15, -15.168), Vector3(0.03, 15, -15.168), Vector3(0.03, 15, -6.168)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Spaceshipmodel/RocketLaunch:playing")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PlayerModel/RocketLaunch:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0, 7.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Spaceshipmodel/Engine:playing")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PlayerModel/Engine:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0, 7.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PlayerModel:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 7.5, 11),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 12, 0.416), Vector3(0, 12, 0.416), Vector3(0, 12, -1000)]
 }
 
 [sub_resource type="Animation" id="Animation_ewg6g"]
@@ -157,43 +157,43 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Spaceshipmodel:position")
+tracks/2/path = NodePath("CSGCombiner3D/CSGCylinder3D2:material:uv1_offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -6.02944, -0.901049)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CSGCombiner3D/CSGCylinder3D2:material:uv1_offset")
+tracks/3/path = NodePath("Camera3D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0.03, 15, -12.168)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Camera3D:position")
+tracks/4/path = NodePath("PlayerModel/RocketLaunch:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.03, 15, -12.168)]
+"update": 1,
+"values": [false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Spaceshipmodel/RocketLaunch:playing")
+tracks/5/path = NodePath("PlayerModel/Engine:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -205,14 +205,14 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Spaceshipmodel/Engine:playing")
+tracks/6/path = NodePath("PlayerModel:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector3(3.55271e-15, -4.25934, 0.416466)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xh2lf"]
@@ -267,17 +267,18 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Spaceshipmodel" parent="." instance=ExtResource("6_rnfit")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -6.02944, -0.901049)
+[node name="PlayerModel" parent="." instance=ExtResource("2_y6ycx")]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 3.55271e-15, -4.25934, 0.416466)
 
-[node name="RocketLaunch" type="AudioStreamPlayer3D" parent="Spaceshipmodel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.70037, 1.82987, -7.43256e-08)
+[node name="RocketLaunch" type="AudioStreamPlayer3D" parent="PlayerModel"]
+transform = Transform3D(0.333333, 0, -8.88178e-16, 0, 0.333333, 0, 8.88178e-16, 0, 0.333333, -0.127618, 0.0199232, -5.5784e-09)
 stream = ExtResource("3_y72e6")
 volume_db = 8.0
 unit_size = 30.0
 bus = &"SFX"
 
-[node name="Engine" type="AudioStreamPlayer3D" parent="Spaceshipmodel"]
+[node name="Engine" type="AudioStreamPlayer3D" parent="PlayerModel"]
+transform = Transform3D(0.333333, 0, -8.88178e-16, 0, 0.333333, 0, 8.88178e-16, 0, 0.333333, 0.439172, -0.590034, 1.91968e-08)
 stream = ExtResource("4_u2rf6")
 volume_db = 4.0
 unit_size = 30.0

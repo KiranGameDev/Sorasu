@@ -6,7 +6,6 @@ extends Node3D
 func _ready() -> void:
 	StatHandler.lives = StatHandler.max_lives
 	StatHandler.continues = StatHandler.max_continues
-	printt(StatHandler.continues, StatHandler.lives)
 	color_rect_2.visible = false
 	StatHandler.kill_player = false
 	StatHandler.score = 0

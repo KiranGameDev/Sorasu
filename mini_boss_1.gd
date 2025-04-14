@@ -37,7 +37,6 @@ func _process(delta: float) -> void:
 		phase = 1
 		if prev_phase != phase:
 			timer.start()
-			StatHandler.spawn_change_phase_particles(global_position)
 			prev_phase = phase
 	if HP <= 1050 and HP > 900:
 		phase = 2

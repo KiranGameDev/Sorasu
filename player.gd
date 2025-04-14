@@ -7,7 +7,7 @@ extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var parry_animation_player: AnimationPlayer = $ParryAnimationPlayer
-@onready var spaceshipmodel: Node3D = $Spaceshipmodel
+@onready var spaceshipmodel: Node3D = $PlayerModel
 @onready var parry_sound_effect: AudioStreamPlayer = $SFX/ParrySoundEffect
 @onready var explosion_sound_effect: AudioStreamPlayer = $SFX/ExplosionSoundEffect
 @onready var combo_timer: Timer = $ComboTimer

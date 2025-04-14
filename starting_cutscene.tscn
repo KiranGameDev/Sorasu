@@ -1,0 +1,425 @@
+[gd_scene load_steps=17 format=3 uid="uid://dkgatdy6e872a"]
+
+[ext_resource type="PackedScene" uid="uid://7btxoc6t47fw" path="res://city-2.tscn" id="1_yjulu"]
+[ext_resource type="Texture2D" uid="uid://g0wg30viqv4s" path="res://garage-door.png" id="2_0vfq1"]
+[ext_resource type="Texture2D" uid="uid://c001oiil6a4de" path="res://garage.jpg" id="2_6boa3"]
+[ext_resource type="Texture2D" uid="uid://deko5y1ikqddg" path="res://future-floor.jpg" id="2_ktq37"]
+[ext_resource type="AudioStream" uid="uid://bnc5l0nawdw8e" path="res://Music/Sorasu Intro Song.mp3" id="3_kwxik"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0vfq1"]
+sky_top_color = Color(0.0905867, 0.116999, 0.153729, 1)
+sky_horizon_color = Color(0.104148, 0.107848, 0.113688, 1)
+ground_bottom_color = Color(0.0901961, 0.117647, 0.152941, 1)
+ground_horizon_color = Color(0.105882, 0.109804, 0.113725, 1)
+
+[sub_resource type="Sky" id="Sky_kwxik"]
+sky_material = SubResource("ProceduralSkyMaterial_0vfq1")
+
+[sub_resource type="Environment" id="Environment_6boa3"]
+background_mode = 2
+sky = SubResource("Sky_kwxik")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ktq37"]
+albedo_texture = ExtResource("2_ktq37")
+roughness = 0.8
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+
+[sub_resource type="Animation" id="Animation_yjulu"]
+resource_name = "Cutscene"
+length = 28.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("City2/CSGBox3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(295.013, 5.05836, -358.904), Vector3(500, 5.058, -358.904)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("City2/CSGBox3D2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(342.763, 5.05836, -308.394), Vector3(200.763, 5.058, -308.394)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("City2/CSGBox3D7:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(362.441, 5.05836, -321.496), Vector3(150.441, 5.058, -321.496)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("City2/CSGBox3D5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(171.484, 5.05836, -365.719), Vector3(-120.484, 5.058, -365.719)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("City2/CSGBox3D6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(219.897, 5.05836, -364.509), Vector3(380.897, 5.058, -364.509)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Camera3D:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Camera2Pivot/Camera3D2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Camera2Pivot:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(4, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.349066, -0.959931, 0), Vector3(-0.349066, -0.436332, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0vfq1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("City2/CSGBox3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(295.013, 5.05836, -358.904)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("City2/CSGBox3D2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(342.763, 5.05836, -308.394)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("City2/CSGBox3D7:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(362.441, 5.05836, -321.496)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("City2/CSGBox3D5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(171.484, 5.05836, -365.719)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("City2/CSGBox3D6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(219.897, 5.05836, -364.509)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Camera3D:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Camera2Pivot/Camera3D2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Camera2Pivot:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.174533, -0.959931, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0vfq1"]
+_data = {
+&"Cutscene": SubResource("Animation_yjulu"),
+&"RESET": SubResource("Animation_0vfq1")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yjulu"]
+albedo_texture = ExtResource("2_6boa3")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kwxik"]
+albedo_texture = ExtResource("2_0vfq1")
+uv1_scale = Vector3(0.55, 0.55, 0.55)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6boa3"]
+albedo_color = Color(0.0397594, 0.00652424, 0.00057894, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ktq37"]
+material = SubResource("StandardMaterial3D_6boa3")
+size = Vector3(1e+06, 0.01, 10000)
+
+[node name="StartingCutscene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6boa3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_energy = 0.3
+shadow_enabled = true
+
+[node name="City7" parent="." instance=ExtResource("1_yjulu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1432.38, 0, 13.4184)
+
+[node name="City8" parent="." instance=ExtResource("1_yjulu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1418.27, 0, -722.406)
+
+[node name="City9" parent="." instance=ExtResource("1_yjulu")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1418.27, 0, -1437.15)
+
+[node name="City10" parent="." instance=ExtResource("1_yjulu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2168.16, 0, 13.4184)
+
+[node name="City11" parent="." instance=ExtResource("1_yjulu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2154.05, 0, -722.406)
+
+[node name="City12" parent="." instance=ExtResource("1_yjulu")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2154.05, 0, -1437.15)
+
+[node name="City" parent="." instance=ExtResource("1_yjulu")]
+
+[node name="City2" parent="." instance=ExtResource("1_yjulu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 744.731, 0, 13.4184)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="City2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 295.013, 5.05836, -358.904)
+size = Vector3(10, 5, 5)
+material = SubResource("StandardMaterial3D_ktq37")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="City2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 342.763, 5.05836, -308.394)
+size = Vector3(10, 5, 5)
+material = SubResource("StandardMaterial3D_ktq37")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="City2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 362.441, 5.05836, -321.496)
+size = Vector3(10, 5, 5)
+material = SubResource("StandardMaterial3D_ktq37")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="City2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 407.921, 5.05836, -322.218)
+size = Vector3(10, 5, 5)
+material = SubResource("StandardMaterial3D_ktq37")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="City2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 275.007, 5.05836, -341.914)
+size = Vector3(10, 5, 5)
+material = SubResource("StandardMaterial3D_ktq37")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="City2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 171.484, 5.05836, -365.719)
+size = Vector3(10, 5, 5)
+material = SubResource("StandardMaterial3D_ktq37")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="City2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 219.897, 5.05836, -364.509)
+size = Vector3(10, 5, 5)
+material = SubResource("StandardMaterial3D_ktq37")
+
+[node name="City3" parent="." instance=ExtResource("1_yjulu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 730.624, 0, -722.406)
+
+[node name="City5" parent="." instance=ExtResource("1_yjulu")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 730.624, 0, -1437.15)
+
+[node name="City6" parent="." instance=ExtResource("1_yjulu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 54.6109, 0, -1388.05)
+
+[node name="City4" parent="." instance=ExtResource("1_yjulu")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 46.4529, 0, -722.406)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_0vfq1")
+}
+autoplay = "Cutscene"
+
+[node name="Camera2Pivot" type="Node3D" parent="."]
+transform = Transform3D(0.573576, 0.142244, -0.806707, 0, 0.984807, 0.173648, 0.819152, -0.0996005, 0.564862, 1393.58, 110, -76.012)
+
+[node name="Camera3D2" type="Camera3D" parent="Camera2Pivot"]
+transform = Transform3D(1, 1.49012e-08, 2.98023e-08, -1.49012e-08, 1, -2.98023e-08, 0, 0, 1, 4.22266, -16.8342, 144.143)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.574877, 0.240377, -0.782135, 0, 0.955875, 0.293773, 0.81824, -0.168884, 0.54951, 121.414, 207.277, 66.2551)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Garage" type="Node3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -61, -0.001)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Garage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.0639992, 0.001)
+size = Vector3(1, 4, 7)
+material = SubResource("StandardMaterial3D_yjulu")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Garage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.0639992, 0.001)
+size = Vector3(1, 4, 7)
+material = SubResource("StandardMaterial3D_yjulu")
+
+[node name="GarageDoor" type="CSGBox3D" parent="Garage"]
+transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 0, 0.0639992, 3.99084)
+size = Vector3(1, 4, 5)
+material = SubResource("StandardMaterial3D_kwxik")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Garage"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.0639992, -2.999)
+size = Vector3(1, 4, 5)
+material = SubResource("StandardMaterial3D_yjulu")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Garage"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, -2.41622, 0.001)
+size = Vector3(1, 7, 7)
+material = SubResource("StandardMaterial3D_yjulu")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Garage"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0.000213504, 2.52039, 0.000134541)
+size = Vector3(1, 7, 7)
+material = SubResource("StandardMaterial3D_yjulu")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Garage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.364891, 0.001)
+light_energy = 2.0
+omni_range = 60.0
+
+[node name="Intro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kwxik")
+bus = &"Music"
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.60457, 0)
+mesh = SubResource("BoxMesh_ktq37")

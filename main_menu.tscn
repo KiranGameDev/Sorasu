@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dtkobp0srsbq5"]
+[gd_scene load_steps=22 format=3 uid="uid://dtkobp0srsbq5"]
 
 [ext_resource type="Script" uid="uid://cvpeh87q4t22e" path="res://main_menu.gd" id="1_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://bc252hx2bqea3" path="res://SORASU__1_-removebg-preview.png" id="2_fu7sn"]
@@ -21,6 +21,10 @@ glow_enabled = true
 fog_enabled = true
 fog_light_color = Color(0, 0, 0, 1)
 fog_density = 0.1
+
+[sub_resource type="LabelSettings" id="LabelSettings_glbon"]
+font = ExtResource("5_glbon")
+font_size = 32
 
 [sub_resource type="Theme" id="Theme_nlkkf"]
 default_font_size = 24
@@ -132,7 +136,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_glbon"]
 resource_name = "FadeOut"
-length = 1.3
+length = 0.4
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -141,10 +145,10 @@ tracks/0/path = NodePath("ColorRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 1.3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -153,7 +157,7 @@ tracks/1/path = NodePath("ColorRect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.3),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -219,18 +223,23 @@ shadow_enabled = true
 environment = SubResource("Environment_glbon")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_right = 575.0
 grow_vertical = 2
+size_flags_horizontal = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_fu7sn")
+text = "SELECT GAME MODE
+
+"
+label_settings = SubResource("LabelSettings_glbon")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -240,6 +249,10 @@ text = "BEGIN"
 layout_mode = 2
 text = "SETTINGS"
 
+[node name="Button4" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "TUTORIAL"
+
 [node name="Button2" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "QUIT"
@@ -248,9 +261,14 @@ text = "QUIT"
 visible = false
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer2"]
 layout_mode = 2
-texture = ExtResource("2_fu7sn")
+text = "SELECT OPTIONS
+
+"
+label_settings = SubResource("LabelSettings_glbon")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="LivesButton" type="OptionButton" parent="CenterContainer/VBoxContainer2"]
 layout_mode = 2
@@ -336,6 +354,7 @@ libraries = {
 autoplay = "FadeOut"
 
 [node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -359,8 +378,22 @@ label_settings = SubResource("LabelSettings_nlkkf")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -575.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer2"]
+layout_mode = 2
+texture = ExtResource("2_fu7sn")
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button4" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer2/QualityButton" to="." method="_on_quality_button_item_selected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer2/ColorBlindButton" to="." method="_on_color_blind_button_pressed"]

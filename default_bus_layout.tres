@@ -1,9 +1,20 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://bon44p4bsxk4w"]
+[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://bon44p4bsxk4w"]
 
 [sub_resource type="AudioEffectDelay" id="AudioEffectDelay_j3pel"]
 resource_name = "Delay"
 tap1_delay_ms = 200.0
 tap2_delay_ms = 400.0
+
+[sub_resource type="AudioEffectDelay" id="AudioEffectDelay_g28q7"]
+resource_name = "Delay"
+tap1_delay_ms = 500.0
+tap2_delay_ms = 1000.0
+feedback_active = true
+feedback_delay_ms = 1500.0
+feedback_level_db = -18.0
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
+resource_name = "Reverb"
 
 [resource]
 bus/1/name = &"SFX"
@@ -26,3 +37,13 @@ bus/3/volume_db = 0.0
 bus/3/send = &"SFX"
 bus/3/effect/0/effect = SubResource("AudioEffectDelay_j3pel")
 bus/3/effect/0/enabled = true
+bus/4/name = &"Large Echo"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = 0.0
+bus/4/send = &"Master"
+bus/4/effect/0/effect = SubResource("AudioEffectDelay_g28q7")
+bus/4/effect/0/enabled = true
+bus/4/effect/1/effect = SubResource("AudioEffectReverb_j3pel")
+bus/4/effect/1/enabled = true
