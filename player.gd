@@ -12,6 +12,7 @@ extends CharacterBody3D
 @onready var explosion_sound_effect: AudioStreamPlayer = $SFX/ExplosionSoundEffect
 @onready var combo_timer: Timer = $ComboTimer
 @onready var parry_sound_effect_2: AudioStreamPlayer = $SFX/ParrySoundEffect2
+@onready var max_combo_voice: AudioStreamPlayer = $"SFX/Max Combo Voice"
 
 var SPEED = 21
 var BULLET_SPEED = 50
@@ -25,21 +26,30 @@ func _ready() -> void:
 	hit = false
 
 func _process(delta: float) -> void:
+	combo_timer.wait_time = 6.0 / StatHandler.parry_combo
+	StatHandler.parry_timer_number = 0 + combo_timer.wait_time
 	StatHandler.parry_timer_time = 0 + combo_timer.time_left
 	if StatHandler.parry_combo > 9:
+		max_combo_voice.play()
 		StatHandler.parry_combo = 9
 	if StatHandler.parry_combo > 0 and not StatHandler.parry_combo_timer_started:
 		combo_timer.start()
 		StatHandler.parry_combo_timer_started = true
+	if StatHandler.parry_combo <= 0:
+		combo_timer.stop()
+		StatHandler.parry_combo_timer_started = false
 	if not animation_player.is_playing():
 		spaceshipmodel.rotation.x = 0
 	if hit:
 		StatHandler.lives -= 1
+		StatHandler.deaths += 1
 		StatHandler.parry_combo = 0
 		StatHandler.spawn_player_death_particles(global_position, 0.5, true, 1)
 		queue_free()
 	if StatHandler.kill_player == true:
 		StatHandler.parry_combo = 0
+		combo_timer.stop()
+		StatHandler.parry_combo_timer_started = false
 		queue_free()
 
 func _physics_process(delta: float) -> void:
@@ -90,7 +100,8 @@ func swap_physics_process():
 	set_physics_process(!is_physics_processing())
 
 func _on_combo_timer_timeout() -> void:
-	StatHandler.parry_combo = 0
+	StatHandler.parry_combo -= 1
+	combo_timer.start()
 
 func delete():
 	StatHandler.kill_player = true

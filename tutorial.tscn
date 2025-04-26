@@ -1,0 +1,262 @@
+[gd_scene load_steps=17 format=3 uid="uid://df3bykp2p8rv"]
+
+[ext_resource type="Texture2D" uid="uid://dvosfd4p23rbt" path="res://future.jpg" id="1_7n6eb"]
+[ext_resource type="Script" uid="uid://be1o32m5t381i" path="res://tutorial.gd" id="1_ehuit"]
+[ext_resource type="FontFile" uid="uid://deecenqr7nl3u" path="res://Orbitron-VariableFont_wght.ttf" id="2_yb1ct"]
+[ext_resource type="AudioStream" uid="uid://deq33duyh415y" path="res://aboard-a-aurora-game-menu-pulse-203549.mp3" id="4_5mrt3"]
+
+[sub_resource type="Animation" id="Animation_yb1ct"]
+resource_name = "Pulse"
+length = 3.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.1, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(2, 2, 2, 1), Color(1.64637, 1.64637, 1.64637, 1), Color(1, 1, 1, 1), Color(2, 2, 2, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ehuit"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(2, 2, 2, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5mrt3"]
+_data = {
+&"Pulse": SubResource("Animation_yb1ct"),
+&"RESET": SubResource("Animation_ehuit")
+}
+
+[sub_resource type="Theme" id="Theme_ehuit"]
+default_font = ExtResource("2_yb1ct")
+default_font_size = 32
+
+[sub_resource type="Animation" id="Animation_5mrt3"]
+resource_name = "TeleportBack"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"teleport"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_rwowx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_hu44a"]
+resource_name = "FadeOut"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect2:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hu44a"]
+_data = {
+&"FadeOut": SubResource("Animation_hu44a"),
+&"RESET": SubResource("Animation_rwowx"),
+&"TeleportBack": SubResource("Animation_5mrt3")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_5mrt3"]
+font_size = 32
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mrt3"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_rwowx"]
+material = SubResource("StandardMaterial3D_5mrt3")
+radius = 50.0
+height = 100.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_hu44a"]
+material = SubResource("StandardMaterial3D_5mrt3")
+radius = 40.0
+height = 80.0
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ehuit")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(2, 2, 2, 1)
+layout_mode = 0
+offset_right = 1157.0
+offset_bottom = 651.0
+texture = ExtResource("1_7n6eb")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5mrt3")
+}
+autoplay = "Pulse"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1158.0
+offset_bottom = 657.0
+color = Color(0, 0, 0, 0.435294)
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 593.0
+offset_right = 118.0
+offset_bottom = 642.0
+theme = SubResource("Theme_ehuit")
+text = "BACK"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hu44a")
+}
+autoplay = "FadeOut"
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = 2
+layout_mode = 0
+offset_right = 1172.0
+offset_bottom = 673.0
+color = Color(0, 0, 0, 1)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5mrt3")
+volume_db = -3.0
+autoplay = true
+bus = &"Music"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+text = "Fly around using WASD/Directional Arrows/
+Right Stick (Controller)
+
+Avoid orange bullets, parry flashing red ones
+with Space/Enter/A (Controller)"
+label_settings = SubResource("LabelSettings_5mrt3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(152, 400)
+mesh = SubResource("SphereMesh_rwowx")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="."]
+modulate = Color(1, 0.490196, 0, 1)
+position = Vector2(152, 400)
+mesh = SubResource("SphereMesh_hu44a")
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1002, 400)
+mesh = SubResource("SphereMesh_rwowx")
+
+[node name="MeshInstance2D4" type="MeshInstance2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(1002, 400)
+mesh = SubResource("SphereMesh_hu44a")
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

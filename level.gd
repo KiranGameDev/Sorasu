@@ -19,6 +19,7 @@ extends Node3D
 @onready var normal_score_label: Label = $UI/CenterContainer2/VBoxContainer/Label2
 @onready var time_score_label: Label = $UI/CenterContainer2/VBoxContainer/Label3
 @onready var lives_score_label: Label = $UI/CenterContainer2/VBoxContainer/Label4
+@onready var difficulty_score_label: Label = $UI/CenterContainer2/VBoxContainer/Label5
 @onready var center_container_2: CenterContainer = $UI/CenterContainer2
 @onready var ui: Control = $UI
 @onready var camera_3d: Camera3D = $Camera3D
@@ -27,6 +28,7 @@ extends Node3D
 @onready var animation_player_3: AnimationPlayer = $AnimationPlayer3
 @onready var parry_combo_label: Label = $UI/CenterContainer3/ParryComboLabel
 @onready var parry_bar: ProgressBar = $UI/ParryBar
+@onready var respawn_voice: AudioStreamPlayer = $RespawnVoice
 
 var started = false
 var player = preload("res://player.tscn")
@@ -35,6 +37,8 @@ var dead = false
 var timer_started = false
 var boss_timer_started = false
 var combined_score = StatHandler.score + int(StatHandler.lives * 5000)
+var difficulty_score = -(StatHandler.max_lives - 4) * 1000
+var death_score
 
 func _ready() -> void:
 	if StatHandler.color_blind_mode:
@@ -52,6 +56,10 @@ func _ready() -> void:
 	boss_time_label.visible = false
 
 func _process(delta: float) -> void:
+	if StatHandler.boss_dead:
+		StatHandler.parry_combo = 0
+	parry_bar.max_value = StatHandler.parry_timer_number
+	death_score = 0 - (StatHandler.deaths * 500)
 	parry_bar.value = StatHandler.parry_timer_time
 	parry_combo_label.text = "x" + str(StatHandler.parry_combo)
 	if StatHandler.prev_parry_combo != StatHandler.parry_combo:
@@ -64,14 +72,15 @@ func _process(delta: float) -> void:
 		parry_combo_label.visible = true
 		parry_bar.visible = true
 	var time_score = (int(boss_timer.time_left) * 100)
-	RenderingServer.viewport_set_msaa_3d(camera_3d.get_camera_rid(), StatHandler.quality)
+	RenderingServer.viewport_set_msaa_3d(camera_3d.get_viewport().get_viewport_rid(), StatHandler.get_msaa_quality(StatHandler.quality))
 	center_container_2.visible = true
 	if boss_timer.time_left > 0:
 		StatHandler.time_up = false
-	final_score_label.text = "SCORE: " + str(StatHandler.score + (StatHandler.lives * 5000) + time_score)
+	final_score_label.text = "SCORE: " + str(StatHandler.score + death_score + time_score + difficulty_score)
 	normal_score_label.text = "Boss score: " + str(StatHandler.score)
 	time_score_label.text = "Time score: " + str(time_score)
-	lives_score_label.text = "Lives score: " + str(int(StatHandler.lives * 5000))
+	difficulty_score_label.text = "Difficulty bonus: +" + str(difficulty_score)
+	lives_score_label.text = "Deaths penalty: " + str(int(death_score))
 	if StatHandler.kill_boss_timer:
 		boss_timer.paused = true
 	boss_time_label.text = "Time Left: " + str(int(boss_timer.time_left))
@@ -130,6 +139,7 @@ func _on_death_timer_timeout() -> void:
 	if StatHandler.lives > -1:
 		var instance = player.instantiate()
 		add_sibling.call_deferred(instance)
+		respawn_voice.play()
 		started = false
 
 func _on_quit_button_pressed() -> void:

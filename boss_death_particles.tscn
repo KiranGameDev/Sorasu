@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bqbbwc2btb6fw"]
+[gd_scene load_steps=21 format=3 uid="uid://bqbbwc2btb6fw"]
 
 [ext_resource type="Script" uid="uid://bjgoaoktbt0sq" path="res://boss_death_particles.gd" id="1_sl04w"]
 [ext_resource type="AudioStream" uid="uid://duges1gu2j4u" path="res://explosion-47163 (1).mp3" id="2_glgxi"]
@@ -78,6 +78,87 @@ radius = 0.2
 height = 0.4
 rings = 16
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74fpe"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.282353)
+
+[sub_resource type="Animation" id="Animation_soaq5"]
+resource_name = "Grow"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGSphere3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(10, 10, 10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGSphere3D:material:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.282353), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CSGSphere3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_74fpe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGSphere3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGSphere3D:material:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.282353)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cuori"]
+_data = {
+&"Grow": SubResource("Animation_soaq5"),
+&"RESET": SubResource("Animation_74fpe")
+}
+
 [node name="BossDeathParticles" type="Node3D"]
 script = ExtResource("1_sl04w")
 
@@ -115,3 +196,12 @@ draw_pass_1 = SubResource("SphereMesh_wqbeq")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_glgxi")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+rings = 12
+material = SubResource("StandardMaterial3D_74fpe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cuori")
+}

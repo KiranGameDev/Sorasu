@@ -9,15 +9,17 @@ extends Node3D
 @onready var hi_score_label: Label = $ScoreContainer/Label
 @onready var lives_button: OptionButton = $CenterContainer/VBoxContainer2/LivesButton
 @onready var continues_button: OptionButton = $CenterContainer/VBoxContainer2/ContinuesButton
+@onready var v_box_container_3: VBoxContainer = $CenterContainer/VBoxContainer3
 
 func _ready() -> void:
+	StatHandler.deaths = 0
 	lives_button.selected = 0 + StatHandler.max_lives
 	continues_button.selected = 0 + StatHandler.max_continues
-	SaveSystem.load_data()
 	quality_button.selected = StatHandler.quality
 	color_blind_button.button_pressed = StatHandler.color_blind_mode
 	v_box_container_1.visible = true
 	v_box_container_2.visible = false
+	v_box_container_3.visible = false
 	AudioServer.set_bus_volume_db(2, 0)
 	StatHandler.kill_player = true
 	StatHandler.time_up = false
@@ -26,24 +28,30 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	StatHandler.max_lives = 0 + lives_button.selected
 	StatHandler.max_continues = 0 + continues_button.selected
-	RenderingServer.viewport_set_msaa_3d(camera_3d.get_camera_rid(), StatHandler.quality)
+	RenderingServer.viewport_set_msaa_3d(camera_3d.get_viewport().get_viewport_rid(), StatHandler.get_msaa_quality(StatHandler.quality))
 	hi_score_label.text = "High Score: " + str(int(StatHandler.hi_score))
 
 func _on_button_pressed() -> void:
+	StatHandler.in_tutorial = false
 	animation_player_2.play("FadeIn")
 
 func teleport():
 	get_tree().change_scene_to_file("res://intro.tscn")
+
+func teleport_tutorial():
+	get_tree().change_scene_to_file("res://tutorial.tscn")
 
 func _on_button_2_pressed() -> void:
 	get_tree().quit()
 
 func _on_button_3_pressed() -> void:
 	v_box_container_2.visible = true
+	v_box_container_3.visible = false
 	v_box_container_1.visible = false
 
 func _on_back_pressed() -> void:
 	v_box_container_1.visible = true
+	v_box_container_3.visible = false
 	v_box_container_2.visible = false
 
 func _on_quality_button_item_selected(index: int) -> void:
@@ -51,3 +59,16 @@ func _on_quality_button_item_selected(index: int) -> void:
 
 func _on_color_blind_button_pressed() -> void:
 	StatHandler.color_blind_mode = !StatHandler.color_blind_mode
+
+func _on_button_5_pressed() -> void:
+	v_box_container_3.visible = true
+	v_box_container_2.visible = false
+	v_box_container_1.visible = false
+
+func _on_back_button_pressed() -> void:
+	v_box_container_3.visible = false
+	v_box_container_2.visible = false
+	v_box_container_1.visible = true
+
+func _on_button_4_pressed() -> void:
+	animation_player_2.play("FadeInTutorial")

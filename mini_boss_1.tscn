@@ -335,9 +335,6 @@ transform = Transform3D(-1.31134e-09, 0, -0.03, 0, 0.03, 0, 0.03, 0, -1.31134e-0
 [node name="Timer2" type="Timer" parent="."]
 wait_time = 0.1
 
-[node name="Timer3" type="Timer" parent="."]
-wait_time = 0.1
-
 [node name="Timer4" type="Timer" parent="."]
 wait_time = 6.0
 autostart = true
@@ -433,6 +430,5 @@ bus = &"SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
-[connection signal="timeout" from="Timer3" to="." method="_on_timer_3_timeout"]
 [connection signal="timeout" from="Timer4" to="GrenadeLauncher" method="_on_timer_4_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

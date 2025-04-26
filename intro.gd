@@ -9,7 +9,7 @@ func _ready() -> void:
 	color_rect_2.visible = false
 	StatHandler.kill_player = false
 	StatHandler.score = 0
-	RenderingServer.viewport_set_msaa_3d(camera_3d.get_camera_rid(), StatHandler.quality)
+	RenderingServer.viewport_set_msaa_3d(camera_3d.get_viewport().get_viewport_rid(), StatHandler.get_msaa_quality(StatHandler.quality))
 
 func teleport():
 	get_tree().change_scene_to_file("res://level.tscn")

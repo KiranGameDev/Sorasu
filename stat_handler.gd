@@ -12,6 +12,7 @@ var player_death_particles = preload("res://player_death_particles.tscn")
 var enemy_hit_sound = preload("res://hit_sound.tscn")
 var explode_overlay = preload("res://explode_overlay.tscn")
 var phase_change_explosion = preload("res://phase_change_particles.tscn")
+var in_tutorial = false
 var score = 0
 var hi_score = 0
 var parry_timer_time: float
@@ -25,6 +26,7 @@ var parried = false
 var boss_position: Vector3
 var boss_ready = false
 var prev_parry_combo = 0
+var deaths = 0
 var boss_dead = false
 var boss_1_name = "Rokanshu"
 var continues: int
@@ -32,6 +34,7 @@ var current_boss_name = boss_1_name
 var kill_player = false
 var time_up = false
 var kill_boss_timer = false
+var parry_timer_number: float
 
 func spawn_parry_bullet(enemy_pos, start_pos):
 	var instance = parried_bullet.instantiate()
@@ -58,6 +61,17 @@ func spawn_player_death_particles(pos: Vector3, speed_scale: float, emitting: bo
 	instance.emitting = emitting
 	instance.scale = Vector3(size_scale, size_scale, size_scale)
 	add_sibling.call_deferred(instance)
+
+func get_msaa_quality(number):
+	if number == 1:
+		return RenderingServer.VIEWPORT_MSAA_2X
+	if number == 2:
+		return RenderingServer.VIEWPORT_MSAA_4X
+	if number == 3:
+		return RenderingServer.VIEWPORT_MSAA_8X
+	if number == 0:
+		return RenderingServer.VIEWPORT_MSAA_DISABLED
+	return RenderingServer.VIEWPORT_MSAA_2X
 
 func spawn_change_phase_particles(pos: Vector3):
 	var instance = phase_change_explosion.instantiate()

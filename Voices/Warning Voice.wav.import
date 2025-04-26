@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cirh6y8f7osm3"
+path="res://.godot/imported/Warning Voice.wav-30e0042da7bc3defe296fac272e55982.sample"
+
+[deps]
+
+source_file="res://Voices/Warning Voice.wav"
+dest_files=["res://.godot/imported/Warning Voice.wav-30e0042da7bc3defe296fac272e55982.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

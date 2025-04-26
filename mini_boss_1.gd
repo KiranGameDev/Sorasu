@@ -2,7 +2,6 @@ extends CharacterBody3D
 
 @onready var timer: Timer = $Timer
 @onready var timer_2: Timer = $Timer2
-@onready var timer_3: Timer = $Timer3
 @onready var timer_4: Timer = $Timer4
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
@@ -52,7 +51,6 @@ func _process(delta: float) -> void:
 			timer.wait_time = 0.2
 			ready_up()
 			timer.start()
-			timer_3.start()
 			timer_2.stop()
 			StatHandler.spawn_change_phase_particles(global_position)
 			prev_phase = phase
@@ -62,7 +60,6 @@ func _process(delta: float) -> void:
 			timer.wait_time = 2
 			ready_up()
 			timer.start()
-			timer_3.stop()
 			timer_2.start()
 			StatHandler.spawn_change_phase_particles(global_position)
 			prev_phase = phase
@@ -72,7 +69,6 @@ func _process(delta: float) -> void:
 			timer.wait_time = 0.2
 			ready_up()
 			timer.start()
-			timer_3.start()
 			timer_2.stop()
 			StatHandler.spawn_change_phase_particles(global_position)
 			prev_phase = phase
@@ -216,7 +212,6 @@ func kill():
 	animation_player.play("Death")
 	timer.stop()
 	timer_2.stop()
-	timer_3.stop()
 	timer_4.stop()
 	global_position.y -= 0.025
 	StatHandler.boss_ready = false

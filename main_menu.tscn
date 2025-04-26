@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dtkobp0srsbq5"]
+[gd_scene load_steps=26 format=3 uid="uid://dtkobp0srsbq5"]
 
 [ext_resource type="Script" uid="uid://cvpeh87q4t22e" path="res://main_menu.gd" id="1_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://bc252hx2bqea3" path="res://SORASU__1_-removebg-preview.png" id="2_fu7sn"]
@@ -35,9 +35,20 @@ default_font_size = 32
 [sub_resource type="Theme" id="Theme_glbon"]
 default_font_size = 30
 
+[sub_resource type="LabelSettings" id="LabelSettings_8qtwp"]
+font = ExtResource("5_glbon")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_qe12f"]
+font_size = 20
+
+[sub_resource type="Theme" id="Theme_qe12f"]
+default_font_size = 24
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jix8l"]
 shading_mode = 0
 albedo_texture = ExtResource("3_fu7sn")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
 uv1_triplanar = true
 
 [sub_resource type="Animation" id="Animation_jix8l"]
@@ -202,9 +213,65 @@ tracks/2/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_8qtwp"]
+resource_name = "FadeInTutorial"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"teleport_tutorial"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qe12f"]
 _data = {
 &"FadeIn": SubResource("Animation_qe12f"),
+&"FadeInTutorial": SubResource("Animation_8qtwp"),
 &"FadeOut": SubResource("Animation_glbon"),
 &"RESET": SubResource("Animation_nlkkf")
 }
@@ -252,6 +319,10 @@ text = "SETTINGS"
 [node name="Button4" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "TUTORIAL"
+
+[node name="Button5" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "CREDITS"
 
 [node name="Button2" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -330,6 +401,38 @@ text = "Colorblind Mode"
 layout_mode = 2
 text = "BACK"
 
+[node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer3"]
+layout_mode = 2
+text = "CREDITS"
+label_settings = SubResource("LabelSettings_8qtwp")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+text = "\"Cyberpunk City - #1\" (https://skfb.ly/oAKoo) by born2012 is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+Main Menu Theme and Boss 1 Theme - Kai Kennedy (@KaiKennedy)
+
+Tutorial and Start Menu Theme - whvle (https://pixabay.com/users/38594074/)
+
+Thanks a lot to NullFayht for playtesting the game, and Kai Kennedy for supporting me through this project!"
+label_settings = SubResource("LabelSettings_qe12f")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer3"]
+layout_mode = 2
+theme = SubResource("Theme_qe12f")
+text = "BACK"
+
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 14.5477, -42.5508)
 flip_faces = true
@@ -393,8 +496,10 @@ texture = ExtResource("2_fu7sn")
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Button4" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button5" to="." method="_on_button_5_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer2/QualityButton" to="." method="_on_quality_button_item_selected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer2/ColorBlindButton" to="." method="_on_color_blind_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer2/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer3/BackButton" to="." method="_on_back_button_pressed"]

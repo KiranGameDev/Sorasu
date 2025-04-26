@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://dm5an44fjmtnq"]
+[gd_scene load_steps=22 format=3 uid="uid://dm5an44fjmtnq"]
 
 [ext_resource type="Script" uid="uid://bxccmmbaqm53q" path="res://player.gd" id="1_o7f5t"]
 [ext_resource type="AudioStream" uid="uid://cuq30linnp1yq" path="res://arrow-impact-87260.mp3" id="3_hqtel"]
 [ext_resource type="AudioStream" uid="uid://t5gli4hy0gvi" path="res://parried_bullet_hit.mp3" id="4_7amfg"]
 [ext_resource type="AudioStream" uid="uid://c1aqy8db8skx8" path="res://futuristic-gun-shot-sci-fi-217154.mp3" id="4_sweqy"]
+[ext_resource type="AudioStream" uid="uid://d4bhfl62o8jee" path="res://Voices/Max Combo Voice.wav" id="5_2hs0m"]
 [ext_resource type="PackedScene" uid="uid://fl1qlujm7hpo" path="res://player_model.tscn" id="5_sweqy"]
 
 [sub_resource type="Animation" id="Animation_uechi"]
@@ -383,9 +384,12 @@ bus = &"SFX"
 stream = ExtResource("4_7amfg")
 bus = &"SFX"
 
+[node name="Max Combo Voice" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("5_2hs0m")
+bus = &"SFX"
+
 [node name="ComboTimer" type="Timer" parent="."]
 wait_time = 3.0
-one_shot = true
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.88059, 0)
