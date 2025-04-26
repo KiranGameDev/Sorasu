@@ -345,13 +345,7 @@ shading_mode = 0
 albedo_texture = ExtResource("4_v2mkm")
 uv1_triplanar = true
 
-[node name="StartMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="StartMenu" type="Node3D"]
 script = ExtResource("1_ctwoq")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -365,7 +359,6 @@ autoplay = "SlashAcross"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -1
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -374,10 +367,9 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 1220.0
+offset_left = -192.0
 offset_top = 332.0
-offset_right = 1360.0
+offset_right = -52.0
 offset_bottom = 336.0
 
 [node name="SwordSlash" type="AudioStreamPlayer" parent="."]
@@ -386,7 +378,6 @@ bus = &"Echo"
 
 [node name="ColorRect3" type="ColorRect" parent="."]
 z_index = 1
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -394,7 +385,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -424,6 +414,7 @@ libraries = {
 autoplay = "LoopingThings"
 
 [node name="Camera3D" type="Camera3D" parent="."]
+current = true
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -435,7 +426,6 @@ material = SubResource("StandardMaterial3D_ctwoq")
 [node name="ColorRect4" type="ColorRect" parent="."]
 visible = false
 z_index = 2
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -446,5 +436,4 @@ color = Color(0, 0, 0, 1)
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_ppfnh")
 volume_db = -3.0
-autoplay = true
 bus = &"Music"

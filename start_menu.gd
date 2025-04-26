@@ -1,4 +1,4 @@
-extends Control
+extends Node3D
 
 @onready var center_container: CenterContainer = $CenterContainer
 @onready var color_rect_4: ColorRect = $ColorRect4
