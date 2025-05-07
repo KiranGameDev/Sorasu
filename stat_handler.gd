@@ -19,11 +19,13 @@ var parry_timer_time: float
 var lives: int
 var quality = 2
 var color_blind_mode = false
+var level_to = 1
 var parry_combo = 0
 var parry_combo_timer_started = false
 var boss_spawned = false
 var parried = false
 var boss_position: Vector3
+var tutorial_parry = false
 var boss_ready = false
 var prev_parry_combo = 0
 var deaths = 0
@@ -35,6 +37,8 @@ var kill_player = false
 var time_up = false
 var kill_boss_timer = false
 var parry_timer_number: float
+var sfx_volume = 0
+var music_volume = 0
 
 func spawn_parry_bullet(enemy_pos, start_pos):
 	var instance = parried_bullet.instantiate()

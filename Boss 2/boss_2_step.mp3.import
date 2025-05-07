@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dnfbc8iun6qxm"
+path="res://.godot/imported/boss_2_step.mp3-c61bf24623c55d1468883d2402e4d1c8.mp3str"
+
+[deps]
+
+source_file="res://Boss 2/boss_2_step.mp3"
+dest_files=["res://.godot/imported/boss_2_step.mp3-c61bf24623c55d1468883d2402e4d1c8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

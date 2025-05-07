@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://df3bykp2p8rv"]
+[gd_scene load_steps=29 format=3 uid="uid://df3bykp2p8rv"]
 
 [ext_resource type="Script" uid="uid://be1o32m5t381i" path="res://tutorial.gd" id="1_ehuit"]
 [ext_resource type="FontFile" uid="uid://deecenqr7nl3u" path="res://Orbitron-VariableFont_wght.ttf" id="2_yb1ct"]
 [ext_resource type="AudioStream" uid="uid://deq33duyh415y" path="res://aboard-a-aurora-game-menu-pulse-203549.mp3" id="4_5mrt3"]
 [ext_resource type="Texture2D" uid="uid://6x23r8kfm1f5" path="res://New Piskel-1.png (14).png" id="4_rwowx"]
 [ext_resource type="Script" uid="uid://pxfioh1h6a47" path="res://tutorial_boss.gd" id="5_rwowx"]
+[ext_resource type="AudioStream" uid="uid://cewj1g8snc7wp" path="res://infographic-pop-5-197872.mp3" id="6_0cr88"]
 [ext_resource type="PackedScene" uid="uid://dm5an44fjmtnq" path="res://player.tscn" id="6_hu44a"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ehuit"]
@@ -131,7 +132,7 @@ _data = {
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hu44a"]
-albedo_color = Color(0.054902, 1, 1, 1)
+albedo_color = Color(4.9334e-07, 0.215145, 0.215171, 1)
 albedo_texture = ExtResource("4_rwowx")
 uv1_triplanar = true
 
@@ -164,7 +165,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, -20, 0), Vector3(0, -20, 1)]
+"values": [Vector3(0, -20, 0), Vector3(0, -20, 2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7vrqn"]
@@ -173,37 +174,9 @@ _data = {
 &"Shift": SubResource("Animation_0cr88")
 }
 
-[sub_resource type="Animation" id="Animation_7vrqn"]
-resource_name = "Tutorial"
-length = 15.0
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 1.3, 1.9, 2.9, 3.7, 4.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 15), Vector3(0, 0, 15), Vector3(0, 0, 15), Vector3(5, 0, 5), Vector3(-10, 0, 15), Vector3(0, 0, 15), Vector3(0, 0, 10)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Player:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1.5708, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_vmw6g"]
 length = 0.001
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -228,11 +201,257 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 1.5708, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/Label:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Fly around using WASD/Directional Arrows/
+Right Stick (Controller)"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CenterContainer/Label:label_settings:font_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [20]
+}
+
+[sub_resource type="Animation" id="Animation_7vrqn"]
+resource_name = "Tutorial"
+length = 19.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7, 1.3, 1.9, 2.9, 3.5, 4.2, 7, 7.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 10), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 15), Vector3(5, 0, 5), Vector3(-10, 0, 15), Vector3(0, 0, 15), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(5, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5, 5.5, 6, 8.5, 9, 9.5, 13, 13.5, 14),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/Label:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5.5, 9, 13.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["Fly around using WASD/Directional Arrows/
+Right Stick (Controller)", "Avoid the orange bullets", "Parry the flashing red ones using Enter or
+Space (A on controller)", "Get hit with either bullet, and you're dead."]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TutorialBoss")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(6.5, 10, 15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [false],
+"method": &"shoot"
+}, {
+"args": [true],
+"method": &"shoot"
+}, {
+"args": [false],
+"method": &"shoot"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CenterContainer/Label:label_settings:font_size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 5.5, 9, 13.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [22, 30, 25, 28]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 10.95),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [false],
+"method": &"set_tutorial_parry"
+}, {
+"args": [true],
+"method": &"set_tutorial_parry"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_4hjyh"]
+resource_name = "TutorialColorblind"
+length = 19.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7, 1.3, 1.9, 2.9, 3.5, 4.2, 7, 7.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 10), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 15), Vector3(5, 0, 5), Vector3(-10, 0, 15), Vector3(0, 0, 15), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(5, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5, 5.5, 6, 8.5, 9, 9.5, 13, 13.5, 14),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/Label:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5.5, 9, 13.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["Fly around using WASD/Directional Arrows/
+Right Stick (Controller)", "Avoid the white bullets", "Parry the flashing black ones using Enter or
+Space (A on controller)", "Get hit with either bullet, and you're dead."]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TutorialBoss")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(6.5, 10, 15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [false],
+"method": &"shoot"
+}, {
+"args": [true],
+"method": &"shoot"
+}, {
+"args": [false],
+"method": &"shoot"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CenterContainer/Label:label_settings:font_size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 5.5, 9, 13.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [22, 30, 25, 28]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 10.95),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [false],
+"method": &"set_tutorial_parry"
+}, {
+"args": [true],
+"method": &"set_tutorial_parry"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bhfnd"]
 _data = {
 &"RESET": SubResource("Animation_vmw6g"),
-&"Tutorial": SubResource("Animation_7vrqn")
+&"Tutorial": SubResource("Animation_7vrqn"),
+&"TutorialColorblind": SubResource("Animation_4hjyh")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mrt3"]
@@ -278,6 +497,8 @@ _data = {
 
 [sub_resource type="LabelSettings" id="LabelSettings_5mrt3"]
 font_size = 20
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Tutorial" type="Node3D"]
 script = ExtResource("1_ehuit")
@@ -289,9 +510,9 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 environment = SubResource("Environment_rwowx")
 
 [node name="BackButton" type="Button" parent="."]
-offset_left = 5.0
+offset_left = 7.0
 offset_top = 593.0
-offset_right = 118.0
+offset_right = 120.0
 offset_bottom = 642.0
 theme = SubResource("Theme_ehuit")
 text = "BACK"
@@ -334,7 +555,6 @@ autoplay = "Shift"
 libraries = {
 &"": SubResource("AnimationLibrary_bhfnd")
 }
-autoplay = "Tutorial"
 
 [node name="TutorialBoss" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
@@ -346,6 +566,10 @@ script = ExtResource("5_rwowx")
 libraries = {
 &"": SubResource("AnimationLibrary_vmw6g")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TutorialBoss"]
+stream = ExtResource("6_0cr88")
+bus = &"SFX"
 
 [node name="Player" parent="." instance=ExtResource("6_hu44a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
@@ -359,12 +583,12 @@ mouse_filter = 2
 [node name="Label" type="Label" parent="CenterContainer"]
 layout_mode = 2
 text = "Fly around using WASD/Directional Arrows/
-Right Stick (Controller)
-
-Avoid orange bullets, parry flashing red ones
-with Space/Enter/A (Controller)"
+Right Stick (Controller)"
 label_settings = SubResource("LabelSettings_5mrt3")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer3" to="." method="_on_animation_player_3_animation_finished"]
+
+[editable path="Player"]

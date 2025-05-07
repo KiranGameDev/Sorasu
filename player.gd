@@ -9,7 +9,6 @@ extends CharacterBody3D
 @onready var parry_animation_player: AnimationPlayer = $ParryAnimationPlayer
 @onready var spaceshipmodel: Node3D = $PlayerModel
 @onready var parry_sound_effect: AudioStreamPlayer = $SFX/ParrySoundEffect
-@onready var explosion_sound_effect: AudioStreamPlayer = $SFX/ExplosionSoundEffect
 @onready var combo_timer: Timer = $ComboTimer
 @onready var parry_sound_effect_2: AudioStreamPlayer = $SFX/ParrySoundEffect2
 @onready var max_combo_voice: AudioStreamPlayer = $"SFX/Max Combo Voice"
@@ -26,6 +25,7 @@ func _ready() -> void:
 	hit = false
 
 func _process(delta: float) -> void:
+	StatHandler.kill_player = false
 	combo_timer.wait_time = 6.0 / StatHandler.parry_combo
 	StatHandler.parry_timer_number = 0 + combo_timer.wait_time
 	StatHandler.parry_timer_time = 0 + combo_timer.time_left
@@ -62,9 +62,11 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
-	if !StatHandler.in_tutorial:
+	if not StatHandler.in_tutorial:
 		check_parry()
 		move_and_slide()
+	else:
+		check_tutorial_parry()
 
 func _on_parry_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("parry_bullet"):
@@ -85,6 +87,26 @@ func check_parry():
 				else:
 					animation_player.play_backwards("BarrelRoll")
 				doing_parry = true
+	if parry_finished:
+		if StatHandler.parried:
+			parry_animation_player.play("ParrySuccessful")
+			if not parry_sound_effect.playing:
+				parry_sound_effect.play()
+				parry_sound_effect_2.play()
+		else:
+			parry_animation_player.play("BadParry")
+
+func check_tutorial_parry():
+	if StatHandler.tutorial_parry:
+		if not doing_parry:
+			parry_animation_player.play("ParryBegin")
+			var spin_dir = spin_dir_generator.randi_range(1, 2)
+			if spin_dir == 1:
+				animation_player.play("BarrelRoll")
+			else:
+				animation_player.play_backwards("BarrelRoll")
+				doing_parry = true
+			StatHandler.tutorial_parry = false
 	if parry_finished:
 		if StatHandler.parried:
 			parry_animation_player.play("ParrySuccessful")

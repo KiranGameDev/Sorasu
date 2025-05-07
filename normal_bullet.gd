@@ -17,9 +17,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if StatHandler.boss_dead or StatHandler.time_up:
 		queue_free()
-	if StatHandler.color_blind_mode and not played:
-		animation_player.play("TurnColorblind")
-		played = true
+	if StatHandler.color_blind_mode:
+		if not played:
+			animation_player.play("TurnColorblind")
+			played = true
+	else:
+		if not played:
+			animation_player.play("RESET")
+			played = true
 
 func _physics_process(delta: float) -> void:
 	if StatHandler.boss_dead and not play:

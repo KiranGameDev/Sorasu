@@ -196,6 +196,7 @@ draw_pass_1 = SubResource("SphereMesh_wqbeq")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_glgxi")
+bus = &"SFX"
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 rings = 12

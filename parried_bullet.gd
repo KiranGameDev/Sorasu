@@ -38,7 +38,6 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("enemy"):
 		body.HP -= damage
 		StatHandler.spawn_parried_bullet_hit_particle(global_position)
-		#StatHandler.spawn_enemy_hit_sound()
 		body.play_hit_sound()
 		queue_free()
 

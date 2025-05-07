@@ -48,7 +48,7 @@ func _process(delta: float) -> void:
 	if HP <= 900 and HP > 600:
 		phase = 3
 		if prev_phase != phase:
-			timer.wait_time = 0.2
+			timer.wait_time = 0.1
 			ready_up()
 			timer.start()
 			timer_2.stop()
@@ -66,7 +66,7 @@ func _process(delta: float) -> void:
 	if HP <= 300:
 		phase = 5
 		if prev_phase != phase:
-			timer.wait_time = 0.2
+			timer.wait_time = 0.15
 			ready_up()
 			timer.start()
 			timer_2.stop()

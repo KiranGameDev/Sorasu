@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dyog2q8sxo1up"]
+[gd_scene load_steps=55 format=3 uid="uid://dyog2q8sxo1up"]
 
 [ext_resource type="PackedScene" uid="uid://dm5an44fjmtnq" path="res://player.tscn" id="1_ney1m"]
 [ext_resource type="Script" uid="uid://sf1xet1p5h5m" path="res://level.gd" id="1_p71vg"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://dym3huxrigh3x" path="res://SORASU 1.1.mp3" id="11_aicyk"]
 [ext_resource type="PackedScene" uid="uid://ba6fb0u8he6rd" path="res://scrolling_city.tscn" id="12_aicyk"]
 [ext_resource type="AudioStream" uid="uid://8m2miggujler" path="res://Voices/Respawn Voice.wav" id="14_h6smj"]
+[ext_resource type="PackedScene" uid="uid://cr77bq1lfr86e" path="res://pause_menu.tscn" id="15_v5j5c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7qs3b"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -103,7 +104,7 @@ tracks/1/path = NodePath("Song:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(5),
+"times": PackedFloat32Array(4.9),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -901,7 +902,7 @@ transparency = 1
 shading_mode = 0
 albedo_color = Color(0, 0, 0, 0.713726)
 
-[node name="Level" type="Node3D"]
+[node name="Level1" type="Node3D"]
 script = ExtResource("1_p71vg")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -912,7 +913,7 @@ light_energy = 0.0
 environment = SubResource("Environment_7eayn")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 44.1916, 0)
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 45, 0)
 projection = 1
 size = 45.0
 
@@ -1229,6 +1230,8 @@ material = SubResource("StandardMaterial3D_h6smj")
 [node name="RespawnVoice" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_h6smj")
 bus = &"SFX"
+
+[node name="PauseMenu" parent="." instance=ExtResource("15_v5j5c")]
 
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="PrototypeBoss/Timer5" to="." method="_on_timer_3_timeout"]

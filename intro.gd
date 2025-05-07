@@ -12,7 +12,18 @@ func _ready() -> void:
 	RenderingServer.viewport_set_msaa_3d(camera_3d.get_viewport().get_viewport_rid(), StatHandler.get_msaa_quality(StatHandler.quality))
 
 func teleport():
-	get_tree().change_scene_to_file("res://level.tscn")
+	if StatHandler.level_to == 1:
+		get_tree().change_scene_to_file("res://level.tscn")
+	if StatHandler.level_to == 2:
+		get_tree().change_scene_to_file("res://level_2.tscn")
+	if StatHandler.level_to == 3:
+		pass
+	if StatHandler.level_to == 4:
+		pass
+	if StatHandler.level_to == 5:
+		pass
+	if StatHandler.level_to == 6:
+		pass
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("menu"):

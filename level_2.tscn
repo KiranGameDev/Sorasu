@@ -1,0 +1,1279 @@
+[gd_scene load_steps=46 format=3 uid="uid://dv773i8et267x"]
+
+[ext_resource type="Script" uid="uid://c22gjv5mgna11" path="res://level_2.gd" id="1_s77qv"]
+[ext_resource type="PackedScene" uid="uid://dm5an44fjmtnq" path="res://player.tscn" id="2_5hnhx"]
+[ext_resource type="Script" uid="uid://dt3cymjdhaucn" path="res://warning_container.gd" id="5_jcnlr"]
+[ext_resource type="FontFile" uid="uid://deecenqr7nl3u" path="res://Orbitron-VariableFont_wght.ttf" id="6_5kfcu"]
+[ext_resource type="FontFile" uid="uid://cl7gvasg77yh2" path="res://Electrolize-Regular.ttf" id="7_i558w"]
+[ext_resource type="AudioStream" uid="uid://do7xhdd52y52m" path="res://boss_incoming.mp3" id="8_cuxq2"]
+[ext_resource type="PackedScene" uid="uid://bbq2fwqm5vrv3" path="res://Boss 2/scrolling_battlefield_boss_2.tscn" id="9_15wb7"]
+[ext_resource type="AudioStream" uid="uid://cirh6y8f7osm3" path="res://Voices/Warning Voice.wav" id="9_wvr33"]
+[ext_resource type="PackedScene" uid="uid://c6did8we6pmkh" path="res://Boss 2/mini_boss_2.tscn" id="10_5hnhx"]
+[ext_resource type="AudioStream" uid="uid://8hl463ep6xwp" path="res://impact-fx-41103.mp3" id="10_sgm4o"]
+[ext_resource type="PackedScene" uid="uid://clwef6shybvye" path="res://sound_effect_handler.tscn" id="11_6r3eb"]
+[ext_resource type="AudioStream" uid="uid://dym3huxrigh3x" path="res://SORASU 1.1.mp3" id="12_2pufk"]
+[ext_resource type="AudioStream" uid="uid://8m2miggujler" path="res://Voices/Respawn Voice.wav" id="14_ikghu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7qs3b"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_1wtby"]
+sky_material = SubResource("ProceduralSkyMaterial_7qs3b")
+
+[sub_resource type="Environment" id="Environment_7eayn"]
+background_mode = 1
+background_color = Color(0.0433502, 0.0220778, 0.0433536, 1)
+sky = SubResource("Sky_1wtby")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_eoq84"]
+font = ExtResource("6_5kfcu")
+font_size = 70
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yl73a"]
+font = ExtResource("7_i558w")
+font_size = 20
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_yl73a"]
+resource_name = "Enter"
+length = 5.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WarningVoice:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/VBoxContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/VBoxContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75, 4, 4.25, 4.5, 4.75, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.662745, 0.662745, 0.662745, 0), Color(1, 1, 1, 1), Color(0.733333, 0.733333, 0.733333, 1), Color(1, 1, 1, 1), Color(0.733333, 0.733333, 0.733333, 1), Color(1, 1, 1, 1), Color(0.733333, 0.733333, 0.733333, 1), Color(1, 1, 1, 1), Color(0.733333, 0.733333, 0.733333, 1), Color(1, 1, 1, 1), Color(0.733333, 0.733333, 0.733333, 1), Color(1, 1, 1, 1), Color(0.733333, 0.733333, 0.733333, 1), Color(1, 1, 1, 1), Color(0.733333, 0.733333, 0.733333, 1), Color(1, 1, 1, 1), Color(0.733333, 0.733333, 0.733333, 1), Color(1, 1, 1, 1), Color(0.733333, 0.733333, 0.733333, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BossIncoming:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.6, 2.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(30, 100, 0), Vector3(15, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Boss2Model/AnimationPlayer:current_animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2.1, 4.2, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [&"Armature|Landing", &"Armature|Idle", &"[stop]"]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ready_up"
+}]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CenterContainer:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xbcdb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WarningVoice:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/VBoxContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/VBoxContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.662745, 0.662745, 0.662745, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BossIncoming:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(40, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Boss2Model/AnimationPlayer:current_animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CenterContainer:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s77qv"]
+_data = {
+&"Enter": SubResource("Animation_yl73a"),
+&"RESET": SubResource("Animation_xbcdb")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_8b0r0"]
+font = ExtResource("6_5kfcu")
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_h6smj"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_5pxul"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_8cye3"]
+font = ExtResource("6_5kfcu")
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_2orkt"]
+font = ExtResource("6_5kfcu")
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_w1swa"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_aicyk"]
+font = ExtResource("6_5kfcu")
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_v5j5c"]
+font = ExtResource("6_5kfcu")
+font_size = 70
+
+[sub_resource type="Animation" id="Animation_lnf4p"]
+resource_name = "DeathFadeIn"
+length = 4.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/DeathGUI:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/DeathGUI:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_continue_countdown"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/DeathGUI/ContinueTimer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [-1],
+"method": &"start"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/DeathGUI/Label2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:can_continue")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_fni1k"]
+resource_name = "DeathFadeOut"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/DeathGUI:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/DeathGUI/CenterContainer/Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/DeathGUI/Label2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:can_continue")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"save"
+}, {
+"args": [],
+"method": &"teleport"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_8v136"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/DeathGUI:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/DeathGUI:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/DeathGUI/CenterContainer/Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/DeathGUI/Label2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:can_continue")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wdwkl"]
+_data = {
+&"DeathFadeIn": SubResource("Animation_lnf4p"),
+&"DeathFadeOut": SubResource("Animation_fni1k"),
+&"RESET": SubResource("Animation_8v136")
+}
+
+[sub_resource type="Animation" id="Animation_nqlnx"]
+resource_name = "FlyIn"
+length = 1.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-20, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.25),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"swap_physics_process"
+}, {
+"args": [],
+"method": &"swap_physics_process"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rqrfm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.00857544)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ks8wo"]
+_data = {
+&"FlyIn": SubResource("Animation_nqlnx"),
+&"RESET": SubResource("Animation_rqrfm")
+}
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_aicyk"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Animation" id="Animation_h6smj"]
+resource_name = "ParryLabelPop"
+length = 0.05
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/CenterContainer3/ParryComboLabel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_v5j5c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/CenterContainer3/ParryComboLabel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5pxul"]
+_data = {
+&"ParryLabelPop": SubResource("Animation_h6smj"),
+&"RESET": SubResource("Animation_v5j5c")
+}
+
+[sub_resource type="Animation" id="Animation_5pxul"]
+resource_name = "Fade"
+length = 6.0
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"save"
+}, {
+"args": [],
+"method": &"teleport"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/CenterContainer2/VBoxContainer/Label2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/CenterContainer2/VBoxContainer/Label3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/CenterContainer2/VBoxContainer/Label4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/CenterContainer2/VBoxContainer/AudioStreamPlayer:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2, 2.2, 2.4, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, true, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI/CenterContainer2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1, 5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ColorRect:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1, 5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.513726), Color(0, 0, 0, 0.513726), Color(0, 0, 0, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("UI/CenterContainer2/VBoxContainer/Label5:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_fedht"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/CenterContainer2/VBoxContainer/Label2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/CenterContainer2/VBoxContainer/Label3:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/CenterContainer2/VBoxContainer/Label4:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/CenterContainer2/VBoxContainer/AudioStreamPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/CenterContainer2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ColorRect:color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UI/CenterContainer2/VBoxContainer/Label5:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fedht"]
+_data = {
+&"Fade": SubResource("Animation_5pxul"),
+&"RESET": SubResource("Animation_fedht")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_8b0r0"]
+size = Vector3(1000, 0.001, 150)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6smj"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0.713726)
+
+[node name="Level2" type="Node3D"]
+script = ExtResource("1_s77qv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.950576, 0.310493, 0, -0.310493, 0.950576, -0.180788, 9.93086, -18.957)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7eayn")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 45, 0)
+projection = 1
+size = 45.0
+
+[node name="Player" parent="." instance=ExtResource("2_5hnhx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00857544)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00691986, 0.0747452, -0.184448)
+visible = false
+use_collision = true
+flip_faces = true
+size = Vector3(39, 5, 75)
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="MiniBoss2" parent="." instance=ExtResource("10_5hnhx")]
+transform = Transform3D(-7.43094e-08, 0, 1.7, 0, 1.7, 0, -1.7, 0, -7.43094e-08, 40, 0, 0)
+
+[node name="Boss2Model" parent="MiniBoss2" index="17"]
+transform = Transform3D(-0.7, 0, -6.11959e-08, 0, 0.7, 0, 6.11959e-08, 0, -0.7, 0, -3.94799, 0)
+
+[node name="Skeleton3D" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5" index="0"]
+bones/1/position = Vector3(0, 0, 6.4722)
+bones/1/rotation = Quaternion(0.707107, 0, 1.4013e-45, 0.707107)
+bones/3/rotation = Quaternion(0.690397, 0.71059, 0.0938523, 0.0980146)
+bones/4/rotation = Quaternion(0.682582, 0.0573019, 0.0704294, 0.725147)
+bones/5/rotation = Quaternion(-0.606554, -0.0016299, -0.0991493, 0.788834)
+bones/6/rotation = Quaternion(-0.606975, 0.00968817, -0.0879601, 0.789778)
+bones/7/rotation = Quaternion(-0.338063, 0.0539046, -0.0678261, 0.937127)
+bones/11/rotation = Quaternion(-0.337116, 0.0582273, -0.0650438, 0.937407)
+bones/17/rotation = Quaternion(0.615194, -0.316381, 0.541987, -0.477169)
+bones/23/rotation = Quaternion(0.949624, -0.000299612, 0.158609, 0.270291)
+bones/27/rotation = Quaternion(-0.476476, -0.00548202, -0.0894523, 0.874608)
+bones/33/rotation = Quaternion(-0.470039, -0.00854374, -0.0930877, 0.877682)
+bones/35/rotation = Quaternion(-0.610902, 0.00330411, -0.0995377, 0.785417)
+bones/41/rotation = Quaternion(-0.0145695, 0.934423, 0.355666, 0.0119402)
+bones/51/rotation = Quaternion(0.595723, -0.000239473, 0.000322365, 0.80319)
+bones/55/rotation = Quaternion(0.595723, 0.000238707, -0.000321796, 0.80319)
+bones/62/rotation = Quaternion(-0.000385918, 2.7979e-14, -0.000401128, 1)
+bones/66/rotation = Quaternion(-0.000385918, -2.7979e-14, 0.000401128, 1)
+bones/74/rotation = Quaternion(-0.640977, 0.657524, 0.276007, -0.283957)
+bones/75/rotation = Quaternion(0.646109, -0.0593904, -0.0663862, 0.75803)
+bones/76/rotation = Quaternion(-0.575533, 0.0020342, 0.0945395, 0.812293)
+bones/77/rotation = Quaternion(-0.366427, -0.0113275, 0.0519621, 0.928926)
+bones/78/rotation = Quaternion(-0.945427, -0.0206831, 0.198488, 0.257572)
+bones/82/rotation = Quaternion(-0.944795, -0.0253295, 0.195689, 0.261585)
+bones/88/rotation = Quaternion(0.740668, -0.0988587, -0.649048, 0.142738)
+bones/94/rotation = Quaternion(0.913427, -0.00655557, -0.149364, 0.378548)
+bones/98/rotation = Quaternion(-0.539202, 0.00706707, 0.102484, 0.835888)
+bones/102/rotation = Quaternion(-0.530071, 0.011979, 0.108518, 0.840896)
+bones/106/rotation = Quaternion(-0.564647, -0.0027197, 0.0924206, 0.820137)
+bones/112/rotation = Quaternion(0.014085, 0.933634, 0.357758, -0.0117329)
+bones/122/position = Vector3(3.16409, 2.28333, 0.385215)
+bones/126/position = Vector3(-3.16409, -1.29344, 0.385215)
+bones/126/rotation = Quaternion(0.993231, 0.00676712, -0.0811637, -0.0828125)
+
+[node name="Plane_009_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="0"]
+transform = Transform3D(0.999854, -0.00716354, 0.0154892, 0.0166614, 0.213414, -0.97682, 0.00369184, 0.976936, 0.213502, -0.00533485, 4.03676, -0.329073)
+
+[node name="Plane_012_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="1"]
+transform = Transform3D(0.999658, -0.0109145, 0.0237832, 0.0256406, 0.226967, -0.973565, 0.00522797, 0.973841, 0.227169, -0.00809908, 4.00647, -0.339279)
+
+[node name="Cube_016_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="2"]
+transform = Transform3D(1, -9.68575e-08, 1.77324e-06, 1.2666e-07, 1, -1.51992e-06, -1.81794e-06, 1.59442e-06, 1, 2.38419e-06, 2.48819, 1.47223e-05)
+
+[node name="Plane_004_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="3"]
+transform = Transform3D(0.999947, -0.00865488, 0.0053382, 0.00460087, -0.0830801, -0.996532, 0.00906822, 0.996505, -0.083036, -0.00577712, 3.67426, 1.27304)
+
+[node name="Cube_013_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="4"]
+transform = Transform3D(0.999998, -0.00199464, -9.53972e-05, 0.00179325, 0.917974, -0.396636, 0.000878722, 0.396635, 0.917976, -0.000366449, 2.6185, 0.110073)
+
+[node name="Plane_011_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="5"]
+transform = Transform3D(0.999999, 0.000553355, -0.00157442, -0.00140293, 0.78964, -0.613569, 0.000903741, 0.61357, 0.78964, 0.00422549, 3.72094, 0.617956)
+
+[node name="Plane_002_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="6"]
+transform = Transform3D(0.999978, -0.00224671, 0.00632181, 0.00522326, 0.852078, -0.523389, -0.00421073, 0.52341, 0.85207, -0.0130358, 2.95271, 0.0664294)
+
+[node name="Plane_013_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="7"]
+transform = Transform3D(0.999978, -0.00224671, 0.00632181, 0.00522326, 0.852078, -0.523389, -0.00421073, 0.52341, 0.85207, -0.0130358, 2.95271, 0.0664294)
+
+[node name="Cube_007_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="8"]
+transform = Transform3D(0.999998, -0.00196424, 8.29697e-05, 0.00182478, 0.911628, -0.411011, 0.000731699, 0.411011, 0.91163, -0.000609398, 2.6394, 0.115838)
+
+[node name="Plane_015_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="9"]
+transform = Transform3D(0.999998, -0.0019686, -0.000510223, 0.00164383, 0.930166, -0.367136, 0.00119734, 0.367134, 0.930167, 0.000692368, 2.53027, 0.106341)
+
+[node name="Cube_010_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="10"]
+transform = Transform3D(0.999998, -0.00175899, 0.00106888, 0.0020427, 0.911936, -0.410327, -0.00025295, 0.410328, 0.911938, -0.00561166, 2.70652, 0.225399)
+
+[node name="Cube_012_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="11"]
+transform = Transform3D(0.999997, -0.00183151, 0.00132346, 0.00221041, 0.914484, -0.404616, -0.000469181, 0.404617, 0.914486, -0.00699615, 2.67313, 0.214603)
+
+[node name="Cylinder_002_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="12"]
+transform = Transform3D(1, -1.77636e-15, -1.4013e-45, -1.77636e-15, 1, -4.37113e-08, 1.4013e-45, 4.37113e-08, 1, 0, 2.98023e-07, 5.24521e-06)
+
+[node name="Cube_006_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="13"]
+transform = Transform3D(1, 7.18842e-10, -2.02945e-08, -7.07161e-10, 1, -1.19326e-07, 2.03349e-08, 1.78814e-07, 1, -1.19209e-06, -1.43051e-06, -7.62939e-06)
+
+[node name="Cube_017_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="14"]
+transform = Transform3D(1, 3.1531e-10, 2.16907e-08, -3.26025e-10, 1, -1.19326e-07, -2.17319e-08, 1.78814e-07, 1, 4.76837e-07, -1.43051e-06, -8.58307e-06)
+
+[node name="Cube_005_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="15"]
+transform = Transform3D(1, -1.42109e-13, -3.41061e-13, 2.27374e-13, 1, -8.9407e-07, 3.97904e-13, 8.9407e-07, 1, -4.00174e-11, 7.80821e-06, 1.04904e-05)
+
+[node name="Cube_005_Inside_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="16"]
+transform = Transform3D(1, -1.42109e-13, -3.41061e-13, 2.27374e-13, 1, -8.9407e-07, 3.97904e-13, 8.9407e-07, 1, -4.00174e-11, 7.80821e-06, 1.04904e-05)
+
+[node name="Plane_003_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="17"]
+transform = Transform3D(1, 1.0877e-10, -1.02383e-08, -1.10134e-10, 1, -2.82831e-07, 1.02508e-08, 2.82773e-07, 1, 1.90735e-06, -2.38419e-07, 1.90735e-06)
+
+[node name="Plane_016_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="18"]
+transform = Transform3D(1, -1.0877e-10, 1.02383e-08, 1.10134e-10, 1, -2.82831e-07, -1.02508e-08, 2.82773e-07, 1, -1.90735e-06, -2.38419e-07, 1.90735e-06)
+
+[node name="Cube_008_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="19"]
+transform = Transform3D(1, -1.32349e-23, -1.4013e-45, 1.32349e-23, 1, 0, 1.4013e-45, 0, 1, -1.26218e-29, 0, 0)
+
+[node name="Cube_008_Inside_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="20"]
+transform = Transform3D(1, -1.32349e-23, -1.4013e-45, 1.32349e-23, 1, 0, 1.4013e-45, 0, 1, -1.26218e-29, 0, 0)
+
+[node name="Plane_006_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="21"]
+transform = Transform3D(0.999947, -0.00782703, -0.00676805, 0.0102253, 0.847647, 0.530463, 0.00158504, -0.530504, 0.847681, 0.0133207, -1.34596, 0.663943)
+
+[node name="Plane_008_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="22"]
+transform = Transform3D(0.999873, -0.0121006, -0.0104265, 0.0158077, 0.843303, 0.537206, 0.00229229, -0.537302, 0.843387, 0.0204973, -1.33849, 0.675265)
+
+[node name="Cube_004_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="23"]
+transform = Transform3D(1, 1.0673e-06, -1.60933e-06, -1.06357e-06, 1, -2.5481e-06, 1.72853e-06, 2.6226e-06, 1, -3.57628e-06, -1.08857, 5.78165e-06)
+
+[node name="Plane_005_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="24"]
+transform = Transform3D(0.999995, -0.00271612, 0.000900432, 0.00200069, 0.888624, 0.458633, -0.00204581, -0.458629, 0.888626, 0.000824928, -1.52748, 0.179055)
+
+[node name="Cube_003_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="25"]
+transform = Transform3D(0.999999, -0.00018847, 0.00149941, -4.44278e-05, 0.988098, 0.153825, -0.00151046, -0.153825, 0.988097, -0.000620604, -1.15041, -0.0317125)
+
+[node name="Plane_007_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="26"]
+transform = Transform3D(0.999986, -0.000938177, -0.00512998, 0.00198422, 0.978148, 0.2079, 0.00482289, -0.207908, 0.978137, 0.0320735, -1.16617, 0.0685554)
+
+[node name="Plane_014_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="27"]
+transform = Transform3D(0.99998, 0.00118309, 0.00617014, -0.00261145, 0.971519, 0.236946, -0.005714, -0.236958, 0.971503, -0.0130837, -1.37484, 0.0715951)
+
+[node name="Plane_010_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="28"]
+transform = Transform3D(0.99996, 0.00224251, 0.00869708, -0.00422058, 0.972078, 0.234619, -0.007928, -0.234646, 0.972049, -0.0198398, -1.37337, 0.0637016)
+
+[node name="Cube_014_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="29"]
+transform = Transform3D(0.999999, -0.000233926, 0.000997953, 0.000132561, 0.994954, 0.10033, -0.00101627, -0.10033, 0.994954, 6.27041e-05, -1.077, -0.0492909)
+
+[node name="Plane_001_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="30"]
+transform = Transform3D(0.999996, -0.000455663, 0.00272775, -0.000273839, 0.965173, 0.261614, -0.00275186, -0.261614, 0.965169, -0.00356698, -1.40898, 0.129888)
+
+[node name="Cube_015_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="31"]
+transform = Transform3D(0.999998, -0.00101808, -0.00196979, 0.00123692, 0.993422, 0.114501, 0.00184039, -0.114503, 0.993421, 0.0145855, -0.737972, 0.148934)
+
+[node name="Cube_001_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="32"]
+transform = Transform3D(0.999995, -0.000866348, -0.00318494, 0.0012582, 0.992134, 0.125172, 0.00305157, -0.125176, 0.99213, 0.0212433, -0.79649, 0.164897)
+
+[node name="Cylinder_001_Material_0" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="33"]
+transform = Transform3D(1, 1.77636e-15, -1.4013e-45, 1.77636e-15, 1, -4.37113e-08, 1.4013e-45, 4.37113e-08, 1, 0, 2.98023e-07, 5.24521e-06)
+
+[node name="CenterContainer" type="CenterContainer" parent="MiniBoss2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MiniBoss2/CenterContainer"]
+visible = false
+modulate = Color(0.662745, 0.662745, 0.662745, 0)
+layout_mode = 2
+script = ExtResource("5_jcnlr")
+
+[node name="WarningLabel" type="Label" parent="MiniBoss2/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "WARNING"
+label_settings = SubResource("LabelSettings_eoq84")
+
+[node name="Label" type="Label" parent="MiniBoss2/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "A large enemy is heading to your direct location, and will arrive soon. Prepare yourself, and do not yield your position."
+label_settings = SubResource("LabelSettings_yl73a")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="BossAnimationPlayer" type="AnimationPlayer" parent="MiniBoss2"]
+libraries = {
+&"": SubResource("AnimationLibrary_s77qv")
+}
+autoplay = "Enter"
+
+[node name="Timer5" type="Timer" parent="MiniBoss2"]
+one_shot = true
+autostart = true
+
+[node name="BossIncoming" type="AudioStreamPlayer" parent="MiniBoss2"]
+stream = ExtResource("8_cuxq2")
+bus = &"SFX"
+
+[node name="WarningVoice" type="AudioStreamPlayer" parent="MiniBoss2"]
+stream = ExtResource("9_wvr33")
+volume_db = 1.0
+bus = &"SFX"
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer2" type="CenterContainer" parent="UI"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CenterContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+text = "SCORE:"
+label_settings = SubResource("LabelSettings_8b0r0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/CenterContainer2/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "PARRY AND BOSS: score"
+label_settings = SubResource("LabelSettings_h6smj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="UI/CenterContainer2/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "TIME: score"
+label_settings = SubResource("LabelSettings_h6smj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="UI/CenterContainer2/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Difficulty Score: score"
+label_settings = SubResource("LabelSettings_5pxul")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="UI/CenterContainer2/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "LIVES: score"
+label_settings = SubResource("LabelSettings_h6smj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI/CenterContainer2/VBoxContainer"]
+stream = ExtResource("10_sgm4o")
+bus = &"SFX"
+
+[node name="DeathGUI" type="Control" parent="UI"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI/DeathGUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/DeathGUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/DeathGUI/CenterContainer"]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_8cye3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/DeathGUI"]
+layout_mode = 2
+offset_left = 503.0
+offset_top = 548.0
+offset_right = 649.0
+offset_bottom = 581.0
+text = "Continue? "
+label_settings = SubResource("LabelSettings_2orkt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueTimer" type="Timer" parent="UI/DeathGUI"]
+wait_time = 10.0
+ignore_time_scale = true
+
+[node name="LivesLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 79.0
+offset_bottom = 28.0
+text = "LIVES: 3"
+label_settings = SubResource("LabelSettings_w1swa")
+
+[node name="BossTimeLabel" type="Label" parent="UI"]
+layout_mode = 2
+offset_left = 503.0
+offset_top = 5.0
+offset_right = 649.0
+offset_bottom = 31.0
+text = "TIME LEFT: 0"
+label_settings = SubResource("LabelSettings_aicyk")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="CenterContainer" type="CenterContainer" parent="UI"]
+layout_mode = 0
+offset_left = 971.0
+offset_right = 1152.0
+offset_bottom = 35.0
+
+[node name="ScoreLabel" type="Label" parent="UI/CenterContainer"]
+layout_mode = 2
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_w1swa")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ParryBar" type="ProgressBar" parent="UI"]
+z_index = -3
+layout_mode = 0
+offset_left = 16.0
+offset_top = 539.0
+offset_right = 132.0
+offset_bottom = 547.0
+max_value = 3.0
+step = 0.001
+show_percentage = false
+
+[node name="CenterContainer3" type="CenterContainer" parent="UI"]
+layout_mode = 0
+offset_top = 530.0
+offset_right = 142.0
+offset_bottom = 649.0
+
+[node name="ParryComboLabel" type="Label" parent="UI/CenterContainer3"]
+z_index = -3
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_v5j5c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wdwkl")
+}
+
+[node name="SoundEffectHandler" parent="." instance=ExtResource("11_6r3eb")]
+
+[node name="PlayerAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ks8wo")
+}
+autoplay = "FlyIn"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_right = 1160.0
+offset_bottom = 651.0
+color = Color(0, 0, 0, 0)
+
+[node name="Song" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_2pufk")
+autoplay = true
+bus = &"Music"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 8.0
+
+[node name="BossTimer" type="Timer" parent="."]
+wait_time = 150.0
+one_shot = true
+
+[node name="ScrollTimer" type="Timer" parent="."]
+
+[node name="City" type="Sprite3D" parent="."]
+transform = Transform3D(-2.18557e-07, 5, -2.18557e-07, 0, -2.18557e-07, -5, -5, -2.18557e-07, 9.55343e-15, 0, -53.3202, 0)
+texture = SubResource("ViewportTexture_aicyk")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+msaa_3d = 3
+size = Vector2i(1600, 1024)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="ScrollingBattlefield" parent="SubViewport" instance=ExtResource("9_15wb7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 732.216)
+
+[node name="OmniLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 56.1249, 0)
+light_energy = 50.0
+spot_range = 90.7345
+spot_angle = 49.2188
+
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5pxul")
+}
+
+[node name="AnimationPlayer4" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fedht")
+}
+
+[node name="Floor2" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.72363, 0)
+mesh = SubResource("BoxMesh_8b0r0")
+material = SubResource("StandardMaterial3D_h6smj")
+
+[node name="RespawnVoice" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_ikghu")
+bus = &"SFX"
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="MiniBoss2/Timer5" to="." method="_on_timer_3_timeout"]
+[connection signal="timeout" from="UI/DeathGUI/ContinueTimer" to="." method="_on_continue_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="BossTimer" to="." method="_on_boss_timer_timeout"]
+
+[editable path="MiniBoss2"]
+[editable path="MiniBoss2/Boss2Model"]

@@ -1,0 +1,156 @@
+[gd_scene load_steps=11 format=3 uid="uid://bbq2fwqm5vrv3"]
+
+[ext_resource type="Script" uid="uid://1ob88qsg1qxk" path="res://Boss 2/scrolling_battlefield_boss_2.gd" id="1_1n3fi"]
+[ext_resource type="Texture2D" uid="uid://dgrxb5r2y2qyi" path="res://Boss 2/boss_2_floor_texture.jpg" id="1_7ph84"]
+[ext_resource type="PackedScene" uid="uid://bmsy3m5xd47yk" path="res://Boss 2/ground_pebbles.glb" id="3_jt8nq"]
+[ext_resource type="PackedScene" uid="uid://ktckxjs4bcke" path="res://destroyed_bus_01.glb" id="4_1itt5"]
+[ext_resource type="PackedScene" uid="uid://b1l6flq06shbr" path="res://dirty_old_tires.glb" id="5_ith6a"]
+[ext_resource type="PackedScene" uid="uid://bhvcbg8cmcgux" path="res://old_rusty_car.glb" id="6_wwxtm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1n3fi"]
+albedo_texture = ExtResource("1_7ph84")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+
+[sub_resource type="Animation" id="Animation_1n3fi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGBox3D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 100)]
+}
+
+[sub_resource type="Animation" id="Animation_7ph84"]
+resource_name = "Scroll"
+length = 15.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGBox3D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 100), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jt8nq"]
+_data = {
+&"RESET": SubResource("Animation_1n3fi"),
+&"Scroll": SubResource("Animation_7ph84")
+}
+
+[node name="ScrollingBattlefield" type="Node3D"]
+script = ExtResource("1_1n3fi")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 40, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(120, 0.01, 100)
+material = SubResource("StandardMaterial3D_1n3fi")
+
+[node name="Pebbles" parent="CSGBox3D" instance=ExtResource("3_jt8nq")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -38.0099, 0.041, -3)
+
+[node name="Pebbles2" parent="CSGBox3D" instance=ExtResource("3_jt8nq")]
+transform = Transform3D(-0.384359, 0, -1.96272, 0, 2, 0, 1.96272, 0, -0.384359, 8.6225, 0.041, 6.55214)
+
+[node name="Pebbles4" parent="CSGBox3D" instance=ExtResource("3_jt8nq")]
+transform = Transform3D(-0.384358, 0, -3.92544, 0, 2, 0, 1.96272, 0, -0.768716, -1.00273, 0.041, -24.0402)
+
+[node name="Pebbles5" parent="CSGBox3D" instance=ExtResource("3_jt8nq")]
+transform = Transform3D(-0.960895, 0, -3.27087, 0, 1.667, 0, 4.9068, 0, -0.640533, 14.9622, 0.041, 42.1009)
+
+[node name="Pebbles3" parent="CSGBox3D" instance=ExtResource("3_jt8nq")]
+transform = Transform3D(-2.56136, 0, 1.56187, 0, 3, 0, -1.56187, 0, -2.56136, -2.83537, -0.130559, 18.7949)
+
+[node name="Bus" parent="CSGBox3D" instance=ExtResource("4_1itt5")]
+transform = Transform3D(0.576433, -0.817145, 3.57185e-08, 0, -4.37114e-08, -1, 0.817145, 0.576433, -2.51967e-08, 27.8034, 0.894848, 34.9482)
+
+[node name="Tires" parent="CSGBox3D" instance=ExtResource("5_ith6a")]
+transform = Transform3D(0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, -42.3381, 0, 30.4904)
+
+[node name="Tires2" parent="CSGBox3D" instance=ExtResource("5_ith6a")]
+transform = Transform3D(0.00520404, 0, 0.0140683, 0, 0.015, 0, -0.0140683, 0, 0.00520404, 43.3864, 0, 24.3579)
+
+[node name="Tires3" parent="CSGBox3D" instance=ExtResource("5_ith6a")]
+transform = Transform3D(-0.00265679, 0, -0.0147628, 0, 0.015, 0, 0.0147628, 0, -0.00265679, -22.4394, 0, -36.8269)
+
+[node name="Car" parent="CSGBox3D" instance=ExtResource("6_wwxtm")]
+transform = Transform3D(0.00821229, 0, -0.00570599, 0, 0.01, 0, 0.00570599, 0, 0.00821229, 39.1411, 0, -15.3144)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+size = Vector3(120, 0.01, 100)
+material = SubResource("StandardMaterial3D_1n3fi")
+
+[node name="Pebbles" parent="CSGBox3D2" instance=ExtResource("3_jt8nq")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -38.0099, 0.041, -3)
+
+[node name="Pebbles2" parent="CSGBox3D2" instance=ExtResource("3_jt8nq")]
+transform = Transform3D(-0.384359, 0, -1.96272, 0, 2, 0, 1.96272, 0, -0.384359, 8.6225, 0.041, 6.55214)
+
+[node name="Pebbles4" parent="CSGBox3D2" instance=ExtResource("3_jt8nq")]
+transform = Transform3D(-0.384358, 0, -3.92544, 0, 2, 0, 1.96272, 0, -0.768716, -1.00273, 0.041, -24.0402)
+
+[node name="Pebbles5" parent="CSGBox3D2" instance=ExtResource("3_jt8nq")]
+transform = Transform3D(-0.960895, 0, -3.27087, 0, 1.667, 0, 4.9068, 0, -0.640533, 14.9622, 0.041, 42.1009)
+
+[node name="Pebbles3" parent="CSGBox3D2" instance=ExtResource("3_jt8nq")]
+transform = Transform3D(-2.56136, 0, 1.56187, 0, 3, 0, -1.56187, 0, -2.56136, -2.83537, -0.130559, 18.7949)
+
+[node name="Bus" parent="CSGBox3D2" instance=ExtResource("4_1itt5")]
+transform = Transform3D(0.576433, -0.817145, 3.57185e-08, 0, -4.37114e-08, -1, 0.817145, 0.576433, -2.51967e-08, 27.8034, 0.894848, 34.9482)
+
+[node name="Tires" parent="CSGBox3D2" instance=ExtResource("5_ith6a")]
+transform = Transform3D(0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, -42.3381, 0, 30.4904)
+
+[node name="Tires2" parent="CSGBox3D2" instance=ExtResource("5_ith6a")]
+transform = Transform3D(0.00520404, 0, 0.0140683, 0, 0.015, 0, -0.0140683, 0, 0.00520404, 43.3864, 0, 24.3579)
+
+[node name="Tires3" parent="CSGBox3D2" instance=ExtResource("5_ith6a")]
+transform = Transform3D(-0.00265679, 0, -0.0147628, 0, 0.015, 0, 0.0147628, 0, -0.00265679, -22.4394, 0, -36.8269)
+
+[node name="Car" parent="CSGBox3D2" instance=ExtResource("6_wwxtm")]
+transform = Transform3D(0.00821229, 0, -0.00570599, 0, 0.01, 0, 0.00570599, 0, 0.00821229, 39.1411, 0, -15.3144)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jt8nq")
+}

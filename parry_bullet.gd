@@ -33,6 +33,15 @@ func _process(delta: float) -> void:
 					StatHandler.score += 100 * StatHandler.parry_combo
 					StatHandler.parry_combo_timer_started = false
 					queue_free()
+	if StatHandler.in_tutorial:
+		if not player.parry_finished:
+			if in_parry_zone:
+				StatHandler.parried = true
+				StatHandler.spawn_parry_bullet(StartPos, player.global_position)
+				StatHandler.spawn_parry_bullet(StartPos, player.global_position + Vector3(0, 0, 1))
+				StatHandler.spawn_parry_bullet(StartPos, player.global_position - Vector3(0, 0, 1))
+				StatHandler.spawn_parry_bullet(StartPos, player.global_position + Vector3(1, 0, 0))
+				queue_free()
 
 func _physics_process(delta: float) -> void:
 	velocity = new_direction

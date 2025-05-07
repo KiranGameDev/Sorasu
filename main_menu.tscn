@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://dtkobp0srsbq5"]
+[gd_scene load_steps=30 format=3 uid="uid://dtkobp0srsbq5"]
 
 [ext_resource type="Script" uid="uid://cvpeh87q4t22e" path="res://main_menu.gd" id="1_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://bc252hx2bqea3" path="res://SORASU__1_-removebg-preview.png" id="2_fu7sn"]
 [ext_resource type="Texture2D" uid="uid://dvosfd4p23rbt" path="res://future.jpg" id="3_fu7sn"]
 [ext_resource type="AudioStream" uid="uid://4q6rc84i78bx" path="res://Sorasu Menu 1.mp3" id="4_jix8l"]
 [ext_resource type="FontFile" uid="uid://deecenqr7nl3u" path="res://Orbitron-VariableFont_wght.ttf" id="5_glbon"]
+[ext_resource type="AudioStream" uid="uid://t6yuymrsp7d0" path="res://menu-button-press.mp3" id="6_nlkkf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fu7sn"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -27,13 +28,20 @@ font = ExtResource("5_glbon")
 font_size = 32
 
 [sub_resource type="Theme" id="Theme_nlkkf"]
+default_font = ExtResource("5_glbon")
 default_font_size = 24
 
 [sub_resource type="Theme" id="Theme_jix8l"]
-default_font_size = 32
+default_font = ExtResource("5_glbon")
+default_font_size = 24
 
 [sub_resource type="Theme" id="Theme_glbon"]
-default_font_size = 30
+default_font = ExtResource("5_glbon")
+default_font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_dy7ct"]
+font = ExtResource("5_glbon")
+font_size = 18
 
 [sub_resource type="LabelSettings" id="LabelSettings_8qtwp"]
 font = ExtResource("5_glbon")
@@ -44,6 +52,14 @@ font_size = 20
 
 [sub_resource type="Theme" id="Theme_qe12f"]
 default_font_size = 24
+
+[sub_resource type="Theme" id="Theme_8qtwp"]
+default_font = ExtResource("5_glbon")
+default_font_size = 30
+
+[sub_resource type="Theme" id="Theme_dy7ct"]
+default_font = ExtResource("5_glbon")
+default_font_size = 20
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jix8l"]
 shading_mode = 0
@@ -335,7 +351,6 @@ layout_mode = 2
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer2"]
 layout_mode = 2
 text = "SELECT OPTIONS
-
 "
 label_settings = SubResource("LabelSettings_glbon")
 horizontal_alignment = 1
@@ -397,6 +412,30 @@ layout_mode = 2
 theme = SubResource("Theme_glbon")
 text = "Colorblind Mode"
 
+[node name="SFXVolumeLabel" type="Label" parent="CenterContainer/VBoxContainer2"]
+layout_mode = 2
+text = "SFX Volume"
+label_settings = SubResource("LabelSettings_dy7ct")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="CenterContainer/VBoxContainer2"]
+layout_mode = 2
+min_value = -40.0
+max_value = 0.0
+
+[node name="MusicVolumeLabel" type="Label" parent="CenterContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Music Volume"
+label_settings = SubResource("LabelSettings_dy7ct")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="CenterContainer/VBoxContainer2"]
+layout_mode = 2
+min_value = -40.0
+max_value = 0.0
+
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer2"]
 layout_mode = 2
 text = "BACK"
@@ -416,13 +455,13 @@ uppercase = true
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer3"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-text = "\"Cyberpunk City - #1\" (https://skfb.ly/oAKoo) by born2012 is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+text = "Special thanks Ryan Cruz and Lukas Borbe for their QA and feedback, and to Kai Kennedy for supporting me through this project!
 
-Main Menu Theme and Boss 1 Theme - Kai Kennedy (@KaiKennedy)
+\"Cyberpunk City - #1\" (https://skfb.ly/oAKoo) by born2012 is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 
-Tutorial and Start Menu Theme - whvle (https://pixabay.com/users/38594074/)
+Main Menu Theme and Boss 1 Theme - Kai Kennedy (YouTube @KaiKennedy)
 
-Thanks a lot to Ryan Cruise for playtesting the game, and Kai Kennedy for supporting me through this project!"
+Tutorial and Start Menu Theme - whvle (https://pixabay.com/users/38594074/)"
 label_settings = SubResource("LabelSettings_qe12f")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -431,6 +470,55 @@ autowrap_mode = 3
 [node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer3"]
 layout_mode = 2
 theme = SubResource("Theme_qe12f")
+text = "BACK"
+
+[node name="LevelSelect" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Level1Button" type="Button" parent="CenterContainer/LevelSelect"]
+modulate = Color(1, 0.917647, 0.905882, 1)
+layout_mode = 2
+theme = SubResource("Theme_8qtwp")
+text = "LEVEL 1"
+
+[node name="Level2Button" type="Button" parent="CenterContainer/LevelSelect"]
+modulate = Color(1, 0.917647, 0.905882, 1)
+layout_mode = 2
+theme = SubResource("Theme_8qtwp")
+disabled = true
+text = "LEVEL 2"
+
+[node name="Level3Button" type="Button" parent="CenterContainer/LevelSelect"]
+modulate = Color(1, 0.917647, 0.905882, 1)
+layout_mode = 2
+theme = SubResource("Theme_8qtwp")
+disabled = true
+text = "LEVEL 3"
+
+[node name="Level4Button" type="Button" parent="CenterContainer/LevelSelect"]
+modulate = Color(1, 0.917647, 0.905882, 1)
+layout_mode = 2
+theme = SubResource("Theme_8qtwp")
+disabled = true
+text = "LEVEL 4"
+
+[node name="Level5Button" type="Button" parent="CenterContainer/LevelSelect"]
+modulate = Color(1, 0.917647, 0.905882, 1)
+layout_mode = 2
+theme = SubResource("Theme_8qtwp")
+disabled = true
+text = "LEVEL 5"
+
+[node name="Level6Button" type="Button" parent="CenterContainer/LevelSelect"]
+modulate = Color(1, 0.917647, 0.905882, 1)
+layout_mode = 2
+theme = SubResource("Theme_8qtwp")
+disabled = true
+text = "LEVEL 6"
+
+[node name="BackToMenu" type="Button" parent="CenterContainer/LevelSelect"]
+layout_mode = 2
+theme = SubResource("Theme_dy7ct")
 text = "BACK"
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
@@ -494,6 +582,10 @@ grow_vertical = 2
 layout_mode = 2
 texture = ExtResource("2_fu7sn")
 
+[node name="ButtonPress" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_nlkkf")
+bus = &"SFX"
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button4" to="." method="_on_button_4_pressed"]
@@ -501,5 +593,10 @@ texture = ExtResource("2_fu7sn")
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer2/QualityButton" to="." method="_on_quality_button_item_selected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer2/ColorBlindButton" to="." method="_on_color_blind_button_pressed"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer2/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer2/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer2/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer3/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CenterContainer/LevelSelect/Level1Button" to="." method="_on_level_1_button_pressed"]
+[connection signal="pressed" from="CenterContainer/LevelSelect/Level2Button" to="." method="_on_level_2_button_pressed"]
+[connection signal="pressed" from="CenterContainer/LevelSelect/BackToMenu" to="." method="_on_back_to_menu_pressed"]

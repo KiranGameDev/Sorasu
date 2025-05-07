@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bhvcno484jky4"
+path.s3tc="res://.godot/imported/dirty_old_tires_1.png-711c0e0f713a249c78d8461ac33a6c66.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "19a5c42b158b12b13b0ad38e5c15ac27"
+}
+
+[deps]
+
+source_file="res://dirty_old_tires_1.png"
+dest_files=["res://.godot/imported/dirty_old_tires_1.png-711c0e0f713a249c78d8461ac33a6c66.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=8
+roughness/src_normal="res://dirty_old_tires_2.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
