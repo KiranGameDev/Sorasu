@@ -7,13 +7,13 @@ extends Node3D
 @onready var animation_player_2: AnimationPlayer = $AnimationPlayer2
 @onready var lives_label: Label = $UI/LivesLabel
 @onready var death_gui: Control = $UI/DeathGUI
-@onready var boss_animation_player: AnimationPlayer = $PrototypeBoss/BossAnimationPlayer
+@onready var boss_animation_player: AnimationPlayer = $MiniBoss3/BossAnimationPlayer
 @onready var label_2: Label = $UI/DeathGUI/Label2
 @onready var continue_timer: Timer = $UI/DeathGUI/ContinueTimer
 @onready var timer: Timer = $Timer
 @onready var boss_timer: Timer = $BossTimer
 @onready var boss_time_label: Label = $UI/BossTimeLabel
-@onready var boss: CharacterBody3D = $PrototypeBoss
+@onready var boss: CharacterBody3D = $MiniBoss3
 @onready var score_label: Label = $UI/CenterContainer/ScoreLabel
 @onready var final_score_label: Label = $UI/CenterContainer2/VBoxContainer/Label
 @onready var normal_score_label: Label = $UI/CenterContainer2/VBoxContainer/Label2
@@ -41,6 +41,7 @@ var difficulty_score = -(StatHandler.max_lives - 4) * 1000
 var death_score
 
 func _ready() -> void:
+	StatHandler.current_boss_name = StatHandler.boss_3_name
 	if StatHandler.color_blind_mode:
 		floor_2.visible = true
 	else:
@@ -56,8 +57,6 @@ func _ready() -> void:
 	boss_time_label.visible = false
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("menu"):
-		get_tree().paused = !get_tree().paused
 	if StatHandler.boss_dead:
 		StatHandler.parry_combo = 0
 	parry_bar.max_value = StatHandler.parry_timer_number
@@ -186,4 +185,4 @@ func _on_boss_timer_timeout() -> void:
 	StatHandler.time_up = true
 
 func update_hi_score(score):
-	StatHandler.hi_score = score
+	StatHandler.hi_score_3 = score

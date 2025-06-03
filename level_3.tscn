@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bdbm1e0pm4fvb" path="res://level_3.gd" id="1_g0tlw"]
 [ext_resource type="PackedScene" uid="uid://dm5an44fjmtnq" path="res://player.tscn" id="2_keufu"]
 [ext_resource type="Texture2D" uid="uid://c2us6niwc1ji6" path="res://clouds.jpeg" id="3_joegk"]
-[ext_resource type="PackedScene" uid="uid://cpchbp48ikvik" path="res://mini_boss_1.tscn" id="4_m8gss"]
+[ext_resource type="PackedScene" uid="uid://ecebyr0shgj5" path="res://boss_3.tscn" id="4_g0tlw"]
 [ext_resource type="Script" uid="uid://dt3cymjdhaucn" path="res://warning_container.gd" id="5_wnq0t"]
 [ext_resource type="FontFile" uid="uid://deecenqr7nl3u" path="res://Orbitron-VariableFont_wght.ttf" id="6_ra6nl"]
 [ext_resource type="FontFile" uid="uid://cl7gvasg77yh2" path="res://Electrolize-Regular.ttf" id="7_gxey3"]
@@ -12,8 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://8hl463ep6xwp" path="res://impact-fx-41103.mp3" id="10_dhf26"]
 [ext_resource type="PackedScene" uid="uid://clwef6shybvye" path="res://sound_effect_handler.tscn" id="11_ox7xt"]
 [ext_resource type="AudioStream" uid="uid://dym3huxrigh3x" path="res://SORASU 1.1.mp3" id="12_v4n82"]
-[ext_resource type="PackedScene" uid="uid://ba6fb0u8he6rd" path="res://scrolling_city.tscn" id="13_fo8ya"]
 [ext_resource type="AudioStream" uid="uid://8m2miggujler" path="res://Voices/Respawn Voice.wav" id="14_cqw4t"]
+[ext_resource type="PackedScene" uid="uid://xogiuaoepqea" path="res://level_3_ocean.tscn" id="14_keufu"]
 [ext_resource type="PackedScene" uid="uid://cr77bq1lfr86e" path="res://pause_menu.tscn" id="15_tndmk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7qs3b"]
@@ -113,38 +113,86 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_wrcka"]
 resource_name = "Enter"
 length = 5.0
-step = 0.05
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PrototypeBoss:position")
+tracks/0/path = NodePath("MiniBoss3/WarningVoice:playing")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(3, 5),
+"times": PackedFloat32Array(0, 2.4),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(40, 0, 0), Vector3(15, 0, 0)]
+"update": 1,
+"values": [true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PrototypeBoss/CenterContainer/VBoxContainer:modulate")
+tracks/1/path = NodePath("MiniBoss3/BossIncoming:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75, 4, 4.25, 4.5, 4.75, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(0.733006, 0.733005, 0.733005, 1), Color(1, 1, 1, 1), Color(0.733006, 0.733005, 0.733005, 1), Color(1, 1, 1, 1), Color(0.733006, 0.733005, 0.733005, 1), Color(1, 1, 1, 1), Color(0.733006, 0.733005, 0.733005, 1), Color(1, 1, 1, 1), Color(0.733006, 0.733005, 0.733005, 1), Color(1, 1, 1, 1), Color(0.733006, 0.733005, 0.733005, 1), Color(1, 1, 1, 1), Color(0.733006, 0.733005, 0.733005, 1), Color(1, 1, 1, 1), Color(0.733006, 0.733005, 0.733005, 1), Color(1, 1, 1, 1), Color(0.733006, 0.733005, 0.733005, 1), Color(1, 1, 1, 1), Color(0.662745, 0.662745, 0.662745, 0)]
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
-tracks/2/type = "method"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PrototypeBoss")
+tracks/2/path = NodePath("MiniBoss3/CenterContainer/VBoxContainer:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MiniBoss3/CenterContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MiniBoss3/CenterContainer/VBoxContainer:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 4.4, 4.6, 4.8, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(0.856067, 0.856067, 0.856067, 1), Color(1, 1, 1, 1), Color(0.856067, 0.856067, 0.856067, 1), Color(1, 1, 1, 1), Color(0.856067, 0.856067, 0.856067, 1), Color(1, 1, 1, 1), Color(0.856067, 0.856067, 0.856067, 1), Color(1, 1, 1, 1), Color(0.856067, 0.856067, 0.856067, 1), Color(1, 1, 1, 1), Color(0.856067, 0.856067, 0.856067, 1), Color(1, 1, 1, 1), Color(0.856067, 0.856067, 0.856067, 1), Color(1, 1, 1, 1), Color(0.856067, 0.856067, 0.856067, 1), Color(1, 1, 1, 1), Color(0.856067, 0.856067, 0.856067, 1), Color(1, 1, 1, 1), Color(0.856067, 0.856067, 0.856067, 1), Color(1, 1, 1, 1), Color(0.856067, 0.856067, 0.856067, 1), Color(1, 1, 1, 1), Color(0.856067, 0.856067, 0.856067, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MiniBoss3:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(40, 0, 0), Vector3(40, 0, 0), Vector3(15, 0, 0)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MiniBoss3")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(5),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -152,116 +200,54 @@ tracks/2/keys = {
 "method": &"ready_up"
 }]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PrototypeBoss/CenterContainer/VBoxContainer:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("PrototypeBoss/BossIncoming:playing")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("PrototypeBoss/WarningVoice:playing")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 2.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
 
 [sub_resource type="Animation" id="Animation_aicyk"]
 resource_name = "GoBack"
 length = 2.0
 step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PrototypeBoss:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(40, 0, 0), Vector3(60, 0, 0)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PrototypeBoss")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_j6mal"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PrototypeBoss:position")
+tracks/0/path = NodePath("Song:volume_db")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(40, 0, 0)]
+"values": [0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PrototypeBoss/CenterContainer/VBoxContainer:modulate")
+tracks/1/path = NodePath("Song:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
+"update": 1,
+"values": [false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PrototypeBoss/CenterContainer/VBoxContainer:visible")
+tracks/2/path = NodePath("MiniBoss3/WarningVoice:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PrototypeBoss/BossIncoming:playing")
+tracks/3/path = NodePath("MiniBoss3/BossIncoming:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -273,38 +259,50 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Song:volume_db")
+tracks/4/path = NodePath("MiniBoss3/CenterContainer/VBoxContainer:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"update": 1,
+"values": [true]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Song:playing")
+tracks/5/path = NodePath("MiniBoss3/CenterContainer:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("PrototypeBoss/WarningVoice:playing")
+tracks/6/path = NodePath("MiniBoss3/CenterContainer/VBoxContainer:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MiniBoss3:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(40, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lhslq"]
@@ -941,33 +939,33 @@ autoplay = "FloorScroll1"
 wait_time = 2.0
 one_shot = true
 
-[node name="PrototypeBoss" parent="." instance=ExtResource("4_m8gss")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
+[node name="MiniBoss3" parent="." instance=ExtResource("4_g0tlw")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 40, 0, 0)
 
-[node name="BossAnimationPlayer" type="AnimationPlayer" parent="PrototypeBoss"]
+[node name="BossAnimationPlayer" type="AnimationPlayer" parent="MiniBoss3"]
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_lhslq")
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="PrototypeBoss"]
+[node name="CenterContainer" type="CenterContainer" parent="MiniBoss3"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PrototypeBoss/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MiniBoss3/CenterContainer"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 script = ExtResource("5_wnq0t")
 
-[node name="WarningLabel" type="Label" parent="PrototypeBoss/CenterContainer/VBoxContainer"]
+[node name="WarningLabel" type="Label" parent="MiniBoss3/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "WARNING"
 label_settings = SubResource("LabelSettings_o6r0s")
 
-[node name="Label" type="Label" parent="PrototypeBoss/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MiniBoss3/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "A large enemy is heading to your direct location, and will arrive soon. Prepare yourself, and do not yield your position."
 label_settings = SubResource("LabelSettings_lmr28")
@@ -975,15 +973,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Timer5" type="Timer" parent="PrototypeBoss"]
+[node name="Timer5" type="Timer" parent="MiniBoss3"]
 one_shot = true
 autostart = true
 
-[node name="BossIncoming" type="AudioStreamPlayer" parent="PrototypeBoss"]
+[node name="BossIncoming" type="AudioStreamPlayer" parent="MiniBoss3"]
 stream = ExtResource("8_4hpui")
 bus = &"SFX"
 
-[node name="WarningVoice" type="AudioStreamPlayer" parent="PrototypeBoss"]
+[node name="WarningVoice" type="AudioStreamPlayer" parent="MiniBoss3"]
 stream = ExtResource("9_g005c")
 volume_db = 1.0
 bus = &"SFX"
@@ -1101,7 +1099,7 @@ wait_time = 10.0
 ignore_time_scale = true
 
 [node name="LivesLabel" type="Label" parent="UI"]
-layout_mode = 0
+layout_mode = 1
 offset_left = 5.0
 offset_right = 79.0
 offset_bottom = 28.0
@@ -1109,11 +1107,14 @@ text = "LIVES: 3"
 label_settings = SubResource("LabelSettings_w1swa")
 
 [node name="BossTimeLabel" type="Label" parent="UI"]
-layout_mode = 2
-offset_left = 503.0
-offset_top = 5.0
-offset_right = 649.0
-offset_bottom = 31.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -73.0
+offset_right = 73.0
+offset_bottom = 26.0
+grow_horizontal = 2
 text = "TIME LEFT: 0"
 label_settings = SubResource("LabelSettings_aicyk")
 horizontal_alignment = 1
@@ -1121,10 +1122,13 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="CenterContainer" type="CenterContainer" parent="UI"]
-layout_mode = 0
-offset_left = 971.0
-offset_right = 1152.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -181.0
 offset_bottom = 35.0
+grow_horizontal = 0
 
 [node name="ScoreLabel" type="Label" parent="UI/CenterContainer"]
 layout_mode = 2
@@ -1136,20 +1140,29 @@ uppercase = true
 
 [node name="ParryBar" type="ProgressBar" parent="UI"]
 z_index = -3
-layout_mode = 0
-offset_left = 16.0
-offset_top = 539.0
-offset_right = 132.0
-offset_bottom = 547.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -127.0
+offset_right = 140.0
+offset_bottom = -119.0
+grow_vertical = 0
 max_value = 3.0
 step = 0.001
 show_percentage = false
 
 [node name="CenterContainer3" type="CenterContainer" parent="UI"]
-layout_mode = 0
-offset_top = 530.0
-offset_right = 142.0
-offset_bottom = 649.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -129.0
+offset_right = 150.0
+offset_bottom = -10.0
+grow_vertical = 0
 
 [node name="ParryComboLabel" type="Label" parent="UI/CenterContainer3"]
 z_index = -3
@@ -1174,8 +1187,11 @@ autoplay = "FlyIn"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -1
-offset_right = 1160.0
-offset_bottom = 651.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
 [node name="Song" type="AudioStreamPlayer" parent="."]
@@ -1202,9 +1218,8 @@ size = Vector2i(800, 512)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="ScrollingCity" parent="SubViewport" instance=ExtResource("13_fo8ya")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 732.216)
-gi_mode = 0
+[node name="Level3Ocean" parent="SubViewport" instance=ExtResource("14_keufu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2039.48, 0, 0)
 
 [node name="OmniLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 56.1249, 0)
@@ -1232,9 +1247,10 @@ stream = ExtResource("14_cqw4t")
 bus = &"SFX"
 
 [node name="PauseMenu" parent="." instance=ExtResource("15_tndmk")]
+visible = false
 
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
-[connection signal="timeout" from="PrototypeBoss/Timer5" to="." method="_on_timer_3_timeout"]
+[connection signal="timeout" from="MiniBoss3/Timer5" to="." method="_on_timer_3_timeout"]
 [connection signal="timeout" from="UI/DeathGUI/ContinueTimer" to="." method="_on_continue_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="BossTimer" to="." method="_on_boss_timer_timeout"]

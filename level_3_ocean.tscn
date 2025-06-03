@@ -1,0 +1,171 @@
+[gd_scene load_steps=10 format=3 uid="uid://xogiuaoepqea"]
+
+[ext_resource type="Texture2D" uid="uid://cbqf22oxtejxv" path="res://blue-ocean-water-seamless-texture-captures-peaceful-refreshing-essence-sea_477306-531.jpg" id="1_obepi"]
+
+[sub_resource type="Animation" id="Animation_nrfwv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -14.9874, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGBox3D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_obepi"]
+resource_name = "Waves"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -10, 0), Vector3(0, 0, 1000)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGBox3D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 1000)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ajw2d"]
+_data = {
+&"RESET": SubResource("Animation_nrfwv"),
+&"Waves": SubResource("Animation_obepi")
+}
+
+[sub_resource type="Animation" id="Animation_al0eq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D:material:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGBox3D2:material:uv1_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ajw2d"]
+resource_name = "Texture Shift"
+length = 32.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D:material:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 32),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGBox3D2:material:uv1_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 32),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(18, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_600lc"]
+_data = {
+&"RESET": SubResource("Animation_al0eq"),
+&"Texture Shift": SubResource("Animation_ajw2d")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obepi"]
+shading_mode = 0
+albedo_color = Color(0.556953, 0.556953, 0.556953, 1)
+albedo_texture = ExtResource("1_obepi")
+uv1_scale = Vector3(0.001, 0.001, 0.001)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nrfwv"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.694118, 0.694118, 0.694118, 0.454902)
+albedo_texture = ExtResource("1_obepi")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+
+[node name="Level3Ocean" type="Node3D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ajw2d")
+}
+autoplay = "Waves"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 700, 0)
+current = true
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_600lc")
+}
+autoplay = "Texture Shift"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.9874, 0)
+size = Vector3(2000, 0.01, 4000)
+material = SubResource("StandardMaterial3D_obepi")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+size = Vector3(2000, 0.01, 4000)
+material = SubResource("StandardMaterial3D_nrfwv")

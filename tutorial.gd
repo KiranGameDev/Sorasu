@@ -4,8 +4,10 @@ extends Node3D
 @onready var color_rect_2: ColorRect = $ColorRect2
 @onready var camera_3d: Camera3D = $Camera3D
 @onready var animation_player_3: AnimationPlayer = $AnimationPlayer3
+@onready var back_button: Button = $BackButton
 
 func _ready() -> void:
+	back_button.grab_focus()
 	StatHandler.in_tutorial = true
 	if !StatHandler.color_blind_mode:
 		animation_player_3.play("Tutorial")

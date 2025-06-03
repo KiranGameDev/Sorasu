@@ -4,25 +4,35 @@ var started = false
 var can_unpause = true
 
 @onready var timer: Timer = $Timer
-@onready var color_rect_2: ColorRect = $Menu1/ColorRect2
+@onready var color_rect_2: ColorRect = $ColorRect2
 @onready var animation_player: AnimationPlayer = $Menu1/AnimationPlayer
 @onready var menu_1: Control = $Menu1
 @onready var menu_2: Control = $Menu2
 @onready var button_pressed: AudioStreamPlayer = $ButtonPressed
 @onready var sfx_volume: HSlider = $Menu2/VBoxContainer/SFXVolume
 @onready var music_volume: HSlider = $Menu2/VBoxContainer/MusicVolume
+@onready var back_button: Button = $Menu1/VBoxContainer/BackButton
+@onready var button: Button = $Menu2/VBoxContainer/Button
+@onready var fullscreen_check: CheckBox = $Menu2/VBoxContainer/FullscreenCheck
 
 func _ready() -> void:
+	get_tree().paused = false
+	fullscreen_check.button_pressed = StatHandler.fullscreen
 	color_rect_2.color = Color.TRANSPARENT
 	sfx_volume.value = AudioServer.get_bus_volume_db(1)
 	music_volume.value = AudioServer.get_bus_volume_db(2)
 	menu_2.visible = false
 
 func _process(delta: float) -> void:
+	var player = get_tree().get_first_node_in_group("player")
 	if color_rect_2.color == Color.TRANSPARENT:
 		color_rect_2.visible = false
 	else:
 		color_rect_2.visible = true
+	if StatHandler.fullscreen:
+		get_tree().root.mode = Window.MODE_FULLSCREEN
+	else:
+		get_tree().root.mode = Window.MODE_MAXIMIZED
 	AudioServer.set_bus_volume_db(1, StatHandler.sfx_volume)
 	AudioServer.set_bus_volume_db(2, StatHandler.music_volume)
 	AudioServer.set_bus_volume_db(3, StatHandler.sfx_volume)
@@ -50,10 +60,16 @@ func _process(delta: float) -> void:
 			timer.start()
 			can_unpause = false
 			started = true
-	if Input.is_action_just_pressed("menu") and can_unpause and color_rect_2.color == Color.TRANSPARENT:
-		get_tree().paused = false
-		started = false
-		visible = false
+	if player != null:
+		if can_unpause and color_rect_2.color == Color.TRANSPARENT:
+			if Input.is_action_just_pressed("menu"):
+				get_tree().paused = !get_tree().paused
+				started = !started
+				visible = !visible
+				menu_1.visible = true
+				menu_2.visible = false
+				if visible == true:
+					back_button.grab_focus()
 
 func _on_main_menu_button_pressed() -> void:
 	animation_player.play("FadeIn")
@@ -78,6 +94,7 @@ func _on_settings_button_pressed() -> void:
 	menu_2.visible = true
 	menu_1.visible = false
 	button_pressed.play()
+	button.grab_focus()
 
 func _on_sfx_volume_value_changed(value: float) -> void:
 	StatHandler.sfx_volume = value
@@ -90,3 +107,7 @@ func _on_button_pressed() -> void:
 	menu_2.visible = false
 	menu_1.visible = true
 	button_pressed.play()
+	back_button.grab_focus()
+
+func _on_fullscreen_check_pressed() -> void:
+	StatHandler.fullscreen = !StatHandler.fullscreen

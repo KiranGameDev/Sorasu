@@ -7,12 +7,13 @@ extends Node3D
 @onready var animation_player_2: AnimationPlayer = $AnimationPlayer2
 @onready var lives_label: Label = $UI/LivesLabel
 @onready var death_gui: Control = $UI/DeathGUI
+@onready var boss_animation_player: AnimationPlayer = $Boss4/BossAnimationPlayer
 @onready var label_2: Label = $UI/DeathGUI/Label2
 @onready var continue_timer: Timer = $UI/DeathGUI/ContinueTimer
 @onready var timer: Timer = $Timer
 @onready var boss_timer: Timer = $BossTimer
 @onready var boss_time_label: Label = $UI/BossTimeLabel
-@onready var boss: CharacterBody3D = $MiniBoss2
+@onready var boss: CharacterBody3D = $Boss4
 @onready var score_label: Label = $UI/CenterContainer/ScoreLabel
 @onready var final_score_label: Label = $UI/CenterContainer2/VBoxContainer/Label
 @onready var normal_score_label: Label = $UI/CenterContainer2/VBoxContainer/Label2
@@ -28,7 +29,6 @@ extends Node3D
 @onready var parry_combo_label: Label = $UI/CenterContainer3/ParryComboLabel
 @onready var parry_bar: ProgressBar = $UI/ParryBar
 @onready var respawn_voice: AudioStreamPlayer = $RespawnVoice
-@onready var boss_animation_player: AnimationPlayer = $MiniBoss2/BossAnimationPlayer
 
 var started = false
 var player = preload("res://player.tscn")
@@ -41,13 +41,6 @@ var difficulty_score = -(StatHandler.max_lives - 4) * 1000
 var death_score
 
 func _ready() -> void:
-	StatHandler.current_boss_name = StatHandler.boss_3_name
-	boss.global_position.y = 40
-	boss.global_position.x = 30
-	if StatHandler.ex_mode:
-		Engine.time_scale = 1.3
-	else:
-		Engine.time_scale = 1
 	if StatHandler.color_blind_mode:
 		floor_2.visible = true
 	else:
@@ -172,6 +165,10 @@ func teleport():
 	StatHandler.kill_player = true
 	get_tree().change_scene_to_file("res://main_menu.tscn")
 
+func go_to_next_level():
+	StatHandler.kill_player = true
+	get_tree().change_scene_to_file("res://level_2.tscn")
+
 func save():
 	var time_score = (int(boss_timer.time_left) * 100)
 	if StatHandler.boss_dead:
@@ -187,4 +184,4 @@ func _on_boss_timer_timeout() -> void:
 	StatHandler.time_up = true
 
 func update_hi_score(score):
-	StatHandler.hi_score_2 = score
+	StatHandler.hi_score_4 = score

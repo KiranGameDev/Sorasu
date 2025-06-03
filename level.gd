@@ -45,6 +45,10 @@ func _ready() -> void:
 		floor_2.visible = true
 	else:
 		floor_2.visible = false
+	if StatHandler.ex_mode:
+		Engine.time_scale = 1.3
+	else:
+		Engine.time_scale = 1
 	StatHandler.boss_dead = false
 	StatHandler.boss_ready = false
 	StatHandler.lives = StatHandler.max_lives
@@ -56,8 +60,6 @@ func _ready() -> void:
 	boss_time_label.visible = false
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("menu"):
-		get_tree().paused = !get_tree().paused
 	if StatHandler.boss_dead:
 		StatHandler.parry_combo = 0
 	parry_bar.max_value = StatHandler.parry_timer_number
@@ -186,4 +188,4 @@ func _on_boss_timer_timeout() -> void:
 	StatHandler.time_up = true
 
 func update_hi_score(score):
-	StatHandler.hi_score = score
+	StatHandler.hi_score_1 = score

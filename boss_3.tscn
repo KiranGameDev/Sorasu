@@ -1,27 +1,39 @@
-[gd_scene load_steps=13 format=3 uid="uid://c6did8we6pmkh"]
+[gd_scene load_steps=13 format=3 uid="uid://ecebyr0shgj5"]
 
-[ext_resource type="Script" uid="uid://bxc60f5u1pqg5" path="res://Boss 2/mini_boss_2.gd" id="1_7rmml"]
-[ext_resource type="Script" uid="uid://sw1x23ut1dt0" path="res://grenade_launcher.gd" id="3_mja2b"]
-[ext_resource type="AudioStream" uid="uid://duges1gu2j4u" path="res://explosion-47163 (1).mp3" id="4_e87ew"]
-[ext_resource type="AudioStream" uid="uid://bf0gf044csf47" path="res://explosion-under-snow-sfx-230505.mp3" id="5_fs8v0"]
-[ext_resource type="AudioStream" uid="uid://ijmhdn8scx62" path="res://small-explosion-103931.mp3" id="6_dgrjm"]
-[ext_resource type="PackedScene" uid="uid://dlauv7e8lr1rw" path="res://Boss 2/boss_2_model.tscn" id="7_7rmml"]
-[ext_resource type="AudioStream" uid="uid://6kp5lnep2lgs" path="res://engine-rise-31358.mp3" id="7_kwcjb"]
+[ext_resource type="Script" uid="uid://gm621wwvx73y" path="res://mini_boss_1.gd" id="1_rq8ch"]
+[ext_resource type="Script" uid="uid://sw1x23ut1dt0" path="res://grenade_launcher.gd" id="3_cxl4q"]
+[ext_resource type="AudioStream" uid="uid://duges1gu2j4u" path="res://explosion-47163 (1).mp3" id="4_322fy"]
+[ext_resource type="AudioStream" uid="uid://bf0gf044csf47" path="res://explosion-under-snow-sfx-230505.mp3" id="5_1673j"]
+[ext_resource type="AudioStream" uid="uid://ijmhdn8scx62" path="res://small-explosion-103931.mp3" id="6_ojk4u"]
+[ext_resource type="AudioStream" uid="uid://6kp5lnep2lgs" path="res://engine-rise-31358.mp3" id="7_7dlb4"]
+[ext_resource type="PackedScene" uid="uid://bb6pbe5437klp" path="res://boss_3_model.tscn" id="7_rq8ch"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fykbi"]
-size = Vector3(5.14926, 6.3981, 4.29996)
+size = Vector3(0.978171, 0.862319, 6.15237)
 
 [sub_resource type="Animation" id="Animation_7rfje"]
 resource_name = "Death"
 length = 5.0
-step = 0.01
-tracks/0/type = "method"
+step = 0.1
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".")
+tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(-0.523599, 2.44346, 0.0872665)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0.2, 0.6, 0.8, 1.1, 1.5, 1.8, 2.2, 2.4, 2.7, 3.1, 3.4, 3.8, 4.2, 4.6, 5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
@@ -71,6 +83,131 @@ tracks/0/keys = {
 "method": &"create_overlay"
 }]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CSGCylinder3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CSGCylinder3D2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CSGCylinder3D5:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CSGCylinder3D3:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CSGCylinder3D6:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 3.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CSGCylinder3D4:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AudioStreamPlayer3:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.7, 2.6, 3.8, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, true, true, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AudioStreamPlayer4:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_final_boom"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_txwt7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -78,10 +215,10 @@ tracks/1/path = NodePath("CSGCylinder3D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.9),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -90,10 +227,10 @@ tracks/2/path = NodePath("CSGCylinder3D2:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.7),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -114,10 +251,10 @@ tracks/4/path = NodePath("CSGCylinder3D3:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 2.6),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -126,10 +263,10 @@ tracks/5/path = NodePath("CSGCylinder3D6:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 3.9),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [false]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -138,10 +275,10 @@ tracks/6/path = NodePath("CSGCylinder3D4:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [false]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -150,10 +287,10 @@ tracks/7/path = NodePath("AudioStreamPlayer3:playing")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.9, 1.7, 2.6, 3.8, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true, true, true, true, true]
+"values": [false]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -162,171 +299,10 @@ tracks/8/path = NodePath("AudioStreamPlayer4:playing")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/9/type = "method"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath(".")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"spawn_final_boom"
-}]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Boss2Model/AnimationPlayer:speed_scale")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0, 2.68, 4.36),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.4, 0.9, 0.1]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("Boss2Model/AnimationPlayer:current_animation")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Armature|Walk"]
-}
-
-[sub_resource type="Animation" id="Animation_txwt7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CSGCylinder3D:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CSGCylinder3D2:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CSGCylinder3D5:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CSGCylinder3D3:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("CSGCylinder3D6:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("CSGCylinder3D4:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("AudioStreamPlayer3:playing")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("AudioStreamPlayer4:playing")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Boss2Model/AnimationPlayer:speed_scale")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.8]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Boss2Model/AnimationPlayer:current_animation")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [""]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s0nb6"]
@@ -342,15 +318,15 @@ emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 7.05
 
-[node name="MiniBoss2" type="CharacterBody3D" groups=["enemy"]]
-transform = Transform3D(-4.70599e-06, 0, 1.3, 0, 1.3, 0, -1.3, 0, -4.70599e-06, 0, 0, 0)
-script = ExtResource("1_7rmml")
+[node name="Boss3" type="CharacterBody3D" groups=["enemy"]]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+script = ExtResource("1_rq8ch")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0252533, 1.37978, 0.293441)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0580233, -0.0824361, 0.474341)
 shape = SubResource("BoxShape3D_fykbi")
 
 [node name="Timer2" type="Timer" parent="."]
@@ -363,7 +339,7 @@ autostart = true
 [node name="GrenadeLauncher" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 top_level = true
-script = ExtResource("3_mja2b")
+script = ExtResource("3_cxl4q")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -371,7 +347,7 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_e87ew")
+stream = ExtResource("4_322fy")
 volume_db = 3.0
 bus = &"SFX"
 
@@ -381,7 +357,7 @@ spot_range = 21.6233
 spot_angle = 53.7879
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_fs8v0")
+stream = ExtResource("5_1673j")
 volume_db = -6.0
 bus = &"SFX"
 
@@ -440,21 +416,19 @@ cone = true
 material = SubResource("StandardMaterial3D_t23hs")
 
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_dgrjm")
+stream = ExtResource("6_ojk4u")
 pitch_scale = 0.7
 bus = &"SFX"
 
 [node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_kwcjb")
+stream = ExtResource("7_7dlb4")
 volume_db = 3.0
 bus = &"SFX"
 
-[node name="Boss2Model" parent="." instance=ExtResource("7_7rmml")]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -3.94799, 0)
+[node name="Boss3" parent="." instance=ExtResource("7_rq8ch")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 0, 0, 0)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
 [connection signal="timeout" from="Timer4" to="GrenadeLauncher" method="_on_timer_4_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-
-[editable path="Boss2Model"]

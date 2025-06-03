@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dtkobp0srsbq5"]
+[gd_scene load_steps=31 format=3 uid="uid://dtkobp0srsbq5"]
 
 [ext_resource type="Script" uid="uid://cvpeh87q4t22e" path="res://main_menu.gd" id="1_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://bc252hx2bqea3" path="res://SORASU__1_-removebg-preview.png" id="2_fu7sn"]
@@ -39,6 +39,10 @@ default_font_size = 24
 default_font = ExtResource("5_glbon")
 default_font_size = 20
 
+[sub_resource type="Theme" id="Theme_0o4t1"]
+default_font = ExtResource("5_glbon")
+default_font_size = 24
+
 [sub_resource type="LabelSettings" id="LabelSettings_dy7ct"]
 font = ExtResource("5_glbon")
 font_size = 18
@@ -55,7 +59,10 @@ default_font_size = 24
 
 [sub_resource type="Theme" id="Theme_8qtwp"]
 default_font = ExtResource("5_glbon")
-default_font_size = 30
+default_font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_nlkkf"]
+font_size = 10
 
 [sub_resource type="Theme" id="Theme_dy7ct"]
 default_font = ExtResource("5_glbon")
@@ -292,15 +299,8 @@ _data = {
 &"RESET": SubResource("Animation_nlkkf")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_nlkkf"]
-font = ExtResource("5_glbon")
-
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_7vrkn")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_glbon")
@@ -412,6 +412,11 @@ layout_mode = 2
 theme = SubResource("Theme_glbon")
 text = "Colorblind Mode"
 
+[node name="FullscreenCheck" type="CheckBox" parent="CenterContainer/VBoxContainer2"]
+layout_mode = 2
+theme = SubResource("Theme_0o4t1")
+text = "Fullscreen"
+
 [node name="SFXVolumeLabel" type="Label" parent="CenterContainer/VBoxContainer2"]
 layout_mode = 2
 text = "SFX Volume"
@@ -481,12 +486,27 @@ layout_mode = 2
 theme = SubResource("Theme_8qtwp")
 text = "LEVEL 1"
 
+[node name="Level1Highscore" type="Label" parent="CenterContainer/LevelSelect"]
+layout_mode = 2
+text = "Highscore: "
+label_settings = SubResource("LabelSettings_nlkkf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Level2Button" type="Button" parent="CenterContainer/LevelSelect"]
 modulate = Color(1, 0.917647, 0.905882, 1)
 layout_mode = 2
 theme = SubResource("Theme_8qtwp")
 disabled = true
 text = "LEVEL 2"
+
+[node name="Level2Highscore" type="Label" parent="CenterContainer/LevelSelect"]
+visible = false
+layout_mode = 2
+text = "Highscore: "
+label_settings = SubResource("LabelSettings_nlkkf")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Level3Button" type="Button" parent="CenterContainer/LevelSelect"]
 modulate = Color(1, 0.917647, 0.905882, 1)
@@ -495,12 +515,28 @@ theme = SubResource("Theme_8qtwp")
 disabled = true
 text = "LEVEL 3"
 
+[node name="Level3Highscore" type="Label" parent="CenterContainer/LevelSelect"]
+visible = false
+layout_mode = 2
+text = "Highscore: "
+label_settings = SubResource("LabelSettings_nlkkf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Level4Button" type="Button" parent="CenterContainer/LevelSelect"]
 modulate = Color(1, 0.917647, 0.905882, 1)
 layout_mode = 2
 theme = SubResource("Theme_8qtwp")
 disabled = true
 text = "LEVEL 4"
+
+[node name="Level4Highscore" type="Label" parent="CenterContainer/LevelSelect"]
+visible = false
+layout_mode = 2
+text = "Highscore: "
+label_settings = SubResource("LabelSettings_nlkkf")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Level5Button" type="Button" parent="CenterContainer/LevelSelect"]
 modulate = Color(1, 0.917647, 0.905882, 1)
@@ -509,12 +545,33 @@ theme = SubResource("Theme_8qtwp")
 disabled = true
 text = "LEVEL 5"
 
+[node name="Level5Highscore" type="Label" parent="CenterContainer/LevelSelect"]
+visible = false
+layout_mode = 2
+text = "Highscore: "
+label_settings = SubResource("LabelSettings_nlkkf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Level6Button" type="Button" parent="CenterContainer/LevelSelect"]
 modulate = Color(1, 0.917647, 0.905882, 1)
 layout_mode = 2
 theme = SubResource("Theme_8qtwp")
 disabled = true
 text = "LEVEL 6"
+
+[node name="Level6Highscore" type="Label" parent="CenterContainer/LevelSelect"]
+visible = false
+layout_mode = 2
+text = "Highscore: "
+label_settings = SubResource("LabelSettings_nlkkf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EXModeButton" type="CheckBox" parent="CenterContainer/LevelSelect"]
+layout_mode = 2
+theme = SubResource("Theme_8qtwp")
+text = "EX Mode"
 
 [node name="BackToMenu" type="Button" parent="CenterContainer/LevelSelect"]
 layout_mode = 2
@@ -558,17 +615,6 @@ stream = ExtResource("4_jix8l")
 autoplay = true
 bus = &"Music"
 
-[node name="ScoreContainer" type="CenterContainer" parent="."]
-offset_right = 206.0
-offset_bottom = 47.0
-
-[node name="Label" type="Label" parent="ScoreContainer"]
-layout_mode = 2
-text = "High Score: "
-label_settings = SubResource("LabelSettings_nlkkf")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="CenterContainer2" type="CenterContainer" parent="."]
 anchors_preset = 11
 anchor_left = 1.0
@@ -593,10 +639,14 @@ bus = &"SFX"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer2/QualityButton" to="." method="_on_quality_button_item_selected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer2/ColorBlindButton" to="." method="_on_color_blind_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer2/FullscreenCheck" to="." method="_on_fullscreen_check_pressed"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer2/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer2/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer2/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer3/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="CenterContainer/LevelSelect/Level1Button" to="." method="_on_level_1_button_pressed"]
 [connection signal="pressed" from="CenterContainer/LevelSelect/Level2Button" to="." method="_on_level_2_button_pressed"]
+[connection signal="pressed" from="CenterContainer/LevelSelect/Level3Button" to="." method="_on_level_3_button_pressed"]
+[connection signal="pressed" from="CenterContainer/LevelSelect/Level4Button" to="." method="_on_level_4_button_pressed"]
+[connection signal="pressed" from="CenterContainer/LevelSelect/EXModeButton" to="." method="_on_ex_mode_button_pressed"]
 [connection signal="pressed" from="CenterContainer/LevelSelect/BackToMenu" to="." method="_on_back_to_menu_pressed"]

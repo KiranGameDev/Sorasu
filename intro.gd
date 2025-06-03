@@ -17,9 +17,9 @@ func teleport():
 	if StatHandler.level_to == 2:
 		get_tree().change_scene_to_file("res://level_2.tscn")
 	if StatHandler.level_to == 3:
-		pass
+		get_tree().change_scene_to_file("res://level_3.tscn")
 	if StatHandler.level_to == 4:
-		pass
+		get_tree().change_scene_to_file("res://level_4.tscn")
 	if StatHandler.level_to == 5:
 		pass
 	if StatHandler.level_to == 6:

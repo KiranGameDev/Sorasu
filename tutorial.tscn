@@ -23,7 +23,7 @@ glow_enabled = true
 
 [sub_resource type="Theme" id="Theme_ehuit"]
 default_font = ExtResource("2_yb1ct")
-default_font_size = 32
+default_font_size = 40
 
 [sub_resource type="Animation" id="Animation_hu44a"]
 resource_name = "FadeOut"
@@ -290,7 +290,7 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": ["Fly around using WASD/Directional Arrows/
-Right Stick (Controller)", "Avoid the orange bullets", "Parry the flashing red ones using Enter or
+Left Stick (Controller)", "Avoid the orange bullets", "Parry the flashing red ones using Enter or
 Space (A on controller)", "Get hit with either bullet, and you're dead."]
 }
 tracks/4/type = "method"
@@ -394,7 +394,7 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": ["Fly around using WASD/Directional Arrows/
-Right Stick (Controller)", "Avoid the white bullets", "Parry the flashing black ones using Enter or
+Left Stick (Controller)", "Avoid the white bullets", "Parry the flashing black ones using Enter or
 Space (A on controller)", "Get hit with either bullet, and you're dead."]
 }
 tracks/4/type = "method"
@@ -510,10 +510,14 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 environment = SubResource("Environment_rwowx")
 
 [node name="BackButton" type="Button" parent="."]
-offset_left = 7.0
-offset_top = 593.0
-offset_right = 120.0
-offset_bottom = 642.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -69.0
+offset_right = 133.0
+offset_bottom = -20.0
+grow_vertical = 0
 theme = SubResource("Theme_ehuit")
 text = "BACK"
 
@@ -525,8 +529,11 @@ autoplay = "FadeOut"
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 z_index = 2
-offset_right = 1172.0
-offset_bottom = 673.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
@@ -575,9 +582,16 @@ bus = &"SFX"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-offset_top = 483.0
-offset_right = 1153.0
-offset_bottom = 635.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.5
+offset_top = -152.0
+offset_right = 576.5
+grow_horizontal = 2
+grow_vertical = 0
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="CenterContainer"]

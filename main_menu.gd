@@ -8,16 +8,35 @@ extends Node3D
 @onready var quality_button: OptionButton = $CenterContainer/VBoxContainer2/QualityButton
 @onready var camera_3d: Camera3D = $Camera3D
 @onready var color_blind_button: CheckButton = $CenterContainer/VBoxContainer2/ColorBlindButton
-@onready var hi_score_label: Label = $ScoreContainer/Label
 @onready var lives_button: OptionButton = $CenterContainer/VBoxContainer2/LivesButton
 @onready var continues_button: OptionButton = $CenterContainer/VBoxContainer2/ContinuesButton
 @onready var sfx_slider: HSlider = $CenterContainer/VBoxContainer2/SFXSlider
 @onready var music_slider: HSlider = $CenterContainer/VBoxContainer2/MusicSlider
 @onready var button_press: AudioStreamPlayer = $ButtonPress
+@onready var play_button: Button = $CenterContainer/VBoxContainer/Button
+@onready var settings_back: Button = $CenterContainer/VBoxContainer2/Back
+@onready var credits_back: Button = $CenterContainer/VBoxContainer3/BackButton
+@onready var level_select_back: Button = $CenterContainer/LevelSelect/BackToMenu
+@onready var fullscreen_check: CheckBox = $CenterContainer/VBoxContainer2/FullscreenCheck
+@onready var level_1_highscore: Label = $CenterContainer/LevelSelect/Level1Highscore
+@onready var level_2_highscore: Label = $CenterContainer/LevelSelect/Level2Highscore
+@onready var level_3_highscore: Label = $CenterContainer/LevelSelect/Level3Highscore
+@onready var level_4_highscore: Label = $CenterContainer/LevelSelect/Level4Highscore
+@onready var level_5_highscore: Label = $CenterContainer/LevelSelect/Level5Highscore
+@onready var level_6_highscore: Label = $CenterContainer/LevelSelect/Level6Highscore
 
 func _ready() -> void:
+	level_1_highscore.text = "Highscore: " + str(StatHandler.hi_score_1)
+	level_2_highscore.text = "Highscore: " + str(StatHandler.hi_score_2)
+	level_3_highscore.text = "Highscore: " + str(StatHandler.hi_score_3)
+	level_4_highscore.text = "Highscore: " + str(StatHandler.hi_score_4)
+	level_5_highscore.text = "Highscore: " + str(StatHandler.hi_score_5)
+	level_6_highscore.text = "Highscore: " + str(StatHandler.hi_score_6)
 	SaveSystem.load_data()
 	StatHandler.level_to = 1
+	fullscreen_check.button_pressed = StatHandler.fullscreen
+	StatHandler.ex_mode = false
+	Engine.time_scale = 1
 	sfx_slider.value = AudioServer.get_bus_volume_db(1)
 	music_slider.value = AudioServer.get_bus_volume_db(2)
 	StatHandler.deaths = 0
@@ -33,8 +52,13 @@ func _ready() -> void:
 	StatHandler.kill_player = true
 	StatHandler.time_up = false
 	StatHandler.parry_combo = 0
+	play_button.grab_focus()
 
 func _process(delta: float) -> void:
+	if StatHandler.fullscreen:
+		get_tree().root.mode = Window.MODE_FULLSCREEN
+	else:
+		get_tree().root.mode = Window.MODE_MAXIMIZED
 	AudioServer.set_bus_volume_db(1, StatHandler.sfx_volume)
 	AudioServer.set_bus_volume_db(2, StatHandler.music_volume)
 	AudioServer.set_bus_volume_db(3, StatHandler.sfx_volume)
@@ -42,13 +66,14 @@ func _process(delta: float) -> void:
 	StatHandler.max_lives = 0 + lives_button.selected
 	StatHandler.max_continues = 0 + continues_button.selected
 	RenderingServer.viewport_set_msaa_3d(camera_3d.get_viewport().get_viewport_rid(), StatHandler.get_msaa_quality(StatHandler.quality))
-	hi_score_label.text = "High Score: " + str(int(StatHandler.hi_score))
 
 func _on_button_pressed() -> void:
 	v_box_container_2.visible = false
 	v_box_container_3.visible = false
 	v_box_container_1.visible = false
 	level_select.visible = true
+	level_select_back.grab_focus()
+	button_press.play()
 
 func teleport():
 	get_tree().change_scene_to_file("res://intro.tscn")
@@ -64,6 +89,7 @@ func _on_button_3_pressed() -> void:
 	v_box_container_3.visible = false
 	v_box_container_1.visible = false
 	level_select.visible = false
+	settings_back.grab_focus()
 	button_press.play()
 
 func _on_back_pressed() -> void:
@@ -71,6 +97,7 @@ func _on_back_pressed() -> void:
 	v_box_container_3.visible = false
 	v_box_container_2.visible = false
 	level_select.visible = false
+	play_button.grab_focus()
 	button_press.play()
 
 func _on_quality_button_item_selected(index: int) -> void:
@@ -84,6 +111,7 @@ func _on_button_5_pressed() -> void:
 	v_box_container_2.visible = false
 	v_box_container_1.visible = false
 	level_select.visible = false
+	credits_back.grab_focus()
 	button_press.play()
 
 func _on_back_button_pressed() -> void:
@@ -91,6 +119,7 @@ func _on_back_button_pressed() -> void:
 	v_box_container_2.visible = false
 	v_box_container_1.visible = true
 	level_select.visible = false
+	play_button.grab_focus()
 	button_press.play()
 
 func _on_button_4_pressed() -> void:
@@ -109,6 +138,7 @@ func _on_back_to_menu_pressed() -> void:
 	v_box_container_2.visible = false
 	v_box_container_1.visible = true
 	level_select.visible = false
+	play_button.grab_focus()
 	button_press.play()
 
 func _on_level_1_button_pressed() -> void:
@@ -122,3 +152,22 @@ func _on_level_2_button_pressed() -> void:
 	StatHandler.in_tutorial = false
 	animation_player_2.play("FadeIn")
 	button_press.play()
+
+func _on_ex_mode_button_pressed() -> void:
+	StatHandler.ex_mode = !StatHandler.ex_mode
+	button_press.play()
+
+func _on_level_3_button_pressed() -> void:
+	StatHandler.level_to = 3
+	StatHandler.in_tutorial = false
+	animation_player_2.play("FadeIn")
+	button_press.play()
+
+func _on_level_4_button_pressed() -> void:
+	StatHandler.level_to = 4
+	StatHandler.in_tutorial = false
+	animation_player_2.play("FadeIn")
+	button_press.play()
+
+func _on_fullscreen_check_pressed() -> void:
+	StatHandler.fullscreen = !StatHandler.fullscreen
