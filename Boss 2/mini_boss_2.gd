@@ -9,6 +9,7 @@ extends CharacterBody3D
 @onready var audio_stream_player_2: AudioStreamPlayer = $AudioStreamPlayer2
 @onready var model_animation_player: AnimationPlayer = $Boss2Model/AnimationPlayer
 
+var second_shot = false
 var SPEED = 15.0
 var bullet = preload("res://normal_bullet.tscn")
 var parry_bullet = preload("res://parry_bullet.tscn")
@@ -24,10 +25,9 @@ var times_left_shot = 5
 var random_number = RandomNumberGenerator.new()
 var parry_shots = 3
 var parry_shots_emmitted = false
-var enemy_1 = preload("res://enemy_1.tscn")
 var walk_started = false
 
-@export var HP = 1200
+@export var HP = 2000
 
 func _ready() -> void:
 	model_animation_player.speed_scale = 0.8
@@ -37,12 +37,12 @@ func _process(delta: float) -> void:
 		mini_boss_1_model.global_position.x + 0.1
 	if StatHandler.boss_dead:
 		AudioServer.set_bus_volume_db(music_bus, (AudioServer.get_bus_volume_db(2) - 0.1))
-	if HP <= 1200 and HP > 1050:
+	if HP <= 1500 and HP > 1000:
 		phase = 1
 		if prev_phase != phase:
 			timer.start()
 			prev_phase = phase
-	if HP <= 1050 and HP > 900:
+	if HP <= 1000 and HP > 500:
 		phase = 2
 		if prev_phase != phase:
 			timer.wait_time = 2
@@ -50,28 +50,10 @@ func _process(delta: float) -> void:
 			timer.start()
 			StatHandler.spawn_change_phase_particles(global_position)
 			prev_phase = phase
-	if HP <= 900 and HP > 600:
+	if HP <= 500:
 		phase = 3
 		if prev_phase != phase:
 			timer.wait_time = 0.1
-			ready_up()
-			timer.start()
-			timer_2.stop()
-			StatHandler.spawn_change_phase_particles(global_position)
-			prev_phase = phase
-	if HP <= 600 and HP > 300:
-		phase = 4
-		if prev_phase != phase:
-			timer.wait_time = 2
-			ready_up()
-			timer.start()
-			timer_2.start()
-			StatHandler.spawn_change_phase_particles(global_position)
-			prev_phase = phase
-	if HP <= 300:
-		phase = 5
-		if prev_phase != phase:
-			timer.wait_time = 0.15
 			ready_up()
 			timer.start()
 			timer_2.stop()
@@ -110,38 +92,83 @@ func _on_timer_timeout() -> void:
 	if StatHandler.boss_ready:
 		if player != null:
 			if phase == 1:
-				var instance = bullet.instantiate()
-				instance.direction = global_transform.basis.z.normalized() * -1 * SPEED
-				instance.StartPos = global_position
-				add_sibling.call_deferred(instance)
-				var instance2 = bullet.instantiate()
-				instance2.direction = global_transform.basis.z.normalized() * -1 * SPEED
-				instance2.StartPos = global_position
-				add_sibling.call_deferred(instance2)
-				var instance3 = bullet.instantiate()
-				instance3.direction = global_transform.basis.x.normalized() * 1 * SPEED
-				instance3.StartPos = global_position
-				add_sibling.call_deferred(instance3)
-				var instance4 = bullet.instantiate()
-				instance4.direction = global_transform.basis.x.normalized() * -1 * SPEED
-				instance4.StartPos = global_position
-				add_sibling.call_deferred(instance4)
-				var instance5 = bullet.instantiate()
-				instance5.direction = ((global_transform.basis.x.normalized() * -1) + (global_transform.basis.z.normalized() * -1.4)) * (SPEED / 1.5)
-				instance5.StartPos = global_position
-				add_sibling.call_deferred(instance5)
-				var instance6 = bullet.instantiate()
-				instance6.direction = ((global_transform.basis.x.normalized() * 1) + (global_transform.basis.z.normalized() * -1.4)) * (SPEED / 1.5)
-				instance6.StartPos = global_position
-				add_sibling.call_deferred(instance6)
-				var instance7 = bullet.instantiate()
-				instance7.direction = ((global_transform.basis.x.normalized() * -1) + (global_transform.basis.z.normalized() * -0.4)) * SPEED
-				instance7.StartPos = global_position
-				add_sibling.call_deferred(instance7)
-				var instance8 = bullet.instantiate()
-				instance8.direction = ((global_transform.basis.x.normalized() * 1) + (global_transform.basis.z.normalized() * -0.4)) * SPEED
-				instance8.StartPos = global_position
-				add_sibling.call_deferred(instance8)
+				if not second_shot:
+					var instance = bullet.instantiate()
+					instance.direction = global_transform.basis.z.normalized() * -1 * SPEED
+					instance.StartPos = global_position
+					add_sibling.call_deferred(instance)
+					var instance2 = bullet.instantiate()
+					instance2.direction = global_transform.basis.z.normalized() * -1 * SPEED
+					instance2.StartPos = global_position
+					add_sibling.call_deferred(instance2)
+					var instance3 = bullet.instantiate()
+					instance3.direction = global_transform.basis.x.normalized() * 1 * SPEED
+					instance3.StartPos = global_position
+					add_sibling.call_deferred(instance3)
+					var instance4 = bullet.instantiate()
+					instance4.direction = global_transform.basis.x.normalized() * -1 * SPEED
+					instance4.StartPos = global_position
+					add_sibling.call_deferred(instance4)
+					var instance9 = bullet.instantiate()
+					instance9.direction = ((global_transform.basis.x.normalized() * -0.8) + (global_transform.basis.z.normalized() * -0.6)) * SPEED
+					instance9.StartPos = global_position
+					add_sibling.call_deferred(instance9)
+					var instance10 = bullet.instantiate()
+					instance10.direction = ((global_transform.basis.x.normalized() * 0.8) + (global_transform.basis.z.normalized() * -0.6)) * SPEED
+					instance10.StartPos = global_position
+					add_sibling.call_deferred(instance10)
+					var instance11 = bullet.instantiate()
+					instance11.direction = ((global_transform.basis.x.normalized() * -0.6) + (global_transform.basis.z.normalized() * -1.6)) * (SPEED / 1.5)
+					instance11.StartPos = global_position
+					add_sibling.call_deferred(instance11)
+					var instance12 = bullet.instantiate()
+					instance12.direction = ((global_transform.basis.x.normalized() * 0.6) + (global_transform.basis.z.normalized() * -1.6)) * (SPEED / 1.5)
+					instance12.StartPos = global_position
+					add_sibling.call_deferred(instance12)
+					second_shot = true
+					var instance13 = bullet.instantiate()
+					instance13.direction = ((global_transform.basis.x.normalized() * -0.3) + (global_transform.basis.z.normalized() * -1.7)) * (SPEED / 1.4)
+					instance13.StartPos = global_position
+					add_sibling.call_deferred(instance13)
+					var instance14 = bullet.instantiate()
+					instance14.direction = ((global_transform.basis.x.normalized() * 0.3) + (global_transform.basis.z.normalized() * -1.7)) * (SPEED / 1.4)
+					instance14.StartPos = global_position
+					add_sibling.call_deferred(instance14)
+					second_shot = true
+				else:
+					var instance = bullet.instantiate()
+					instance.direction = global_transform.basis.z.normalized() * -1.1 * SPEED
+					instance.StartPos = global_position
+					add_sibling.call_deferred(instance)
+					var instance2 = bullet.instantiate()
+					instance2.direction = global_transform.basis.z.normalized() * -1.1 * SPEED
+					instance2.StartPos = global_position
+					add_sibling.call_deferred(instance2)
+					var instance3 = bullet.instantiate()
+					instance3.direction = global_transform.basis.x.normalized() * 1.1 * SPEED
+					instance3.StartPos = global_position
+					add_sibling.call_deferred(instance3)
+					var instance4 = bullet.instantiate()
+					instance4.direction = global_transform.basis.x.normalized() * -1.1 * SPEED
+					instance4.StartPos = global_position
+					add_sibling.call_deferred(instance4)
+					var instance5 = bullet.instantiate()
+					instance5.direction = ((global_transform.basis.x.normalized() * -1.1) + (global_transform.basis.z.normalized() * -1.4)) * (SPEED / 1.5)
+					instance5.StartPos = global_position
+					add_sibling.call_deferred(instance5)
+					var instance6 = bullet.instantiate()
+					instance6.direction = ((global_transform.basis.x.normalized() * 1.1) + (global_transform.basis.z.normalized() * -1.4)) * (SPEED / 1.5)
+					instance6.StartPos = global_position
+					add_sibling.call_deferred(instance6)
+					var instance7 = bullet.instantiate()
+					instance7.direction = ((global_transform.basis.x.normalized() * -1.1) + (global_transform.basis.z.normalized() * -0.4)) * SPEED
+					instance7.StartPos = global_position
+					add_sibling.call_deferred(instance7)
+					var instance8 = bullet.instantiate()
+					instance8.direction = ((global_transform.basis.x.normalized() * 1.1) + (global_transform.basis.z.normalized() * -0.4)) * SPEED
+					instance8.StartPos = global_position
+					add_sibling.call_deferred(instance8)
+					second_shot = false
 			if phase == 2:
 				timer_2.start()
 			if phase == 3:

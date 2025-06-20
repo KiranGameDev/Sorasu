@@ -842,7 +842,7 @@ one_shot = true
 [node name="MiniBoss2" parent="." instance=ExtResource("10_5hnhx")]
 transform = Transform3D(-7.43094e-08, 0, 1.7, 0, 1.7, 0, -1.7, 0, -7.43094e-08, 40, 0, 0)
 
-[node name="Boss2Model" parent="MiniBoss2" index="17"]
+[node name="Boss2Model" parent="MiniBoss2" index="15"]
 transform = Transform3D(-0.7, 0, -6.11959e-08, 0, 0.7, 0, 6.11959e-08, 0, -0.7, 0, -3.94799, 0)
 
 [node name="Skeleton3D" parent="MiniBoss2/Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5" index="0"]
