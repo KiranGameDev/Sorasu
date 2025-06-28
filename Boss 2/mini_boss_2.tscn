@@ -471,54 +471,6 @@ transform = Transform3D(0.999998, 0.00125615, -0.000689775, -0.0004289, 0.721604
 [node name="Cube_013_Material_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="4"]
 transform = Transform3D(0.999998, -0.00144771, -0.00115839, 0.00180166, 0.906349, 0.422525, 0.000438169, -0.422527, 0.90635, 0.000154257, -4.06136, -0.102504)
 
-[node name="Plane_011_Material_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="5"]
-transform = Transform3D(0.99998, -0.00296631, -0.00558428, 0.00615808, 0.65738, 0.753534, 0.00143573, -0.753553, 0.657385, 0.0181971, -5.2386, 1.13138)
-
-[node name="Plane_002_Material_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="6"]
-transform = Transform3D(0.9999, 0.00264424, -0.0139172, 0.00871175, 0.65992, 0.751285, 0.0111708, -0.751331, 0.659831, 0.0220287, -4.49094, 0.822926)
-
-[node name="Plane_013_Material_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="7"]
-transform = Transform3D(0.9999, 0.00264424, -0.0139172, 0.00871175, 0.65992, 0.751285, 0.0111708, -0.751331, 0.659831, 0.0220287, -4.49094, 0.822926)
-
-[node name="Cube_007_Material_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="8"]
-transform = Transform3D(0.999999, -0.00138447, -0.000585906, 0.0015032, 0.927259, 0.374417, 2.48924e-05, -0.374418, 0.92726, -0.000631094, -3.99765, -0.138904)
-
-[node name="Plane_015_Material_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="9"]
-transform = Transform3D(0.999996, -0.00121603, -0.00252835, 0.00234824, 0.855941, 0.517068, 0.00153532, -0.517072, 0.855941, 0.00350237, -4.25948, 0.118023)
-
-[node name="Cube_010_Material_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="10"]
-transform = Transform3D(0.999997, -0.000629164, 0.00229289, -0.000306861, 0.92213, 0.38688, -0.0023578, -0.38688, 0.922127, -0.0152256, -3.62556, -0.0459127)
-
-[node name="Cube_012_Material_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="11"]
-transform = Transform3D(0.999994, -0.000783871, 0.00344764, -0.000648563, 0.917894, 0.396826, -0.00347566, -0.396826, 0.917887, -0.0215552, -3.67767, -0.0142303)
-
-[node name="Cylinder_002_Material_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="12"]
-transform = Transform3D(1, -1.77636e-15, -5.87747e-39, -1.77636e-15, 1, -4.37113e-08, 5.87747e-39, 4.37113e-08, 1, 0, -1.18996, -0.886135)
-
-[node name="Cube_006_Material_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="13"]
-transform = Transform3D(1, 0.000424944, 0.000183292, -0.000158529, 0.686637, -0.727001, -0.00043479, 0.727, 0.686637, -0.00110579, 6.22073, 4.21201)
-
-[node name="Cube_017_Material_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="14"]
-transform = Transform3D(1, -0.00042496, -0.000183293, 0.000158539, 0.686637, -0.727001, 0.000434802, 0.727, 0.686637, 0.00110495, 6.22073, 4.212)
-
-[node name="Cube_005_Material_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="15"]
-transform = Transform3D(1, -1.42109e-13, -3.41061e-13, 2.27374e-13, 1, -8.9407e-07, 3.97904e-13, 8.9407e-07, 1, -4.00176e-11, -1.18995, -0.886128)
-
-[node name="Cube_005_Inside_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="16"]
-transform = Transform3D(1, -1.42109e-13, -3.41061e-13, 2.27374e-13, 1, -8.9407e-07, 3.97904e-13, 8.9407e-07, 1, -4.00176e-11, -1.18995, -0.886128)
-
-[node name="Plane_003_Material_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="17"]
-transform = Transform3D(1, 1.08798e-10, -1.02383e-08, -1.10163e-10, 1, -2.82831e-07, 1.02508e-08, 2.82773e-07, 1, 1.90735e-06, -1.18996, -0.886138)
-
-[node name="Plane_016_Material_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="18"]
-transform = Transform3D(1, -1.08798e-10, 1.02383e-08, 1.10163e-10, 1, -2.82831e-07, -1.02508e-08, 2.82773e-07, 1, -1.90735e-06, -1.18996, -0.886138)
-
-[node name="Cube_008_Material_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="19"]
-transform = Transform3D(1, -1.32349e-23, -5.87747e-39, 1.32349e-23, 1, 0, 5.87747e-39, 0, 1, -1.96763e-16, -1.18996, -0.88614)
-
-[node name="Cube_008_Inside_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="20"]
-transform = Transform3D(1, -1.32349e-23, -5.87747e-39, 1.32349e-23, 1, 0, 5.87747e-39, 0, 1, -1.96763e-16, -1.18996, -0.88614)
-
 [node name="Plane_006_Material_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="21"]
 transform = Transform3D(0.999842, 0.00575146, -0.016818, -0.0164877, -0.0533267, -0.998441, -0.00663939, 0.998561, -0.0532233, 0.00782704, 4.88466, 0.372323)
 
@@ -554,9 +506,6 @@ transform = Transform3D(0.999974, 0.00714543, 0.00144164, -0.00450686, 0.761486,
 
 [node name="Cube_001_Material_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="32"]
 transform = Transform3D(0.999975, 0.00688755, 0.00145158, -0.00413196, 0.741342, -0.671114, -0.00569853, 0.671092, 0.741353, -0.0151894, 3.33999, 0.202661)
-
-[node name="Cylinder_001_Material_0" parent="Boss2Model/Sketchfab_model/bed584e06fe94e71a7ac484cee9f0a16_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="33"]
-transform = Transform3D(1, 1.77636e-15, -5.87747e-39, 1.77636e-15, 1, -4.37113e-08, 5.87747e-39, 4.37113e-08, 1, 0, -1.18996, -0.886135)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

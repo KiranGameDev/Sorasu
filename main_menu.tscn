@@ -588,6 +588,7 @@ material = SubResource("StandardMaterial3D_jix8l")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.494037, 3.16145)
+current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

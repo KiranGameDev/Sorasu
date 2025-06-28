@@ -14,6 +14,8 @@ var can_unpause = true
 @onready var back_button: Button = $Menu1/VBoxContainer/BackButton
 @onready var button: Button = $Menu2/VBoxContainer/Button
 @onready var fullscreen_check: CheckBox = $Menu2/VBoxContainer/FullscreenCheck
+@onready var confirmation_menu: Control = $ConfirmationMenu
+@onready var no: Button = $ConfirmationMenu/VBoxContainer/No
 
 func _ready() -> void:
 	get_tree().paused = false
@@ -22,6 +24,7 @@ func _ready() -> void:
 	sfx_volume.value = AudioServer.get_bus_volume_db(1)
 	music_volume.value = AudioServer.get_bus_volume_db(2)
 	menu_2.visible = false
+	confirmation_menu.visible = false
 
 func _process(delta: float) -> void:
 	var player = get_tree().get_first_node_in_group("player")
@@ -55,6 +58,7 @@ func _process(delta: float) -> void:
 		visible = false
 		menu_2.visible = false
 		menu_1.visible = true
+		confirmation_menu.visible = false
 	if visible:
 		if not started:
 			timer.start()
@@ -68,11 +72,15 @@ func _process(delta: float) -> void:
 				visible = !visible
 				menu_1.visible = true
 				menu_2.visible = false
+				confirmation_menu.visible = false
 				if visible == true:
 					back_button.grab_focus()
 
 func _on_main_menu_button_pressed() -> void:
-	animation_player.play("FadeIn")
+	menu_1.visible = false
+	menu_2.visible = false
+	confirmation_menu.visible = true
+	no.grab_focus()
 	button_pressed.play()
 
 func teleport():
@@ -93,6 +101,7 @@ func _on_timer_timeout() -> void:
 func _on_settings_button_pressed() -> void:
 	menu_2.visible = true
 	menu_1.visible = false
+	confirmation_menu.visible = false
 	button_pressed.play()
 	button.grab_focus()
 
@@ -106,8 +115,20 @@ func _on_music_volume_value_changed(value: float) -> void:
 func _on_button_pressed() -> void:
 	menu_2.visible = false
 	menu_1.visible = true
+	confirmation_menu.visible = false
 	button_pressed.play()
 	back_button.grab_focus()
 
 func _on_fullscreen_check_pressed() -> void:
 	StatHandler.fullscreen = !StatHandler.fullscreen
+
+func _on_yes_pressed() -> void:
+	animation_player.play("FadeIn")
+	button_pressed.play()
+
+func _on_no_pressed() -> void:
+	menu_2.visible = false
+	menu_1.visible = true
+	confirmation_menu.visible = false
+	back_button.grab_focus()
+	button_pressed.play()
