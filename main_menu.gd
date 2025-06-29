@@ -55,6 +55,7 @@ func _ready() -> void:
 	play_button.grab_focus()
 
 func _process(delta: float) -> void:
+	StatHandler.kill_player = true
 	if StatHandler.fullscreen:
 		get_tree().root.mode = Window.MODE_FULLSCREEN
 	else:

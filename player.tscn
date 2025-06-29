@@ -402,7 +402,13 @@ autostart = true
 [node name="PlayerModel" parent="." instance=ExtResource("5_sweqy")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.201811, 0, 0)
 
+[node name="ParryPauseTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+ignore_time_scale = true
+
 [connection signal="body_entered" from="ParryArea" to="." method="_on_parry_area_body_entered"]
 [connection signal="body_exited" from="ParryArea" to="." method="_on_parry_area_body_exited"]
 [connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ParryPauseTimer" to="." method="_on_parry_pause_timer_timeout"]

@@ -915,6 +915,7 @@ environment = SubResource("Environment_7eayn")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 45, 0)
 projection = 1
+current = true
 size = 45.0
 
 [node name="Player" parent="." instance=ExtResource("1_ney1m")]
@@ -1211,12 +1212,12 @@ one_shot = true
 [node name="ScrollTimer" type="Timer" parent="."]
 
 [node name="City" type="Sprite3D" parent="."]
-transform = Transform3D(-2.18557e-07, 5, -2.18557e-07, 0, -2.18557e-07, -5, -5, -2.18557e-07, 9.55343e-15, 0, -53.3202, 0)
+transform = Transform3D(-2.62268e-07, 6, -2.62268e-07, 0, -2.62268e-07, -6, -6, -2.62268e-07, 1.14641e-14, 0, -53.3202, 0)
 texture = SubResource("ViewportTexture_aicyk")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 msaa_3d = 2
-size = Vector2i(1600, 1024)
+size = Vector2i(1333, 853)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 

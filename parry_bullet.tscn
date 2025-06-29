@@ -12,6 +12,8 @@ emission_energy_multiplier = 2.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_0gw6a"]
 material = SubResource("StandardMaterial3D_a2oby")
+radial_segments = 30
+rings = 30
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t6k63"]
 shading_mode = 0
@@ -218,7 +220,7 @@ mesh = SubResource("SphereMesh_0gw6a")
 material_override = SubResource("StandardMaterial3D_t6k63")
 flip_faces = true
 radius = 0.55
-rings = 12
+rings = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_0q2o7")

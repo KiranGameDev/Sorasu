@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cr77bq1lfr86e"]
+[gd_scene load_steps=17 format=3 uid="uid://cr77bq1lfr86e"]
 
 [ext_resource type="Script" uid="uid://dnyp3qif8ob0u" path="res://pause_menu.gd" id="1_nwcfo"]
 [ext_resource type="FontFile" uid="uid://deecenqr7nl3u" path="res://Orbitron-VariableFont_wght.ttf" id="2_05uyy"]
@@ -91,6 +91,16 @@ font_size = 18
 [sub_resource type="Theme" id="Theme_05uyy"]
 default_font = ExtResource("2_05uyy")
 default_font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_d3xb4"]
+font = ExtResource("2_05uyy")
+font_size = 30
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_2nc7s"]
+default_font = ExtResource("2_05uyy")
+default_font_size = 22
 
 [node name="PauseMenu" type="CenterContainer"]
 process_mode = 3
@@ -211,7 +221,44 @@ layout_mode = 2
 theme = SubResource("Theme_05uyy")
 text = "BACK"
 
+[node name="ConfirmationMenu" type="Control" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ConfirmationMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -247.5
+offset_top = -85.5
+offset_right = 247.5
+offset_bottom = 85.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ConfirmationMenu/VBoxContainer"]
+layout_mode = 2
+text = "Are you sure? All your
+progress in this level
+will be deleted."
+label_settings = SubResource("LabelSettings_d3xb4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Yes" type="Button" parent="ConfirmationMenu/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_2nc7s")
+text = "YES"
+
+[node name="No" type="Button" parent="ConfirmationMenu/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_2nc7s")
+text = "NO"
+
 [node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
 z_index = 4
 custom_minimum_size = Vector2(4000, 4000)
 layout_mode = 2
@@ -226,3 +273,5 @@ color = Color(0, 0, 0, 1)
 [connection signal="value_changed" from="Menu2/VBoxContainer/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
 [connection signal="value_changed" from="Menu2/VBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
 [connection signal="pressed" from="Menu2/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ConfirmationMenu/VBoxContainer/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="ConfirmationMenu/VBoxContainer/No" to="." method="_on_no_pressed"]

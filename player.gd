@@ -12,6 +12,7 @@ extends CharacterBody3D
 @onready var combo_timer: Timer = $ComboTimer
 @onready var parry_sound_effect_2: AudioStreamPlayer = $SFX/ParrySoundEffect2
 @onready var max_combo_voice: AudioStreamPlayer = $"SFX/Max Combo Voice"
+@onready var parry_pause_timer: Timer = $ParryPauseTimer
 
 var SPEED = 21
 var BULLET_SPEED = 50
@@ -23,6 +24,10 @@ var spin_dir_generator = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	hit = false
+	if StatHandler.ex_mode:
+		Engine.time_scale = 1.3
+	else:
+		Engine.time_scale = 1
 
 func _process(delta: float) -> void:
 	StatHandler.kill_player = false
@@ -91,6 +96,8 @@ func check_parry():
 		if StatHandler.parried:
 			parry_animation_player.play("ParrySuccessful")
 			if not parry_sound_effect.playing:
+				parry_pause_timer.start()
+				Engine.time_scale = 0.2
 				parry_sound_effect.play()
 				parry_sound_effect_2.play()
 		else:
@@ -111,6 +118,8 @@ func check_tutorial_parry():
 		if StatHandler.parried:
 			parry_animation_player.play("ParrySuccessful")
 			if not parry_sound_effect.playing:
+				parry_pause_timer.start()
+				Engine.time_scale = 0.2
 				parry_sound_effect.play()
 				parry_sound_effect_2.play()
 		else:
@@ -131,3 +140,9 @@ func delete():
 
 func _on_timer_timeout() -> void:
 	invincible = false
+
+func _on_parry_pause_timer_timeout() -> void:
+	if StatHandler.ex_mode:
+		Engine.time_scale = 1.3
+	else:
+		Engine.time_scale = 1
