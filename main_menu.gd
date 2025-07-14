@@ -24,6 +24,7 @@ extends Node3D
 @onready var level_4_highscore: Label = $CenterContainer/LevelSelect/Level4Highscore
 @onready var level_5_highscore: Label = $CenterContainer/LevelSelect/Level5Highscore
 @onready var level_6_highscore: Label = $CenterContainer/LevelSelect/Level6Highscore
+@onready var fps_button: OptionButton = $CenterContainer/VBoxContainer2/FPSButton
 
 func _ready() -> void:
 	level_1_highscore.text = "Highscore: " + str(StatHandler.hi_score_1)
@@ -32,11 +33,18 @@ func _ready() -> void:
 	level_4_highscore.text = "Highscore: " + str(StatHandler.hi_score_4)
 	level_5_highscore.text = "Highscore: " + str(StatHandler.hi_score_5)
 	level_6_highscore.text = "Highscore: " + str(StatHandler.hi_score_6)
+	if StatHandler.max_fps == 30:
+		fps_button.selected = 0
+	if StatHandler.max_fps == 60:
+		fps_button.selected = 1
+	if StatHandler.max_fps == 120:
+		fps_button.selected = 2
+	if StatHandler.max_fps == 0:
+		fps_button.selected = 3
 	SaveSystem.load_data()
 	StatHandler.level_to = 1
 	fullscreen_check.button_pressed = StatHandler.fullscreen
 	StatHandler.ex_mode = false
-	Engine.time_scale = 1
 	sfx_slider.value = AudioServer.get_bus_volume_db(1)
 	music_slider.value = AudioServer.get_bus_volume_db(2)
 	StatHandler.deaths = 0
@@ -56,6 +64,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	StatHandler.kill_player = true
+	StatHandler.set_fps(StatHandler.max_fps)
 	if StatHandler.fullscreen:
 		get_tree().root.mode = Window.MODE_FULLSCREEN
 	else:
@@ -172,3 +181,30 @@ func _on_level_4_button_pressed() -> void:
 
 func _on_fullscreen_check_pressed() -> void:
 	StatHandler.fullscreen = !StatHandler.fullscreen
+
+func _on_level_5_button_pressed() -> void:
+	StatHandler.level_to = 5
+	StatHandler.in_tutorial = false
+	animation_player_2.play("FadeIn")
+	button_press.play()
+
+func _on_level_6_button_pressed() -> void:
+	StatHandler.level_to = 6
+	StatHandler.in_tutorial = false
+	animation_player_2.play("FadeIn")
+	button_press.play()
+
+func _on_fps_button_item_selected(index: int) -> void:
+	if index == 0:
+		StatHandler.max_fps = 30
+		StatHandler.set_fps(StatHandler.max_fps)
+	if index == 1:
+		StatHandler.max_fps = 60
+		StatHandler.set_fps(StatHandler.max_fps)
+	if index == 2:
+		StatHandler.max_fps = 120
+		StatHandler.set_fps(StatHandler.max_fps)
+	if index == 3:
+		StatHandler.max_fps = 0
+		StatHandler.set_fps(StatHandler.max_fps)
+	button_press.play()

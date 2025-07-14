@@ -44,10 +44,6 @@ func _ready() -> void:
 	StatHandler.current_boss_name = StatHandler.boss_3_name
 	boss.global_position.y = 40
 	boss.global_position.x = 30
-	if StatHandler.ex_mode:
-		Engine.time_scale = 1.3
-	else:
-		Engine.time_scale = 1
 	if StatHandler.color_blind_mode:
 		floor_2.visible = true
 	else:

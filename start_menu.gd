@@ -5,6 +5,7 @@ extends Node3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
+	Engine.physics_ticks_per_second = StatHandler.max_fps * 2
 	color_rect_4.visible = false
 
 func _process(delta: float) -> void:

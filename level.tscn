@@ -906,7 +906,7 @@ albedo_color = Color(0, 0, 0, 0.713726)
 script = ExtResource("1_p71vg")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.950576, 0.310493, 0, -0.310493, 0.950576, -0.180788, 9.93086, -18.957)
+transform = Transform3D(1, 0, 0, 0, 0.950576, 0.310493, 0, -0.310493, 0.950576, 0, 0, 0)
 light_energy = 0.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

@@ -48,12 +48,16 @@ var parry_timer_number: float
 var sfx_volume = 0
 var music_volume = 0
 var fullscreen = true
+var max_fps = 60
 
 func spawn_parry_bullet(enemy_pos, start_pos):
 	var instance = parried_bullet.instantiate()
 	instance.target_pos = enemy_pos
 	instance.start_pos = start_pos
 	add_sibling.call_deferred(instance)
+
+func set_fps(fps):
+	Engine.max_fps = fps
 
 func spawn_enemy_hit_sound():
 	var instance = enemy_hit_sound.instantiate()

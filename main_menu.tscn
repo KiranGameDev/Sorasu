@@ -328,13 +328,18 @@ vertical_alignment = 1
 layout_mode = 2
 text = "BEGIN"
 
-[node name="Button3" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Button6" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "SETTINGS"
+disabled = true
+text = "CUSTOMIZATION"
 
 [node name="Button4" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "TUTORIAL"
+
+[node name="Button3" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "SETTINGS"
 
 [node name="Button5" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -417,6 +422,21 @@ layout_mode = 2
 theme = SubResource("Theme_0o4t1")
 text = "Fullscreen"
 
+[node name="FPSButton" type="OptionButton" parent="CenterContainer/VBoxContainer2"]
+layout_mode = 2
+theme = SubResource("Theme_jix8l")
+selected = 1
+allow_reselect = true
+item_count = 4
+popup/item_0/text = "FPS: 30"
+popup/item_0/id = 0
+popup/item_1/text = "FPS: 60"
+popup/item_1/id = 1
+popup/item_2/text = "FPS: 120"
+popup/item_2/id = 2
+popup/item_3/text = "FPS: Unlimited"
+popup/item_3/id = 3
+
 [node name="SFXVolumeLabel" type="Label" parent="CenterContainer/VBoxContainer2"]
 layout_mode = 2
 text = "SFX Volume"
@@ -497,7 +517,6 @@ vertical_alignment = 1
 modulate = Color(1, 0.917647, 0.905882, 1)
 layout_mode = 2
 theme = SubResource("Theme_8qtwp")
-disabled = true
 text = "LEVEL 2"
 
 [node name="Level2Highscore" type="Label" parent="CenterContainer/LevelSelect"]
@@ -512,7 +531,6 @@ vertical_alignment = 1
 modulate = Color(1, 0.917647, 0.905882, 1)
 layout_mode = 2
 theme = SubResource("Theme_8qtwp")
-disabled = true
 text = "LEVEL 3"
 
 [node name="Level3Highscore" type="Label" parent="CenterContainer/LevelSelect"]
@@ -527,7 +545,6 @@ vertical_alignment = 1
 modulate = Color(1, 0.917647, 0.905882, 1)
 layout_mode = 2
 theme = SubResource("Theme_8qtwp")
-disabled = true
 text = "LEVEL 4"
 
 [node name="Level4Highscore" type="Label" parent="CenterContainer/LevelSelect"]
@@ -635,13 +652,14 @@ stream = ExtResource("6_nlkkf")
 bus = &"SFX"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button5" to="." method="_on_button_5_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer2/QualityButton" to="." method="_on_quality_button_item_selected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer2/ColorBlindButton" to="." method="_on_color_blind_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer2/FullscreenCheck" to="." method="_on_fullscreen_check_pressed"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer2/FPSButton" to="." method="_on_fps_button_item_selected"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer2/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer2/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer2/Back" to="." method="_on_back_pressed"]
@@ -650,5 +668,7 @@ bus = &"SFX"
 [connection signal="pressed" from="CenterContainer/LevelSelect/Level2Button" to="." method="_on_level_2_button_pressed"]
 [connection signal="pressed" from="CenterContainer/LevelSelect/Level3Button" to="." method="_on_level_3_button_pressed"]
 [connection signal="pressed" from="CenterContainer/LevelSelect/Level4Button" to="." method="_on_level_4_button_pressed"]
+[connection signal="pressed" from="CenterContainer/LevelSelect/Level5Button" to="." method="_on_level_5_button_pressed"]
+[connection signal="pressed" from="CenterContainer/LevelSelect/Level6Button" to="." method="_on_level_6_button_pressed"]
 [connection signal="pressed" from="CenterContainer/LevelSelect/EXModeButton" to="." method="_on_ex_mode_button_pressed"]
 [connection signal="pressed" from="CenterContainer/LevelSelect/BackToMenu" to="." method="_on_back_to_menu_pressed"]

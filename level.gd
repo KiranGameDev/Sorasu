@@ -45,10 +45,6 @@ func _ready() -> void:
 		floor_2.visible = true
 	else:
 		floor_2.visible = false
-	if StatHandler.ex_mode:
-		Engine.time_scale = 1.3
-	else:
-		Engine.time_scale = 1
 	StatHandler.boss_dead = false
 	StatHandler.boss_ready = false
 	StatHandler.lives = StatHandler.max_lives
@@ -62,6 +58,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if StatHandler.boss_dead:
 		StatHandler.parry_combo = 0
+	StatHandler.set_fps(StatHandler.max_fps)
 	parry_bar.max_value = StatHandler.parry_timer_number
 	death_score = 0 - (StatHandler.deaths * 500)
 	parry_bar.value = StatHandler.parry_timer_time

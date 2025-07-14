@@ -16,9 +16,18 @@ var can_unpause = true
 @onready var fullscreen_check: CheckBox = $Menu2/VBoxContainer/FullscreenCheck
 @onready var confirmation_menu: Control = $ConfirmationMenu
 @onready var no: Button = $ConfirmationMenu/VBoxContainer/No
+@onready var fps_button: OptionButton = $Menu2/VBoxContainer/FPSButton
 
 func _ready() -> void:
 	get_tree().paused = false
+	if StatHandler.max_fps == 30:
+		fps_button.selected = 0
+	if StatHandler.max_fps == 60:
+		fps_button.selected = 1
+	if StatHandler.max_fps == 120:
+		fps_button.selected = 2
+	if StatHandler.max_fps == 0:
+		fps_button.selected = 3
 	fullscreen_check.button_pressed = StatHandler.fullscreen
 	color_rect_2.color = Color.TRANSPARENT
 	sfx_volume.value = AudioServer.get_bus_volume_db(1)
@@ -124,6 +133,7 @@ func _on_fullscreen_check_pressed() -> void:
 
 func _on_yes_pressed() -> void:
 	animation_player.play("FadeIn")
+	Engine.time_scale = 1
 	button_pressed.play()
 
 func _on_no_pressed() -> void:
@@ -131,4 +141,23 @@ func _on_no_pressed() -> void:
 	menu_1.visible = true
 	confirmation_menu.visible = false
 	back_button.grab_focus()
+	button_pressed.play()
+
+func _on_fps_button_item_selected(index: int) -> void:
+	if index == 0:
+		StatHandler.max_fps = 30
+		StatHandler.set_fps(StatHandler.max_fps)
+		Engine.physics_ticks_per_second = 120
+	if index == 1:
+		StatHandler.max_fps = 60
+		StatHandler.set_fps(StatHandler.max_fps)
+		Engine.physics_ticks_per_second = 120
+	if index == 2:
+		StatHandler.max_fps = 120
+		StatHandler.set_fps(StatHandler.max_fps)
+		Engine.physics_ticks_per_second = 120
+	if index == 3:
+		StatHandler.max_fps = 0
+		StatHandler.set_fps(StatHandler.max_fps)
+		Engine.physics_ticks_per_second = 120
 	button_pressed.play()

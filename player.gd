@@ -50,11 +50,16 @@ func _process(delta: float) -> void:
 		StatHandler.deaths += 1
 		StatHandler.parry_combo = 0
 		StatHandler.spawn_player_death_particles(global_position, 0.5, true, 1)
+		if StatHandler.ex_mode:
+			Engine.time_scale = 1#.3
+		else:
+			Engine.time_scale = 1
 		queue_free()
 	if StatHandler.kill_player == true:
 		StatHandler.parry_combo = 0
 		combo_timer.stop()
 		StatHandler.parry_combo_timer_started = false
+		Engine.time_scale = 1
 		queue_free()
 
 func _physics_process(delta: float) -> void:
@@ -97,7 +102,7 @@ func check_parry():
 			parry_animation_player.play("ParrySuccessful")
 			if not parry_sound_effect.playing:
 				parry_pause_timer.start()
-				Engine.time_scale = 0.2
+				Engine.time_scale = 0.1
 				parry_sound_effect.play()
 				parry_sound_effect_2.play()
 		else:
@@ -119,7 +124,7 @@ func check_tutorial_parry():
 			parry_animation_player.play("ParrySuccessful")
 			if not parry_sound_effect.playing:
 				parry_pause_timer.start()
-				Engine.time_scale = 0.2
+				Engine.time_scale = 0.1
 				parry_sound_effect.play()
 				parry_sound_effect_2.play()
 		else:
@@ -143,6 +148,6 @@ func _on_timer_timeout() -> void:
 
 func _on_parry_pause_timer_timeout() -> void:
 	if StatHandler.ex_mode:
-		Engine.time_scale = 1.3
+		Engine.time_scale = 1#.3
 	else:
 		Engine.time_scale = 1

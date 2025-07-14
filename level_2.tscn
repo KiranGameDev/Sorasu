@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dv773i8et267x"]
+[gd_scene load_steps=47 format=3 uid="uid://dv773i8et267x"]
 
 [ext_resource type="Script" uid="uid://c22gjv5mgna11" path="res://level_2.gd" id="1_s77qv"]
 [ext_resource type="PackedScene" uid="uid://dm5an44fjmtnq" path="res://player.tscn" id="2_5hnhx"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://clwef6shybvye" path="res://sound_effect_handler.tscn" id="11_6r3eb"]
 [ext_resource type="AudioStream" uid="uid://dym3huxrigh3x" path="res://SORASU 1.1.mp3" id="12_2pufk"]
 [ext_resource type="AudioStream" uid="uid://8m2miggujler" path="res://Voices/Respawn Voice.wav" id="14_ikghu"]
+[ext_resource type="PackedScene" uid="uid://cr77bq1lfr86e" path="res://pause_menu.tscn" id="14_s77qv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7qs3b"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -1286,6 +1287,9 @@ material = SubResource("StandardMaterial3D_h6smj")
 [node name="RespawnVoice" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_ikghu")
 bus = &"SFX"
+
+[node name="PauseMenu" parent="." instance=ExtResource("14_s77qv")]
+visible = false
 
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="MiniBoss2/Timer5" to="." method="_on_timer_3_timeout"]
