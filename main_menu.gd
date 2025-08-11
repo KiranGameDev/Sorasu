@@ -56,7 +56,6 @@ func _ready() -> void:
 	v_box_container_2.visible = false
 	v_box_container_3.visible = false
 	level_select.visible = false
-	AudioServer.set_bus_volume_db(2, 0)
 	StatHandler.kill_player = true
 	StatHandler.time_up = false
 	StatHandler.parry_combo = 0
@@ -64,15 +63,13 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	StatHandler.kill_player = true
+
+func apply_changes():
 	StatHandler.set_fps(StatHandler.max_fps)
 	if StatHandler.fullscreen:
 		get_tree().root.mode = Window.MODE_FULLSCREEN
 	else:
 		get_tree().root.mode = Window.MODE_MAXIMIZED
-	AudioServer.set_bus_volume_db(1, StatHandler.sfx_volume)
-	AudioServer.set_bus_volume_db(2, StatHandler.music_volume)
-	AudioServer.set_bus_volume_db(3, StatHandler.sfx_volume)
-	AudioServer.set_bus_volume_db(4, StatHandler.sfx_volume)
 	StatHandler.max_lives = 0 + lives_button.selected
 	StatHandler.max_continues = 0 + continues_button.selected
 	RenderingServer.viewport_set_msaa_3d(camera_3d.get_viewport().get_viewport_rid(), StatHandler.get_msaa_quality(StatHandler.quality))
@@ -112,9 +109,11 @@ func _on_back_pressed() -> void:
 
 func _on_quality_button_item_selected(index: int) -> void:
 	StatHandler.quality = quality_button.selected
+	button_press.play()
 
 func _on_color_blind_button_pressed() -> void:
 	StatHandler.color_blind_mode = !StatHandler.color_blind_mode
+	button_press.play()
 
 func _on_button_5_pressed() -> void:
 	v_box_container_3.visible = true
@@ -138,10 +137,14 @@ func _on_button_4_pressed() -> void:
 
 func _on_sfx_slider_value_changed(value: float) -> void:
 	StatHandler.sfx_volume = value
+	AudioServer.set_bus_volume_db(1, StatHandler.sfx_volume)
+	AudioServer.set_bus_volume_db(3, StatHandler.sfx_volume)
+	AudioServer.set_bus_volume_db(4, StatHandler.sfx_volume)
 	button_press.play()
 
 func _on_music_slider_value_changed(value: float) -> void:
 	StatHandler.music_volume = value
+	AudioServer.set_bus_volume_db(2, StatHandler.music_volume)
 
 func _on_back_to_menu_pressed() -> void:
 	v_box_container_3.visible = false
@@ -181,6 +184,7 @@ func _on_level_4_button_pressed() -> void:
 
 func _on_fullscreen_check_pressed() -> void:
 	StatHandler.fullscreen = !StatHandler.fullscreen
+	button_press.play()
 
 func _on_level_5_button_pressed() -> void:
 	StatHandler.level_to = 5
@@ -197,14 +201,14 @@ func _on_level_6_button_pressed() -> void:
 func _on_fps_button_item_selected(index: int) -> void:
 	if index == 0:
 		StatHandler.max_fps = 30
-		StatHandler.set_fps(StatHandler.max_fps)
 	if index == 1:
 		StatHandler.max_fps = 60
-		StatHandler.set_fps(StatHandler.max_fps)
 	if index == 2:
 		StatHandler.max_fps = 120
-		StatHandler.set_fps(StatHandler.max_fps)
 	if index == 3:
 		StatHandler.max_fps = 0
-		StatHandler.set_fps(StatHandler.max_fps)
+	button_press.play()
+
+func _on_apply_changes_pressed() -> void:
+	apply_changes()
 	button_press.play()

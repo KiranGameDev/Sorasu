@@ -231,6 +231,10 @@ layout_mode = 2
 min_value = -80.0
 max_value = 0.0
 
+[node name="ApplyButton" type="Button" parent="Menu2/VBoxContainer"]
+layout_mode = 2
+text = "APPLY CHANGES"
+
 [node name="Button" type="Button" parent="Menu2/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_05uyy")
@@ -288,6 +292,7 @@ color = Color(0, 0, 0, 1)
 [connection signal="item_selected" from="Menu2/VBoxContainer/FPSButton" to="." method="_on_fps_button_item_selected"]
 [connection signal="value_changed" from="Menu2/VBoxContainer/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
 [connection signal="value_changed" from="Menu2/VBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="pressed" from="Menu2/VBoxContainer/ApplyButton" to="." method="_on_apply_button_pressed"]
 [connection signal="pressed" from="Menu2/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="ConfirmationMenu/VBoxContainer/Yes" to="." method="_on_yes_pressed"]
 [connection signal="pressed" from="ConfirmationMenu/VBoxContainer/No" to="." method="_on_no_pressed"]

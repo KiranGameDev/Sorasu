@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dtkobp0srsbq5"]
+[gd_scene load_steps=33 format=3 uid="uid://dtkobp0srsbq5"]
 
 [ext_resource type="Script" uid="uid://cvpeh87q4t22e" path="res://main_menu.gd" id="1_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://bc252hx2bqea3" path="res://SORASU__1_-removebg-preview.png" id="2_fu7sn"]
@@ -46,6 +46,12 @@ default_font_size = 24
 [sub_resource type="LabelSettings" id="LabelSettings_dy7ct"]
 font = ExtResource("5_glbon")
 font_size = 18
+
+[sub_resource type="Theme" id="Theme_0k4wn"]
+default_font = ExtResource("5_glbon")
+
+[sub_resource type="Theme" id="Theme_j5v2v"]
+default_font = ExtResource("5_glbon")
 
 [sub_resource type="LabelSettings" id="LabelSettings_8qtwp"]
 font = ExtResource("5_glbon")
@@ -461,8 +467,14 @@ layout_mode = 2
 min_value = -40.0
 max_value = 0.0
 
+[node name="ApplyChanges" type="Button" parent="CenterContainer/VBoxContainer2"]
+layout_mode = 2
+theme = SubResource("Theme_0k4wn")
+text = "APPLY CHANGES"
+
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer2"]
 layout_mode = 2
+theme = SubResource("Theme_j5v2v")
 text = "BACK"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer"]
@@ -662,6 +674,7 @@ bus = &"SFX"
 [connection signal="item_selected" from="CenterContainer/VBoxContainer2/FPSButton" to="." method="_on_fps_button_item_selected"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer2/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer2/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer2/ApplyChanges" to="." method="_on_apply_changes_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer2/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer3/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="CenterContainer/LevelSelect/Level1Button" to="." method="_on_level_1_button_pressed"]

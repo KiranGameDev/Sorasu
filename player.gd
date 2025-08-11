@@ -102,7 +102,7 @@ func check_parry():
 			parry_animation_player.play("ParrySuccessful")
 			if not parry_sound_effect.playing:
 				parry_pause_timer.start()
-				Engine.time_scale = 0.1
+				Engine.time_scale = 0.2
 				parry_sound_effect.play()
 				parry_sound_effect_2.play()
 		else:
@@ -124,7 +124,7 @@ func check_tutorial_parry():
 			parry_animation_player.play("ParrySuccessful")
 			if not parry_sound_effect.playing:
 				parry_pause_timer.start()
-				Engine.time_scale = 0.1
+				Engine.time_scale = 0.2
 				parry_sound_effect.play()
 				parry_sound_effect_2.play()
 		else:

@@ -35,16 +35,19 @@ func _ready() -> void:
 	menu_2.visible = false
 	confirmation_menu.visible = false
 
+func apply_changes():
+	StatHandler.set_fps(StatHandler.max_fps)
+	if StatHandler.fullscreen:
+		get_tree().root.mode = Window.MODE_FULLSCREEN
+	else:
+		get_tree().root.mode = Window.MODE_MAXIMIZED
+
 func _process(delta: float) -> void:
 	var player = get_tree().get_first_node_in_group("player")
 	if color_rect_2.color == Color.TRANSPARENT:
 		color_rect_2.visible = false
 	else:
 		color_rect_2.visible = true
-	if StatHandler.fullscreen:
-		get_tree().root.mode = Window.MODE_FULLSCREEN
-	else:
-		get_tree().root.mode = Window.MODE_MAXIMIZED
 	AudioServer.set_bus_volume_db(1, StatHandler.sfx_volume)
 	AudioServer.set_bus_volume_db(2, StatHandler.music_volume)
 	AudioServer.set_bus_volume_db(3, StatHandler.sfx_volume)
@@ -94,6 +97,7 @@ func _on_main_menu_button_pressed() -> void:
 
 func teleport():
 	get_tree().paused = false
+	kill_player()
 	get_tree().change_scene_to_file("res://main_menu.tscn")
 	visible = false
 
@@ -130,6 +134,7 @@ func _on_button_pressed() -> void:
 
 func _on_fullscreen_check_pressed() -> void:
 	StatHandler.fullscreen = !StatHandler.fullscreen
+	button_pressed.play()
 
 func _on_yes_pressed() -> void:
 	animation_player.play("FadeIn")
@@ -143,21 +148,20 @@ func _on_no_pressed() -> void:
 	back_button.grab_focus()
 	button_pressed.play()
 
+func kill_player():
+	var player = get_tree().get_first_node_in_group("player")
+	player.queue_free()
+
 func _on_fps_button_item_selected(index: int) -> void:
 	if index == 0:
 		StatHandler.max_fps = 30
-		StatHandler.set_fps(StatHandler.max_fps)
-		Engine.physics_ticks_per_second = 120
 	if index == 1:
 		StatHandler.max_fps = 60
-		StatHandler.set_fps(StatHandler.max_fps)
-		Engine.physics_ticks_per_second = 120
 	if index == 2:
 		StatHandler.max_fps = 120
-		StatHandler.set_fps(StatHandler.max_fps)
-		Engine.physics_ticks_per_second = 120
 	if index == 3:
 		StatHandler.max_fps = 0
-		StatHandler.set_fps(StatHandler.max_fps)
-		Engine.physics_ticks_per_second = 120
 	button_pressed.play()
+
+func _on_apply_button_pressed() -> void:
+	pass # Replace with function body.
