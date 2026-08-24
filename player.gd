@@ -148,6 +148,6 @@ func _on_timer_timeout() -> void:
 
 func _on_parry_pause_timer_timeout() -> void:
 	if StatHandler.ex_mode:
-		Engine.time_scale = 1#.3
+		Engine.time_scale = 1.3
 	else:
 		Engine.time_scale = 1

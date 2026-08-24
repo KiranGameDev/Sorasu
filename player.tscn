@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dm5an44fjmtnq"]
+[gd_scene format=3 uid="uid://dm5an44fjmtnq"]
 
 [ext_resource type="Script" uid="uid://bxccmmbaqm53q" path="res://player.gd" id="1_o7f5t"]
 [ext_resource type="AudioStream" uid="uid://cuq30linnp1yq" path="res://arrow-impact-87260.mp3" id="3_hqtel"]
@@ -360,20 +360,18 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_h14hc"]
-radius = 3.2
+radius = 3.3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dr8k6"]
 size = Vector3(0.7, 0.679, 0.7)
 
-[node name="Player" type="CharacterBody3D" groups=["player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1513898847 groups=["player"]]
 script = ExtResource("1_o7f5t")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ofd7x")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=247516305]
+libraries/ = SubResource("AnimationLibrary_ofd7x")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1595651568]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.602367, 0.0103183, 0)
 visible = false
 amount = 50
@@ -381,7 +379,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_1cn1s")
 draw_pass_1 = SubResource("SphereMesh_l6l12")
 
-[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="." unique_id=869856625]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.613922, 0.0103183, -1.9482)
 visible = false
 amount = 50
@@ -389,7 +387,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_1cn1s")
 draw_pass_1 = SubResource("SphereMesh_l6l12")
 
-[node name="GPUParticles3D3" type="GPUParticles3D" parent="."]
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="." unique_id=1601567861]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.614, 0.01, 1.948)
 visible = false
 amount = 50
@@ -397,65 +395,63 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_1cn1s")
 draw_pass_1 = SubResource("SphereMesh_l6l12")
 
-[node name="ParrySphere" type="MeshInstance3D" parent="."]
+[node name="ParrySphere" type="MeshInstance3D" parent="." unique_id=1983955170]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.73, 0)
 mesh = SubResource("CylinderMesh_2hs0m")
 
-[node name="ParryAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_tb0dp")
-}
+[node name="ParryAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1828194576]
+libraries/ = SubResource("AnimationLibrary_tb0dp")
 
-[node name="ParryArea" type="Area3D" parent="."]
+[node name="ParryArea" type="Area3D" parent="." unique_id=1323929866]
 collision_layer = 2
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ParryArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ParryArea" unique_id=5668515]
 shape = SubResource("SphereShape3D_h14hc")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=859057881]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0185567, 0)
 shape = SubResource("BoxShape3D_dr8k6")
 
-[node name="SFX" type="Node" parent="."]
+[node name="SFX" type="Node" parent="." unique_id=1776999439]
 
-[node name="ParrySoundEffect" type="AudioStreamPlayer" parent="SFX"]
+[node name="ParrySoundEffect" type="AudioStreamPlayer" parent="SFX" unique_id=1271008314]
 stream = ExtResource("3_hqtel")
 volume_db = 5.0
 bus = &"Echo"
 
-[node name="ParrySoundEffect2" type="AudioStreamPlayer" parent="SFX"]
+[node name="ParrySoundEffect2" type="AudioStreamPlayer" parent="SFX" unique_id=279842050]
 stream = ExtResource("4_sweqy")
 volume_db = 1.0
 bus = &"SFX"
 
-[node name="EnemyHit" type="AudioStreamPlayer" parent="SFX"]
+[node name="EnemyHit" type="AudioStreamPlayer" parent="SFX" unique_id=961932665]
 stream = ExtResource("4_7amfg")
 bus = &"SFX"
 
-[node name="Max Combo Voice" type="AudioStreamPlayer" parent="SFX"]
+[node name="Max Combo Voice" type="AudioStreamPlayer" parent="SFX" unique_id=883074255]
 stream = ExtResource("5_2hs0m")
 bus = &"SFX"
 
-[node name="ComboTimer" type="Timer" parent="."]
+[node name="ComboTimer" type="Timer" parent="." unique_id=526549296]
 wait_time = 3.0
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1198421436]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.88059, 0)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=692966793]
 wait_time = 3.0
 one_shot = true
 autostart = true
 
-[node name="PlayerModel" parent="." instance=ExtResource("5_sweqy")]
+[node name="PlayerModel" parent="." unique_id=269011788 instance=ExtResource("5_sweqy")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.201811, 0, 0)
 
-[node name="ParryPauseTimer" type="Timer" parent="."]
+[node name="ParryPauseTimer" type="Timer" parent="." unique_id=275325165]
 wait_time = 0.04
 one_shot = true
 
-[node name="RumbleParryFail" type="AudioStreamPlayer" parent="."]
+[node name="RumbleParryFail" type="AudioStreamPlayer" parent="." unique_id=1039800374]
 stream = ExtResource("7_1jxqw")
 bus = &"SFX"
 
